@@ -15,10 +15,12 @@ import javafx.stage.WindowEvent;
 import utils.Animation;
 import utils.Executor;
 import utils.Logger;
+import utils.NumbersPair;
 import utils.ShutDown;
 
 public class Friday extends Application {
 
+	private NumbersPair dimensionsInsets = new NumbersPair(7, 29);
 	private double pixesOnTheLeft = 180;
 
 	@Override
@@ -26,8 +28,8 @@ public class Friday extends Application {
 
 		Panel panel = new Panel();
 
-		double width = Credentials.INSTANCE.DimensionsFrame.x + Credentials.INSTANCE.DimensionsInsets.x;
-		double height = Credentials.INSTANCE.DimensionsFrame.y + Credentials.INSTANCE.DimensionsInsets.y;
+		double width = Credentials.INSTANCE.DimensionsFrame.x + this.dimensionsInsets.x;
+		double height = Credentials.INSTANCE.DimensionsFrame.y + this.dimensionsInsets.y;
 
 		Scene scene = new Scene(panel);
 		setKeyPressed(scene);
