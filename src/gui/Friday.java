@@ -18,7 +18,7 @@ import utils.Logger;
 import utils.NumbersPair;
 import utils.ShutDown;
 
-public class FX extends Application {
+public class Friday extends Application {
 
 	private NumbersPair dimensionsInsets = new NumbersPair(7, 29);
 	private double pixesOnTheLeft = 180;

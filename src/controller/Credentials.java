@@ -6,7 +6,7 @@ public enum Credentials {
 
 	INSTANCE;
 
-	public String primaryStageTitle = "fx";
+	public String primaryStageTitle = "Friday";
 	public NumbersPair DimensionsFrame, DimensionsGapBetweenBorders, DimensionsGapBetweenComponents,
 			DimensionsNumberImageView;
 	public NumbersPair CoordinatesTextPanel;
