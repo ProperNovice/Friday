@@ -27,10 +27,6 @@ public enum LayerZ {
 
 	}
 
-	public void addImageViewToLastLayer(ImageView imageView, javafx.scene.image.ImageView imageViewFX) {
-		addImageViewAbleToLayer(imageView, ELayerZ.values()[ELayerZ.values().length - 1], imageViewFX);
-	}
-
 	public void toFrontImageview(ImageView imageView) {
 
 		ArrayList<ImageView> list = getListContainingImageViewAble(imageView);
