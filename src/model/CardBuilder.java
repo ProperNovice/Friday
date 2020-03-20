@@ -1,6 +1,7 @@
 package model;
 
 import enums.EAbility;
+import enums.ECardAgingType;
 import enums.EHazardValue;
 import utils.ShutDown;
 
@@ -10,6 +11,7 @@ public class CardBuilder {
 	private SideHazard sideHazard = null;
 	private int fightingValue = 99;
 	private EAbility eAbility = null;
+	private ECardAgingType eCardAgingType = null;
 
 	public CardBuilder() {
 
@@ -33,6 +35,11 @@ public class CardBuilder {
 
 	public CardBuilder sideHazard(EHazardValue eHazardValue) {
 		this.sideHazard = new SideHazard(eHazardValue);
+		return this;
+	}
+
+	public CardBuilder eCardAgingType(ECardAgingType eCardAgingType) {
+		this.eCardAgingType = eCardAgingType;
 		return this;
 	}
 
@@ -71,6 +78,26 @@ public class CardBuilder {
 			sideKnowledge = new SideKnowledgeAbility(this.fightingValue, 1, this.eAbility);
 
 		return new CardFightingHazardKnowledge(this.fileName, sideKnowledge, this.sideHazard);
+
+	}
+
+	public CardFightingAging buildCardFightingAging() {
+
+		if (this.fileName == null)
+			ShutDown.INSTANCE.execute("not given fileName in CardFightingAging");
+		else if (this.fightingValue == 99)
+			ShutDown.INSTANCE.execute("not given fightingValue in CardFightingAging");
+		else if (this.eCardAgingType == null)
+			ShutDown.INSTANCE.execute("not given eCardAgingType in CardFightingAging");
+
+		SideKnowledge sideKnowledge = null;
+
+		if (this.eAbility == null)
+			sideKnowledge = new SideKnowledge(this.fightingValue, 2);
+		else
+			sideKnowledge = new SideKnowledgeAbility(this.fightingValue, 2, this.eAbility);
+
+		return new CardFightingAging(this.fileName, sideKnowledge, this.eCardAgingType);
 
 	}
 

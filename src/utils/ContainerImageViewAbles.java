@@ -2,6 +2,7 @@ package utils;
 
 import java.util.Iterator;
 
+import controller.Lists;
 import interfaces.ISaveLoadStateAble;
 import utils.Animation.AnimationSynch;
 
@@ -14,6 +15,7 @@ public class ContainerImageViewAbles<T> implements IListSize, ISaveLoadStateAble
 
 	public ContainerImageViewAbles(Coordinates coordinates) {
 		this.coordinates = coordinates;
+		Lists.INSTANCE.iSaveLoadStateAbles.addLast(this);
 	}
 
 	public ContainerImageViewAbles(Coordinates coordinates, int capacity) {

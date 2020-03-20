@@ -8,7 +8,8 @@ public enum Credentials {
 
 	public String primaryStageTitle = "Friday";
 	public NumbersPair DimensionsFrame, DimensionsGapBetweenComponents, DimensionsCardFighting, DimensionsCardStep;
-	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep;
+	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep,
+			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge;
 	private NumbersPair DimensionsCardFightingOriginal;
 	public double gapBetweenBorders = 25, textHeight = 50;
 
@@ -17,7 +18,7 @@ public enum Credentials {
 		double x = 0, y = 0;
 
 		this.DimensionsFrame = new NumbersPair(1920, 1080);
-		this.DimensionsGapBetweenComponents = new NumbersPair(4, 4);
+		this.DimensionsGapBetweenComponents = new NumbersPair(8, 8);
 
 		this.CoordinatesTextPanel = new NumbersPair(x, y);
 
@@ -35,7 +36,25 @@ public enum Credentials {
 		this.DimensionsFrame = new NumbersPair(x, 1080);
 
 		this.CoordinatesDeckPlayer = new NumbersPair(this.gapBetweenBorders, this.gapBetweenBorders);
-		this.CoordinatesDeckHazardKnowledge = new NumbersPair(500, this.gapBetweenBorders);
+
+		x = this.CoordinatesDeckPlayer.x + this.DimensionsCardFighting.x + this.DimensionsGapBetweenComponents.x;
+		y = this.CoordinatesDeckPlayer.y;
+		this.CoordinatesDiscardPilePlayer = new NumbersPair(x, y);
+
+		x = this.CoordinatesDiscardPilePlayer.x + this.DimensionsCardFighting.x + this.DimensionsGapBetweenComponents.x;
+		y = this.CoordinatesDiscardPilePlayer.y;
+		this.CoordinatesDeckHazardKnowledge = new NumbersPair(x, y);
+
+		x = this.CoordinatesDeckHazardKnowledge.x + this.DimensionsCardFighting.x
+				+ this.DimensionsGapBetweenComponents.x;
+		y = this.CoordinatesDeckHazardKnowledge.y;
+		this.CoordinatesDiscardPileHazardKnowledge = new NumbersPair(x, y);
+
+		x = this.CoordinatesDiscardPileHazardKnowledge.x + this.DimensionsCardFighting.x
+				+ this.DimensionsGapBetweenComponents.x;
+		y = this.CoordinatesDiscardPileHazardKnowledge.y;
+		this.CoordinatesDeckAging = new NumbersPair(x, y);
+
 		this.CoordinatesDeckStep = new NumbersPair(this.gapBetweenBorders, 500);
 
 	}

@@ -1,6 +1,7 @@
 package controller;
 
 import enums.EAbility;
+import enums.ECardAgingType;
 import enums.EHazardValue;
 import enums.EStep;
 import interfaces.ISaveLoadStateAble;
@@ -17,9 +18,10 @@ public enum Lists implements ISaveLoadStateAble {
 
 	INSTANCE;
 
-	private ArrayList<ISaveLoadStateAble> iSaveLoadStateAbles = new ArrayList<ISaveLoadStateAble>();
-	private ContainerImageViewAbles<CardFighting> deckPlayer, deckHazardKnowledge;
-	private ContainerImageViewAbles<CardStep> deckStep;
+	public ArrayList<ISaveLoadStateAble> iSaveLoadStateAbles = new ArrayList<ISaveLoadStateAble>();
+	public ContainerImageViewAbles<CardFighting> deckPlayer, deckHazardKnowledge, deckAging, discardPilePlayer,
+			discardPileHazardKnowledge;
+	public ContainerImageViewAbles<CardStep> deckStep;
 
 	public void instantiate() {
 
@@ -27,14 +29,14 @@ public enum Lists implements ISaveLoadStateAble {
 		createDeckPlayer();
 		createDeckHazardKnowledge();
 		createDeckStep();
-
-		addSaveStateAbles();
+		createDeckAging();
 
 		this.deckPlayer.relocateImageViews();
 		this.deckHazardKnowledge.relocateImageViews();
 		this.deckStep.relocateImageViews();
+		this.deckAging.relocateImageViews();
 
-		Logger.INSTANCE.logNewLine("lists instantiated");
+		Logger.INSTANCE.logNewLine("lists instantiated -> " + this.iSaveLoadStateAbles.size());
 
 	}
 
@@ -61,6 +63,27 @@ public enum Lists implements ISaveLoadStateAble {
 						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckStep)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
+		// deckAging
+
+		this.deckAging = new ContainerImageViewAbles<CardFighting>(
+				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckAging)
+						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
+
+		// discardPilePlayer
+
+		this.discardPilePlayer = new ContainerImageViewAbles<CardFighting>(
+				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPilePlayer)
+						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
+
+		// discardPileHazardKnowledge
+
+		this.discardPileHazardKnowledge = new ContainerImageViewAbles<CardFighting>(
+				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPileHazardKnowledge)
+						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
+
 	}
 
 	private void createDeckPlayer() {
@@ -85,6 +108,9 @@ public enum Lists implements ISaveLoadStateAble {
 
 		this.deckPlayer.getArrayList().shuffle();
 		this.deckPlayer.toFront();
+
+		for (CardFighting cardFighting : this.deckPlayer)
+			cardFighting.getImageView().flipBack();
 
 	}
 
@@ -192,6 +218,9 @@ public enum Lists implements ISaveLoadStateAble {
 		this.deckHazardKnowledge.getArrayList().shuffle();
 		this.deckHazardKnowledge.toFront();
 
+		for (CardFighting cardFighting : this.deckHazardKnowledge)
+			cardFighting.getImageView().flipBack();
+
 	}
 
 	private void createDeckStep() {
@@ -204,7 +233,44 @@ public enum Lists implements ISaveLoadStateAble {
 
 	}
 
-	private void addSaveStateAbles() {
+	private void createDeckAging() {
+
+		for (int counter = 1; counter <= 2; counter++)
+			this.deckAging.getArrayList()
+					.addLast(new CardBuilder().fileName("Scared").sideKnowledge(0, EAbility.HIGHEST_CARD_EQUALS_ZERO)
+							.eCardAgingType(ECardAgingType.NORMAL).buildCardFightingAging());
+
+		this.deckAging.getArrayList()
+				.addLast(new CardBuilder().fileName("Hungry").sideKnowledge(0, EAbility.MINUS_ONE_LIFE)
+						.eCardAgingType(ECardAgingType.NORMAL).buildCardFightingAging());
+
+		this.deckAging.getArrayList().addLast(new CardBuilder().fileName("Very Tired").sideKnowledge(0, EAbility.STOP)
+				.eCardAgingType(ECardAgingType.NORMAL).buildCardFightingAging());
+
+		this.deckAging.getArrayList().addLast(new CardBuilder().fileName("Distracted2").sideKnowledge(-1)
+				.eCardAgingType(ECardAgingType.NORMAL).buildCardFightingAging());
+
+		this.deckAging.getArrayList().addLast(new CardBuilder().fileName("Stupid").sideKnowledge(-2)
+				.eCardAgingType(ECardAgingType.NORMAL).buildCardFightingAging());
+
+		this.deckAging.getArrayList().addLast(new CardBuilder().fileName("Very Stupid").sideKnowledge(-3)
+				.eCardAgingType(ECardAgingType.NORMAL).buildCardFightingAging());
+
+		this.deckAging.getArrayList()
+				.addLast(new CardBuilder().fileName("Very Hungry").sideKnowledge(0, EAbility.MINUS_TWO_LIFE)
+						.eCardAgingType(ECardAgingType.DIFFICULT).buildCardFightingAging());
+
+		this.deckAging.getArrayList().addLast(new CardBuilder().fileName("Moronic").sideKnowledge(-4)
+				.eCardAgingType(ECardAgingType.DIFFICULT).buildCardFightingAging());
+
+		this.deckAging.getArrayList().addLast(new CardBuilder().fileName("Suicidal").sideKnowledge(-5)
+				.eCardAgingType(ECardAgingType.DIFFICULT).buildCardFightingAging());
+
+		this.deckAging.getArrayList().shuffle();
+		this.deckAging.toFront();
+
+		for (CardFighting cardFighting : this.deckAging)
+			cardFighting.getImageView().flipBack();
 
 	}
 

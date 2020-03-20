@@ -1,5 +1,6 @@
 package model;
 
+import controller.Credentials;
 import enums.EStep;
 import utils.Logger;
 
@@ -15,6 +16,11 @@ public class CardStep extends Card {
 	@Override
 	protected String getFolder() {
 		return "step/";
+	}
+
+	@Override
+	protected double getWidth() {
+		return Credentials.INSTANCE.DimensionsCardFighting.y;
 	}
 
 	@Override
