@@ -9,7 +9,6 @@ public class CoordinatesBuilder {
 	private int objectsPerRow = -1;
 	private RearrangeTypeEnum rearrangeTypeEnum = RearrangeTypeEnum.LINEAR;
 	private DirectionEnum directionEnumHorizontal = DirectionEnum.RIGHT, directionEnumVertical = DirectionEnum.DOWN;
-	private IListSize listSizable = null;
 
 	public CoordinatesBuilder() {
 
@@ -87,14 +86,9 @@ public class CoordinatesBuilder {
 		return this;
 	}
 
-	public CoordinatesBuilder listSizeAble(IListSize listSizable) {
-		this.listSizable = listSizable;
-		return this;
-	}
-
 	public Coordinates build() {
 		return new Coordinates(this.x, this.y, width, this.height, this.gapX, this.gapY, this.objectsPerRow,
-				this.rearrangeTypeEnum, this.directionEnumHorizontal, this.directionEnumVertical, this.listSizable);
+				this.rearrangeTypeEnum, this.directionEnumHorizontal, this.directionEnumVertical);
 	}
 
 }

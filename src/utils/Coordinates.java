@@ -11,7 +11,7 @@ public class Coordinates {
 
 	public Coordinates(double x, double y, double width, double height, double gapX, double gapY, int objectsPerRow,
 			RearrangeTypeEnum rearrangeTypeEnum, DirectionEnum directionEnumHorizontal,
-			DirectionEnum directionEnumVertical, IListSize listSizable) {
+			DirectionEnum directionEnumVertical) {
 
 		this.x = x;
 		this.y = y;
@@ -23,17 +23,6 @@ public class Coordinates {
 		this.rearrangeTypeEnum = rearrangeTypeEnum;
 		this.directionEnumHorizontal = directionEnumHorizontal;
 		this.directionEnumVertical = directionEnumVertical;
-		this.listSizable = listSizable;
-
-		if (this.rearrangeTypeEnum != RearrangeTypeEnum.PIVOT)
-			return;
-
-		if (this.listSizable != null)
-			return;
-
-		Logger.INSTANCE.log("pivot rearrange type");
-		Logger.INSTANCE.log("no list sizable object");
-		ShutDown.INSTANCE.execute();
 
 	}
 
@@ -190,6 +179,10 @@ public class Coordinates {
 
 	public RearrangeTypeEnum getRearrangeTypeEnum() {
 		return this.rearrangeTypeEnum;
+	}
+
+	public void setIListSizable(IListSize iListSize) {
+		this.listSizable = iListSize;
 	}
 
 }

@@ -15,11 +15,14 @@ public class ContainerImageViewAbles<T> implements IListSize, ISaveLoadStateAble
 
 	public ContainerImageViewAbles(Coordinates coordinates) {
 		this.coordinates = coordinates;
+		this.coordinates.setIListSizable(this);
 		Lists.INSTANCE.iSaveLoadStateAbles.addLast(this);
 	}
 
 	public ContainerImageViewAbles(Coordinates coordinates, int capacity) {
 		this.coordinates = coordinates;
+		this.coordinates.setIListSizable(this);
+		Lists.INSTANCE.iSaveLoadStateAbles.addLast(this);
 		this.arrayList.setCapacity(capacity);
 	}
 

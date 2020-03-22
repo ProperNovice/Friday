@@ -1,9 +1,4 @@
 /controller/
-/enums/
-/gameState/
-/gui/
-/images/
-/interfaces/
 /utils/
-/model/
-/card/
+/gameState/
+/enums/

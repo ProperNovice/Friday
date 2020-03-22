@@ -8,6 +8,7 @@ import interfaces.ISaveLoadStateAble;
 import model.CardBuilder;
 import model.CardFighting;
 import model.CardStep;
+import model.IndicatorFreeCard;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
@@ -20,8 +21,9 @@ public enum Lists implements ISaveLoadStateAble {
 
 	public ArrayList<ISaveLoadStateAble> iSaveLoadStateAbles = new ArrayList<ISaveLoadStateAble>();
 	public ContainerImageViewAbles<CardFighting> deckPlayer, deckHazardKnowledge, deckAging, discardPilePlayer,
-			discardPileHazardKnowledge;
+			discardPileHazardKnowledge, handPlayer, cardsHazardsDrawn, hazardToFight;
 	public ContainerImageViewAbles<CardStep> deckStep;
+	public ContainerImageViewAbles<IndicatorFreeCard> indicatorFreeCards;
 
 	public void instantiate() {
 
@@ -30,11 +32,13 @@ public enum Lists implements ISaveLoadStateAble {
 		createDeckHazardKnowledge();
 		createDeckStep();
 		createDeckAging();
+		createindicatorFreeCards();
 
 		this.deckPlayer.relocateImageViews();
 		this.deckHazardKnowledge.relocateImageViews();
 		this.deckStep.relocateImageViews();
 		this.deckAging.relocateImageViews();
+		this.indicatorFreeCards.relocateImageViews();
 
 		Logger.INSTANCE.logNewLine("lists instantiated -> " + this.iSaveLoadStateAbles.size());
 
@@ -45,43 +49,64 @@ public enum Lists implements ISaveLoadStateAble {
 		// deckPlayer
 
 		this.deckPlayer = new ContainerImageViewAbles<CardFighting>(
-				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckPlayer)
+				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckPlayer)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
 		// deckHazardKnowledge
 
 		this.deckHazardKnowledge = new ContainerImageViewAbles<CardFighting>(
-				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckHazardKnowledge)
+				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckHazardKnowledge)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
 		// deckStep
 
 		this.deckStep = new ContainerImageViewAbles<CardStep>(
-				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardStep)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckStep)
+				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckStep)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
 		// deckAging
 
 		this.deckAging = new ContainerImageViewAbles<CardFighting>(
-				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckAging)
+				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckAging)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
 		// discardPilePlayer
 
 		this.discardPilePlayer = new ContainerImageViewAbles<CardFighting>(
-				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPilePlayer)
+				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPilePlayer)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
 		// discardPileHazardKnowledge
 
-		this.discardPileHazardKnowledge = new ContainerImageViewAbles<CardFighting>(
+		this.discardPileHazardKnowledge = new ContainerImageViewAbles<CardFighting>(new CoordinatesBuilder()
+				.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPileHazardKnowledge)
+				.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
+
+		// handPlayer
+
+		this.handPlayer = new ContainerImageViewAbles<CardFighting>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPileHazardKnowledge)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesHandPlayer)
+						.gapY(-Credentials.INSTANCE.DimensionsCardFighting.y / 2).objectsPerRow(10).build());
+
+		// indicatorFreeCards
+
+		this.indicatorFreeCards = new ContainerImageViewAbles<IndicatorFreeCard>(
+				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesIndicatorFreeCard)
+						.gapY(-Credentials.INSTANCE.DimensionsCardFighting.y / 2).objectsPerRow(10).build());
+
+		// cardsHazardDrawn
+
+		this.cardsHazardsDrawn = new ContainerImageViewAbles<CardFighting>(
+				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesCardsHazardsDrawn)
+						.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).build());
+
+		// hazardToFight
+
+		this.hazardToFight = new ContainerImageViewAbles<CardFighting>(
+				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesHazardToFight)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
 	}
@@ -271,6 +296,13 @@ public enum Lists implements ISaveLoadStateAble {
 
 		for (CardFighting cardFighting : this.deckAging)
 			cardFighting.getImageView().flipBack();
+
+	}
+
+	private void createindicatorFreeCards() {
+
+		for (int counter = 1; counter <= 20; counter++)
+			this.indicatorFreeCards.getArrayList().addLast(new IndicatorFreeCard());
 
 	}
 

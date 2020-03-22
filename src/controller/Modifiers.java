@@ -4,4 +4,8 @@ public enum Modifiers {
 
 	INSTANCE;
 
+	private Modifiers() {
+
+	}
+
 }

@@ -6,6 +6,8 @@ public enum EGameState {
 
 	START_GAME(new StartGame()),
 	END_GAME(new EndGame()),
+	DRAW_HAZARD_CARDS(new DrawHazardCards()),
+	CHOOSE_HAZARD_TO_FIGHT(new ChooseHazardToFight()),
 
 	;
 

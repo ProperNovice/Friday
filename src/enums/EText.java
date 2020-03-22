@@ -5,6 +5,8 @@ public enum EText {
 	BLANK("", TextTypeEnum.INDICATOR),
 	CONTINUE("Continue", TextTypeEnum.OPTION),
 	RESTART("Restart", TextTypeEnum.OPTION),
+	DRAW_HAZARD_CARDS("Draw hazard cards", TextTypeEnum.INDICATOR),
+	CHOOSE_HAZARD_TO_FIGHT("Choose hazard\nto fight", TextTypeEnum.INDICATOR),
 
 	;
 

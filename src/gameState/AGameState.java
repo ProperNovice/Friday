@@ -1,7 +1,10 @@
 package gameState;
 
+import controller.Lists;
 import enums.EText;
 import javafx.scene.input.KeyCode;
+import model.Card;
+import model.CardFighting;
 import utils.KeyCodeHandler;
 import utils.Logger;
 import utils.Text;
@@ -35,6 +38,17 @@ public abstract class AGameState {
 	}
 
 	protected void executeTextOption(EText eText) {
+
+	}
+
+	public final void executeCardPressed(Card card) {
+
+		if (Lists.INSTANCE.cardsHazardsDrawn.getArrayList().contains(card))
+			executeCardPressedHazardsDrawn((CardFighting) card);
+
+	}
+
+	protected void executeCardPressedHazardsDrawn(CardFighting cardFighting) {
 
 	}
 

@@ -16,7 +16,7 @@ public abstract class CardFighting extends Card {
 	}
 
 	@Override
-	protected final void print() {
+	public final void print() {
 
 		String seperator = "*************";
 

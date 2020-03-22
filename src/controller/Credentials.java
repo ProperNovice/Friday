@@ -7,10 +7,12 @@ public enum Credentials {
 	INSTANCE;
 
 	public String primaryStageTitle = "Friday";
-	public NumbersPair DimensionsFrame, DimensionsGapBetweenComponents, DimensionsCardFighting, DimensionsCardStep;
+	public NumbersPair DimensionsFrame, DimensionsGapBetweenComponents, DimensionsCardFighting,
+			DimensionsCardStepPirate, DimensionsIndicatorFreeCard;
 	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep,
-			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge;
-	private NumbersPair DimensionsCardFightingOriginal;
+			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge,
+			CoordinatesIndicatorFreeCard, CoordinatesHandPlayer, CoordinatesCardsHazardsDrawn, CoordinatesHazardToFight;
+	private NumbersPair DimensionsCardFightingOriginal, DimensionsCardStepPirateOriginal;
 	public double gapBetweenBorders = 25, textHeight = 50;
 
 	private Credentials() {
@@ -20,20 +22,19 @@ public enum Credentials {
 		this.DimensionsFrame = new NumbersPair(1920, 1080);
 		this.DimensionsGapBetweenComponents = new NumbersPair(8, 8);
 
-		this.CoordinatesTextPanel = new NumbersPair(x, y);
-
 		this.DimensionsCardFightingOriginal = new NumbersPair(200, 375);
+		this.DimensionsCardStepPirateOriginal = new NumbersPair(375, 200);
 
-		y = (this.DimensionsFrame.y - 2 * this.gapBetweenBorders - 2 * this.DimensionsGapBetweenComponents.y) / 3;
-		x = this.DimensionsCardFightingOriginal.x * y / this.DimensionsCardFightingOriginal.y;
+		x = (this.DimensionsFrame.x - 2 * this.gapBetweenBorders - 9 * this.DimensionsGapBetweenComponents.x) / 10;
+		y = this.DimensionsCardFightingOriginal.y * x / this.DimensionsCardFightingOriginal.x;
 		this.DimensionsCardFighting = new NumbersPair(x, y);
 
-		x = this.DimensionsCardFighting.y;
-		y = this.DimensionsCardFighting.x;
-		this.DimensionsCardStep = new NumbersPair(x, y);
+		y = (this.DimensionsCardFighting.y - this.DimensionsGapBetweenComponents.y) / 2;
+		x = this.DimensionsCardStepPirateOriginal.x * y / this.DimensionsCardStepPirateOriginal.y;
+		this.DimensionsCardStepPirate = new NumbersPair(x, y);
 
-		x = 10 * this.DimensionsCardFighting.x + 2 * this.gapBetweenBorders + 9 * this.DimensionsGapBetweenComponents.x;
-		this.DimensionsFrame = new NumbersPair(x, 1080);
+		y = 2 * this.gapBetweenBorders + this.DimensionsGapBetweenComponents.y + 5 * this.DimensionsCardFighting.y / 2;
+		this.DimensionsFrame = new NumbersPair(1920, y);
 
 		this.CoordinatesDeckPlayer = new NumbersPair(this.gapBetweenBorders, this.gapBetweenBorders);
 
@@ -55,7 +56,33 @@ public enum Credentials {
 		y = this.CoordinatesDiscardPileHazardKnowledge.y;
 		this.CoordinatesDeckAging = new NumbersPair(x, y);
 
-		this.CoordinatesDeckStep = new NumbersPair(this.gapBetweenBorders, 500);
+		x = this.CoordinatesDeckAging.x + this.DimensionsCardFighting.x + this.DimensionsGapBetweenComponents.x;
+		y = this.CoordinatesDeckAging.y;
+		this.CoordinatesDeckStep = new NumbersPair(x, y);
+
+		x = this.CoordinatesDeckPlayer.x;
+		y = this.CoordinatesDeckPlayer.y + this.DimensionsCardFighting.y + this.DimensionsGapBetweenComponents.y;
+		this.CoordinatesHandPlayer = new NumbersPair(x, y);
+
+		x = this.DimensionsCardFighting.x / 3;
+		this.DimensionsIndicatorFreeCard = new NumbersPair(x, x);
+
+		x = this.CoordinatesHandPlayer.x;
+		y = this.CoordinatesHandPlayer.y;
+		this.CoordinatesIndicatorFreeCard = new NumbersPair(x, y);
+
+		x = this.CoordinatesDeckStep.x + this.DimensionsCardStepPirate.x + this.DimensionsGapBetweenComponents.x;
+		y = this.gapBetweenBorders;
+		this.CoordinatesTextPanel = new NumbersPair(x, y);
+
+		x = this.CoordinatesDeckHazardKnowledge.x + this.DimensionsCardFighting.x / 2;
+		y = this.CoordinatesDeckHazardKnowledge.y + 3 * this.DimensionsCardFighting.y / 2
+				+ this.DimensionsGapBetweenComponents.y;
+		this.CoordinatesCardsHazardsDrawn = new NumbersPair(x, y);
+
+		x = this.CoordinatesDeckHazardKnowledge.x;
+		y = this.CoordinatesDeckHazardKnowledge.y + this.DimensionsCardFighting.y / 2;
+		this.CoordinatesHazardToFight = new NumbersPair(x, y);
 
 	}
 

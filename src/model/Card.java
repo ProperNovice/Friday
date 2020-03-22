@@ -1,6 +1,7 @@
 package model;
 
 import controller.Credentials;
+import controller.Flow;
 import utils.EventHandler.EventHandlerAble;
 import utils.ImageView;
 import utils.ImageViewAble;
@@ -21,7 +22,7 @@ public abstract class Card implements ImageViewAble, EventHandlerAble {
 
 	protected abstract String getFolder();
 
-	protected abstract void print();
+	public abstract void print();
 
 	protected double getWidth() {
 		return Credentials.INSTANCE.DimensionsCardFighting.x;
@@ -29,7 +30,7 @@ public abstract class Card implements ImageViewAble, EventHandlerAble {
 
 	@Override
 	public void handleMouseButtonPressedPrimary() {
-		print();
+		Flow.INSTANCE.getCurrentGameState().executeCardPressed(this);
 	}
 
 }

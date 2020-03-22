@@ -20,11 +20,11 @@ public class CardStep extends Card {
 
 	@Override
 	protected double getWidth() {
-		return Credentials.INSTANCE.DimensionsCardFighting.y;
+		return Credentials.INSTANCE.DimensionsCardStepPirate.x;
 	}
 
 	@Override
-	protected void print() {
+	public void print() {
 		Logger.INSTANCE.logNewLine("Card step -> " + this.eStep);
 	}
 

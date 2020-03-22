@@ -10,7 +10,7 @@ public enum Flow {
 	INSTANCE;
 
 	private EGameState currentGameState = null;
-	private ArrayList<EGameState> gameStateResolving = new ArrayList<>();
+	private ArrayList<EGameState> flow = new ArrayList<>();
 
 	private Flow() {
 		createTurns();
@@ -18,7 +18,7 @@ public enum Flow {
 
 	public void proceed() {
 
-		this.currentGameState = this.gameStateResolving.removeFirst();
+		this.currentGameState = this.flow.removeFirst();
 		executeGameState();
 
 	}
@@ -45,6 +45,10 @@ public enum Flow {
 
 	public AGameState getCurrentGameState() {
 		return this.currentGameState.getGameState();
+	}
+
+	public void addLast(EGameState eGameState) {
+		this.flow.addLast(eGameState);
 	}
 
 }

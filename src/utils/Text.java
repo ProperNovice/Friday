@@ -23,7 +23,7 @@ public enum Text implements IListSize {
 
 		this.coordinates = new CoordinatesBuilder().height(Credentials.INSTANCE.textHeight)
 				.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesTextPanel).objectsPerRow(1)
-				.rearrangeTypeEnum(RearrangeTypeEnum.LINEAR).listSizeAble(this).gapY(0).build();
+				.rearrangeTypeEnum(RearrangeTypeEnum.LINEAR).gapY(0).build();
 
 	}
 
