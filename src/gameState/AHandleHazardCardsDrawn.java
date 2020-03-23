@@ -1,34 +1,16 @@
 package gameState;
 
-import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
-import enums.EGameState;
 import interfaces.ISideHazardAble;
 import model.CardFighting;
 import model.CardFightingHazardKnowledge;
 import model.CardSlot;
 import utils.Logger;
 
-public class StartGame extends AGameState {
+public abstract class AHandleHazardCardsDrawn extends AGameState {
 
-	@Override
-	public void handleGameStateChange() {
-
-//		Flow.INSTANCE.addLast(EGameState.DRAW_HAZARD_CARDS);
-//		Flow.INSTANCE.addLast(EGameState.CHOOSE_HAZARD_TO_FIGHT);
-//
-//		Flow.INSTANCE.proceed();
-
-		addRandomHazardCardToHand();
-		Flow.INSTANCE.executeGameState(EGameState.FIGHT_START);
-
-	}
-
-	public void addRandomHazardCardToHand() {
-
-		CardFighting cardFighting = Lists.INSTANCE.deckHazardKnowledge.getArrayList().removeRandom();
-		cardFighting.getImageView().flip();
+	protected void addCardToHand(CardFighting cardFighting) {
 
 		CardFightingHazardKnowledge cardFightingHazardKnowledge = (CardFightingHazardKnowledge) cardFighting;
 		ISideHazardAble sideHazardAble = (ISideHazardAble) cardFightingHazardKnowledge;
@@ -77,14 +59,10 @@ public class StartGame extends AGameState {
 
 	}
 
-	public void removeHazards(int cardsToRemove) {
+	protected void addCardToDiscardPileHazardKnowledge(CardFighting cardFighting) {
 
-		for (int counter = 1; counter <= cardsToRemove; counter++) {
-
-			CardFighting cardFighting = Lists.INSTANCE.deckHazardKnowledge.getArrayList().removeRandom();
-			cardFighting.getImageView().setVisible(false);
-
-		}
+		Lists.INSTANCE.discardPileHazardKnowledge.getArrayList().addLast(cardFighting);
+		Lists.INSTANCE.discardPileHazardKnowledge.relocateImageViews();
 
 	}
 

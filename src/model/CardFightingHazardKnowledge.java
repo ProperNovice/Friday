@@ -1,6 +1,8 @@
 package model;
 
-public class CardFightingHazardKnowledge extends CardFighting {
+import interfaces.ISideHazardAble;
+
+public class CardFightingHazardKnowledge extends CardFighting implements ISideHazardAble {
 
 	private SideHazard sideHazard = null;
 
@@ -20,6 +22,7 @@ public class CardFightingHazardKnowledge extends CardFighting {
 		return "hazardKnowledge/";
 	}
 
+	@Override
 	public SideHazard getSideHazard() {
 		return this.sideHazard;
 	}

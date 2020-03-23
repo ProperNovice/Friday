@@ -7,6 +7,8 @@ public enum EText {
 	RESTART("Restart", TextTypeEnum.OPTION),
 	DRAW_HAZARD_CARDS("Draw hazard cards", TextTypeEnum.INDICATOR),
 	CHOOSE_HAZARD_TO_FIGHT("Choose hazard\nto fight", TextTypeEnum.INDICATOR),
+	FIGHT_THE_HAZARD("Fight the hazard", TextTypeEnum.OPTION),
+	SKIP_THE_HAZARD("Skip the hazard", TextTypeEnum.OPTION),
 
 	;
 

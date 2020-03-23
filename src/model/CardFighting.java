@@ -1,8 +1,9 @@
 package model;
 
+import interfaces.ISideKnowledgeAble;
 import utils.Logger;
 
-public abstract class CardFighting extends Card {
+public abstract class CardFighting extends Card implements ISideKnowledgeAble {
 
 	private SideKnowledge sideKnowledge = null;
 
@@ -11,6 +12,7 @@ public abstract class CardFighting extends Card {
 		this.sideKnowledge = sideKnowledge;
 	}
 
+	@Override
 	public SideKnowledge getSideKnowledge() {
 		return this.sideKnowledge;
 	}

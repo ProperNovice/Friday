@@ -1,6 +1,8 @@
 package gameState;
 
+import controller.Flow;
 import controller.Lists;
+import enums.EGameState;
 import enums.EText;
 import model.CardFighting;
 import utils.Text;
@@ -20,6 +22,15 @@ public class DrawHazardCards extends AGameState {
 
 		int cardsToDraw = Math.min(2, Lists.INSTANCE.deckHazardKnowledge.getArrayList().size());
 		drawHazardCards(cardsToDraw);
+
+		EGameState eGameState = null;
+
+		if (cardsToDraw == 1)
+			eGameState = EGameState.HANDLE_HAZARD_CARDS_DRAWN_ONE;
+		else
+			eGameState = EGameState.HANDLE_HAZARD_CARDS_DRAWN_TWO;
+
+		Flow.INSTANCE.executeGameState(eGameState);
 
 	}
 

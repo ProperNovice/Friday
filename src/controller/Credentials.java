@@ -8,12 +8,13 @@ public enum Credentials {
 
 	public String primaryStageTitle = "Friday";
 	public NumbersPair DimensionsFrame, DimensionsGapBetweenComponents, DimensionsCardFighting,
-			DimensionsCardStepPirate, DimensionsIndicatorFreeCard;
+			DimensionsCardStepPirate, DimensionsIndicatorFreeCard, DimensionsLifeToken;
 	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep,
 			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge,
-			CoordinatesIndicatorFreeCard, CoordinatesHandPlayer, CoordinatesCardsHazardsDrawn, CoordinatesHazardToFight;
+			CoordinatesIndicatorFreeCard, CoordinatesHandPlayer, CoordinatesCardsHazardsDrawn, CoordinatesHazardToFight,
+			CoordinatesLifeTokens;
 	private NumbersPair DimensionsCardFightingOriginal, DimensionsCardStepPirateOriginal;
-	public double gapBetweenBorders = 25, textHeight = 50;
+	public double gapBetweenBorders = 25, textHeight = 50, gapBetweenLifeTokens;
 
 	private Credentials() {
 
@@ -83,6 +84,24 @@ public enum Credentials {
 		x = this.CoordinatesDeckHazardKnowledge.x;
 		y = this.CoordinatesDeckHazardKnowledge.y + this.DimensionsCardFighting.y / 2;
 		this.CoordinatesHazardToFight = new NumbersPair(x, y);
+
+		y = this.DimensionsCardStepPirate.y / 2;
+		this.DimensionsLifeToken = new NumbersPair(y, y);
+
+		x = this.CoordinatesDeckStep.x;
+		y = this.CoordinatesDeckStep.y + this.DimensionsCardStepPirate.y + this.DimensionsGapBetweenComponents.y;
+		this.CoordinatesLifeTokens = new NumbersPair(x, y);
+
+		calculateGapBetweenLifeTokens();
+
+	}
+
+	private void calculateGapBetweenLifeTokens() {
+
+		this.gapBetweenLifeTokens = this.DimensionsCardStepPirate.x;
+		this.gapBetweenLifeTokens -= this.DimensionsLifeToken.x;
+		this.gapBetweenLifeTokens /= 10;
+		this.gapBetweenLifeTokens = this.gapBetweenLifeTokens - this.DimensionsLifeToken.x;
 
 	}
 

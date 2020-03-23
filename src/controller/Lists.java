@@ -8,7 +8,8 @@ import interfaces.ISaveLoadStateAble;
 import model.CardBuilder;
 import model.CardFighting;
 import model.CardStep;
-import model.IndicatorFreeCard;
+import model.HandPlayer;
+import model.LifeToken;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
@@ -21,9 +22,10 @@ public enum Lists implements ISaveLoadStateAble {
 
 	public ArrayList<ISaveLoadStateAble> iSaveLoadStateAbles = new ArrayList<ISaveLoadStateAble>();
 	public ContainerImageViewAbles<CardFighting> deckPlayer, deckHazardKnowledge, deckAging, discardPilePlayer,
-			discardPileHazardKnowledge, handPlayer, cardsHazardsDrawn, hazardToFight;
+			discardPileHazardKnowledge, cardsHazardsDrawn, hazardToFight;
 	public ContainerImageViewAbles<CardStep> deckStep;
-	public ContainerImageViewAbles<IndicatorFreeCard> indicatorFreeCards;
+	public ContainerImageViewAbles<LifeToken> lifeTokens;
+	public HandPlayer handPlayer = HandPlayer.INSTANCE;
 
 	public void instantiate() {
 
@@ -32,13 +34,13 @@ public enum Lists implements ISaveLoadStateAble {
 		createDeckHazardKnowledge();
 		createDeckStep();
 		createDeckAging();
-		createindicatorFreeCards();
+		createLifeTokens();
 
 		this.deckPlayer.relocateImageViews();
 		this.deckHazardKnowledge.relocateImageViews();
 		this.deckStep.relocateImageViews();
 		this.deckAging.relocateImageViews();
-		this.indicatorFreeCards.relocateImageViews();
+		this.lifeTokens.relocateImageViews();
 
 		Logger.INSTANCE.logNewLine("lists instantiated -> " + this.iSaveLoadStateAbles.size());
 
@@ -82,20 +84,6 @@ public enum Lists implements ISaveLoadStateAble {
 				.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPileHazardKnowledge)
 				.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
-		// handPlayer
-
-		this.handPlayer = new ContainerImageViewAbles<CardFighting>(
-				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesHandPlayer)
-						.gapY(-Credentials.INSTANCE.DimensionsCardFighting.y / 2).objectsPerRow(10).build());
-
-		// indicatorFreeCards
-
-		this.indicatorFreeCards = new ContainerImageViewAbles<IndicatorFreeCard>(
-				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesIndicatorFreeCard)
-						.gapY(-Credentials.INSTANCE.DimensionsCardFighting.y / 2).objectsPerRow(10).build());
-
 		// cardsHazardDrawn
 
 		this.cardsHazardsDrawn = new ContainerImageViewAbles<CardFighting>(
@@ -108,6 +96,13 @@ public enum Lists implements ISaveLoadStateAble {
 		this.hazardToFight = new ContainerImageViewAbles<CardFighting>(
 				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesHazardToFight)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
+
+		// lifeTokens
+
+		this.lifeTokens = new ContainerImageViewAbles<LifeToken>(
+				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsLifeToken)
+						.gapX(Credentials.INSTANCE.gapBetweenLifeTokens).gapY(0)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesLifeTokens).objectsPerRow(11).build());
 
 	}
 
@@ -299,10 +294,10 @@ public enum Lists implements ISaveLoadStateAble {
 
 	}
 
-	private void createindicatorFreeCards() {
+	private void createLifeTokens() {
 
-		for (int counter = 1; counter <= 20; counter++)
-			this.indicatorFreeCards.getArrayList().addLast(new IndicatorFreeCard());
+		for (int counter = 1; counter <= 22; counter++)
+			this.lifeTokens.getArrayList().addLast(new LifeToken());
 
 	}
 

@@ -6,4 +6,14 @@ public class CardPirate extends Card {
 		super(fileName);
 	}
 
+	@Override
+	protected String getFolder() {
+		return "pirates/";
+	}
+
+	@Override
+	public void print() {
+
+	}
+
 }
