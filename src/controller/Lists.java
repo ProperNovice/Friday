@@ -7,6 +7,7 @@ import enums.EStep;
 import interfaces.ISaveLoadStateAble;
 import model.CardBuilder;
 import model.CardFighting;
+import model.CardPirate;
 import model.CardStep;
 import model.HandPlayer;
 import model.LifeToken;
@@ -25,6 +26,8 @@ public enum Lists implements ISaveLoadStateAble {
 			discardPileHazardKnowledge, cardsHazardsDrawn, hazardToFight;
 	public ContainerImageViewAbles<CardStep> deckStep;
 	public ContainerImageViewAbles<LifeToken> lifeTokens;
+	public ArrayList<CardPirate> deckPirates = new ArrayList<CardPirate>();
+	public ContainerImageViewAbles<CardPirate> cardPiratesInPlay;
 	public HandPlayer handPlayer = HandPlayer.INSTANCE;
 
 	public void instantiate() {
@@ -35,6 +38,7 @@ public enum Lists implements ISaveLoadStateAble {
 		createDeckStep();
 		createDeckAging();
 		createLifeTokens();
+		createDeckPirates();
 
 		this.deckPlayer.relocateImageViews();
 		this.deckHazardKnowledge.relocateImageViews();
@@ -103,6 +107,8 @@ public enum Lists implements ISaveLoadStateAble {
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsLifeToken)
 						.gapX(Credentials.INSTANCE.gapBetweenLifeTokens).gapY(0)
 						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesLifeTokens).objectsPerRow(11).build());
+
+		// deckPirates
 
 	}
 
@@ -291,6 +297,74 @@ public enum Lists implements ISaveLoadStateAble {
 
 		for (CardFighting cardFighting : this.deckAging)
 			cardFighting.getImageView().flipBack();
+
+	}
+
+	private void createDeckPirates() {
+
+		String filename = "Ship-";
+		int pirateNumber = 0;
+
+		// 1
+
+		pirateNumber++;
+		this.deckPirates
+				.addLast(new CardBuilder().fileName(filename + pirateNumber).sidePirate(9, 35).buildCardPirate());
+
+		// 2
+
+		pirateNumber++;
+		this.deckPirates.addLast(new CardBuilder().fileName(filename + pirateNumber)
+				.sidePirate(7, 16, EAbility.EACH_ADDITIONAL_FIGHTING_CARD_COSTS_TWO_LIFE_POINTS).buildCardPirate());
+
+		// 3
+
+		pirateNumber++;
+		this.deckPirates
+				.addLast(new CardBuilder().fileName(filename + pirateNumber).sidePirate(7, 25).buildCardPirate());
+
+		// 4
+
+		pirateNumber++;
+		this.deckPirates.addLast(new CardBuilder().fileName(filename + pirateNumber)
+				.sidePirate(5, 0, EAbility.PLUS_TWO_HAZARD_POINTS_FOR_EACH_FIGHTING_CARD).buildCardPirate());
+
+		// 5
+
+		pirateNumber++;
+		this.deckPirates.addLast(new CardBuilder().fileName(filename + pirateNumber)
+				.sidePirate(10, 52, EAbility.EACH_FACE_UP_FIGHTING_CARD_COUNTS_PLUS_ONE_FIGHTING_POINT)
+				.buildCardPirate());
+
+		// 6
+
+		pirateNumber++;
+		this.deckPirates
+				.addLast(new CardBuilder().fileName(filename + pirateNumber).sidePirate(10, 40).buildCardPirate());
+
+		// 7
+
+		pirateNumber++;
+		this.deckPirates.addLast(new CardBuilder().fileName(filename + pirateNumber)
+				.sidePirate(9, 22, EAbility.ONLY_HALF_OF_THE_FACE_UP_FIGHTING_CARDS_COUNT).buildCardPirate());
+
+		// 8
+
+		pirateNumber++;
+		this.deckPirates.addLast(new CardBuilder().fileName(filename + pirateNumber)
+				.sidePirate(EAbility.FIGHT_AGAINST_ALL_REMAINING_HAZARD_CARDS).buildCardPirate());
+
+		// 9
+
+		pirateNumber++;
+		this.deckPirates
+				.addLast(new CardBuilder().fileName(filename + pirateNumber).sidePirate(6, 20).buildCardPirate());
+		
+		// 10
+		
+		pirateNumber++;
+		this.deckPirates
+		.addLast(new CardBuilder().fileName(filename + pirateNumber).sidePirate(8, 30).buildCardPirate());
 
 	}
 

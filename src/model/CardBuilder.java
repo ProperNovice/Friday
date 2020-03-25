@@ -9,6 +9,7 @@ public class CardBuilder {
 
 	private String fileName = null;
 	private SideHazard sideHazard = null;
+	private SidePirate sidePirate = null;
 	private int fightingValue = 99;
 	private EAbility eAbility = null;
 	private ECardAgingType eCardAgingType = null;
@@ -36,6 +37,29 @@ public class CardBuilder {
 	public CardBuilder sideHazard(EHazardValue eHazardValue) {
 		this.sideHazard = new SideHazard(eHazardValue);
 		return this;
+	}
+
+	public CardBuilder sidePirate(int freeCards, int fightingValue) {
+		return sidePirate(freeCards, fightingValue, null);
+	}
+
+	public CardBuilder sidePirate(int freeCards, EAbility eAbility) {
+		return sidePirate(freeCards, 99, eAbility);
+	}
+
+	public CardBuilder sidePirate(EAbility eAbility) {
+		return sidePirate(99, 99, eAbility);
+	}
+
+	public CardBuilder sidePirate(int freeCards, int fightingValue, EAbility eAbility) {
+
+		if (eAbility == null)
+			this.sidePirate = new SidePirate(freeCards, fightingValue);
+		else
+			this.sidePirate = new SidePirateAbility(freeCards, fightingValue, eAbility);
+
+		return this;
+
 	}
 
 	public CardBuilder eCardAgingType(ECardAgingType eCardAgingType) {
@@ -98,6 +122,15 @@ public class CardBuilder {
 			sideKnowledge = new SideKnowledgeAbility(this.fightingValue, 2, this.eAbility);
 
 		return new CardFightingAging(this.fileName, sideKnowledge, this.eCardAgingType);
+
+	}
+
+	public CardPirate buildCardPirate() {
+
+		if (this.fileName == null)
+			ShutDown.INSTANCE.execute("not given fileName in CardPirate");
+
+		return new CardPirate(this.fileName, this.sidePirate);
 
 	}
 
