@@ -76,7 +76,7 @@ public enum Credentials {
 		y = this.CoordinatesHandPlayer.y;
 		this.CoordinatesIndicatorFreeCard = new NumbersPair(x, y);
 
-		x = this.CoordinatesDeckStep.x + this.DimensionsCardStepPirate.x + this.DimensionsGapBetweenComponents.x;
+		x = this.CoordinatesDeckPirates.x + this.DimensionsCardStepPirate.x + this.DimensionsGapBetweenComponents.x;
 		y = this.gapBetweenBorders;
 		this.CoordinatesTextPanel = new NumbersPair(x, y);
 

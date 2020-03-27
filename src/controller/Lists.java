@@ -110,6 +110,10 @@ public enum Lists implements ISaveLoadStateAble {
 
 		// deckPirates
 
+		this.cardPiratesInPlay = new ContainerImageViewAbles<CardPirate>(
+				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardStepPirate)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckPirates).objectsPerRow(1).build());
+
 	}
 
 	private void createDeckPlayer() {
@@ -359,12 +363,25 @@ public enum Lists implements ISaveLoadStateAble {
 		pirateNumber++;
 		this.deckPirates
 				.addLast(new CardBuilder().fileName(filename + pirateNumber).sidePirate(6, 20).buildCardPirate());
-		
+
 		// 10
-		
+
 		pirateNumber++;
 		this.deckPirates
-		.addLast(new CardBuilder().fileName(filename + pirateNumber).sidePirate(8, 30).buildCardPirate());
+				.addLast(new CardBuilder().fileName(filename + pirateNumber).sidePirate(8, 30).buildCardPirate());
+
+		for (CardPirate cardPirate : this.deckPirates)
+			cardPirate.getImageView().setVisible(false);
+
+		System.out.println(this.deckPirates.size());
+
+		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
+		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
+
+		this.cardPiratesInPlay.relocateImageViews();
+
+		for (CardPirate cardPirate : this.cardPiratesInPlay)
+			cardPirate.getImageView().setVisible(true);
 
 	}
 
