@@ -32,7 +32,7 @@ public enum LayerZ {
 		ArrayList<ImageView> list = getListContainingImageViewAble(imageView);
 		list.remove(imageView);
 		list.addLast(imageView);
-		toFront();
+		toFront(list);
 
 	}
 
@@ -41,7 +41,7 @@ public enum LayerZ {
 		ArrayList<ImageView> list = getListContainingImageViewAble(imageView);
 		list.remove(imageView);
 		list.addFirst(imageView);
-		toFront();
+		toFront(list);
 
 	}
 
@@ -64,11 +64,10 @@ public enum LayerZ {
 
 	}
 
-	private void toFront() {
+	private void toFront(ArrayList<ImageView> list) {
 
-		for (ELayerZ eLayerZ : ELayerZ.values())
-			for (ImageView imageView : this.layerZ.get(eLayerZ))
-				this.listImageViewsFX.get(imageView).toFront();
+		for (ImageView imageView : list)
+			this.listImageViewsFX.get(imageView).toFront();
 
 	}
 
