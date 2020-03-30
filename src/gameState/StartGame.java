@@ -1,13 +1,17 @@
 package gameState;
 
 import controller.Flow;
+import controller.Life;
 import controller.Lists;
 import controller.Modifiers;
+import enums.EAbility;
 import enums.EGameState;
 import interfaces.ISideHazardAble;
 import model.CardFighting;
 import model.CardFightingHazardKnowledge;
 import model.CardSlot;
+import model.SideKnowledge;
+import model.SideKnowledgeAbility;
 import utils.Logger;
 
 public class StartGame extends AGameState {
@@ -21,11 +25,72 @@ public class StartGame extends AGameState {
 //		Flow.INSTANCE.proceed();
 
 		addRandomHazardCardToHand();
+		
+		addCardToHandWithAbility(EAbility.PLUS_TWO_CARDS);
+		addCardToHandWithAbility(EAbility.PLUS_TWO_CARDS);
+		
+		addCardsFromDeckToDiscardPile(16);
+		loseLife(18);
 		Flow.INSTANCE.executeGameState(EGameState.FIGHT_START);
 
 	}
 
-	public void addRandomHazardCardToHand() {
+	protected void loseLife(int lifeToLose) {
+		Life.INSTANCE.loseLife(lifeToLose);
+	}
+
+	protected void addCardsFromDeckToDiscardPile(int cards) {
+
+		for (int counter = 1; counter <= cards; counter++) {
+
+			CardFighting cardFighting = Lists.INSTANCE.deckPlayer.getArrayList().removeFirst();
+			cardFighting.getImageView().flip();
+			Lists.INSTANCE.discardPilePlayer.getArrayList().addLast(cardFighting);
+
+		}
+
+		Lists.INSTANCE.discardPilePlayer.toFront();
+		Lists.INSTANCE.discardPilePlayer.relocateImageViews();
+
+	}
+
+	protected void addCardToHandWithAbility(EAbility eAbility) {
+
+		CardFightingHazardKnowledge cardToAdd = null;
+
+		for (CardFightingHazardKnowledge cardFightingHazardKnowledge : Lists.INSTANCE.deckHazardKnowledge) {
+
+			SideKnowledge sideKnowledge = cardFightingHazardKnowledge.getSideKnowledge();
+
+			if (!(sideKnowledge instanceof SideKnowledgeAbility))
+				continue;
+
+			SideKnowledgeAbility sideKnowledgeAbility = (SideKnowledgeAbility) sideKnowledge;
+
+			if (sideKnowledgeAbility.getEAbility() != eAbility)
+				continue;
+
+			cardToAdd = cardFightingHazardKnowledge;
+			break;
+
+		}
+
+		if (cardToAdd == null)
+			return;
+		
+		cardToAdd.getImageView().setRotate(180);
+		cardToAdd.getImageView().flip();
+		Lists.INSTANCE.deckHazardKnowledge.getArrayList().remove(cardToAdd);
+
+		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots())
+			if (!cardSlot.containsCardFighting()) {
+				cardSlot.addCardFightingRelocate(cardToAdd);
+				break;
+			}
+
+	}
+
+	protected void addRandomHazardCardToHand() {
 
 		CardFighting cardFighting = Lists.INSTANCE.deckHazardKnowledge.getArrayList().removeRandom();
 		cardFighting.getImageView().flip();
@@ -42,7 +107,7 @@ public class StartGame extends AGameState {
 
 	}
 
-	public void setCardSlotsAndPrint(int freeCardsToDraw) {
+	protected void setCardSlotsAndPrint(int freeCardsToDraw) {
 
 		boolean toPrint = true;
 
@@ -77,7 +142,7 @@ public class StartGame extends AGameState {
 
 	}
 
-	public void removeHazards(int cardsToRemove) {
+	protected void removeHazards(int cardsToRemove) {
 
 		for (int counter = 1; counter <= cardsToRemove; counter++) {
 

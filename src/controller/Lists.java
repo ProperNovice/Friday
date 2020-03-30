@@ -7,10 +7,11 @@ import enums.EStep;
 import interfaces.ISaveLoadStateAble;
 import model.CardBuilder;
 import model.CardFighting;
+import model.CardFightingAging;
+import model.CardFightingHazardKnowledge;
 import model.CardPirate;
 import model.CardStep;
 import model.HandPlayer;
-import model.LifeToken;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
@@ -22,10 +23,11 @@ public enum Lists implements ISaveLoadStateAble {
 	INSTANCE;
 
 	public ArrayList<ISaveLoadStateAble> iSaveLoadStateAbles = new ArrayList<ISaveLoadStateAble>();
-	public ContainerImageViewAbles<CardFighting> deckPlayer, deckHazardKnowledge, deckAging, discardPilePlayer,
-			discardPileHazardKnowledge, cardsHazardsDrawn, hazardToFight;
+	public ContainerImageViewAbles<CardFighting> deckPlayer, discardPilePlayer, discardPileHazardKnowledge,
+			cardsHazardsDrawn, hazardToFight;
 	public ContainerImageViewAbles<CardStep> deckStep;
-	public ContainerImageViewAbles<LifeToken> lifeTokens;
+	public ContainerImageViewAbles<CardFightingAging> deckAging;
+	public ContainerImageViewAbles<CardFightingHazardKnowledge> deckHazardKnowledge;
 	public ArrayList<CardPirate> deckPirates = new ArrayList<CardPirate>();
 	public ContainerImageViewAbles<CardPirate> cardPiratesInPlay;
 	public HandPlayer handPlayer = HandPlayer.INSTANCE;
@@ -37,14 +39,12 @@ public enum Lists implements ISaveLoadStateAble {
 		createDeckHazardKnowledge();
 		createDeckStep();
 		createDeckAging();
-		createLifeTokens();
 		createDeckPirates();
 
 		this.deckPlayer.relocateImageViews();
 		this.deckHazardKnowledge.relocateImageViews();
 		this.deckStep.relocateImageViews();
 		this.deckAging.relocateImageViews();
-		this.lifeTokens.relocateImageViews();
 
 		Logger.INSTANCE.logNewLine("lists instantiated -> " + this.iSaveLoadStateAbles.size());
 
@@ -60,7 +60,7 @@ public enum Lists implements ISaveLoadStateAble {
 
 		// deckHazardKnowledge
 
-		this.deckHazardKnowledge = new ContainerImageViewAbles<CardFighting>(
+		this.deckHazardKnowledge = new ContainerImageViewAbles<CardFightingHazardKnowledge>(
 				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckHazardKnowledge)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
@@ -72,7 +72,7 @@ public enum Lists implements ISaveLoadStateAble {
 
 		// deckAging
 
-		this.deckAging = new ContainerImageViewAbles<CardFighting>(
+		this.deckAging = new ContainerImageViewAbles<CardFightingAging>(
 				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckAging)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
@@ -100,13 +100,6 @@ public enum Lists implements ISaveLoadStateAble {
 		this.hazardToFight = new ContainerImageViewAbles<CardFighting>(
 				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesHazardToFight)
 						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
-
-		// lifeTokens
-
-		this.lifeTokens = new ContainerImageViewAbles<LifeToken>(
-				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsLifeToken)
-						.gapX(Credentials.INSTANCE.gapBetweenLifeTokens).gapY(0)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesLifeTokens).objectsPerRow(11).build());
 
 		// deckPirates
 
@@ -373,8 +366,6 @@ public enum Lists implements ISaveLoadStateAble {
 		for (CardPirate cardPirate : this.deckPirates)
 			cardPirate.getImageView().setVisible(false);
 
-		System.out.println(this.deckPirates.size());
-
 		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
 		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
 
@@ -382,13 +373,6 @@ public enum Lists implements ISaveLoadStateAble {
 
 		for (CardPirate cardPirate : this.cardPiratesInPlay)
 			cardPirate.getImageView().setVisible(true);
-
-	}
-
-	private void createLifeTokens() {
-
-		for (int counter = 1; counter <= 22; counter++)
-			this.lifeTokens.getArrayList().addLast(new LifeToken());
 
 	}
 

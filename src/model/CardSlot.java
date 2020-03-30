@@ -6,19 +6,23 @@ public class CardSlot {
 
 	private CardFighting cardFighting = null;
 	private boolean containsFreeCard = false;
-	private NumbersPair coordinates = null;
+	private NumbersPair coordinatesNumbersPair = null;
 
 	public CardSlot(NumbersPair coordinates) {
-		this.coordinates = coordinates;
+		this.coordinatesNumbersPair = coordinates;
 	}
 
 	public void addCardFightingRelocate(CardFighting cardFighting) {
 		this.cardFighting = cardFighting;
-		this.cardFighting.getImageView().relocate(this.coordinates);
+		this.cardFighting.getImageView().relocate(this.coordinatesNumbersPair);
 	}
 
 	public CardFighting getCardFighting() {
 		return this.cardFighting;
+	}
+
+	public boolean containsCardFighting() {
+		return this.cardFighting != null;
 	}
 
 	public CardFighting removeCardFighting() {

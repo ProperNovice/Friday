@@ -9,6 +9,9 @@ public enum EText {
 	CHOOSE_HAZARD_TO_FIGHT("Choose hazard\nto fight", TextTypeEnum.INDICATOR),
 	FIGHT_THE_HAZARD("Fight the hazard", TextTypeEnum.OPTION),
 	SKIP_THE_HAZARD("Skip the hazard", TextTypeEnum.OPTION),
+	RESOLVE_FIGHT("Resolve fight", TextTypeEnum.OPTION),
+	DRAW_CARD_FREE("Draw card free", TextTypeEnum.OPTION),
+	DRAW_CARD_ONE_LIFE("Draw card pay life", TextTypeEnum.OPTION),
 
 	;
 

@@ -12,7 +12,9 @@ public enum EGameState {
 	HANDLE_HAZARD_CARDS_DRAWN_TWO(new HandleHazardCardsDrawnTwo()),
 	CHOOSE_HAZARD_TO_FIGHT(new ChooseHazardToFight()),
 	FIGHT_START(new FightStart()),
-
+	DRAW_CARD_FROM_DECK_TO_HAND_FIRST_EMPTY_SLOT(new DrawCardFromDeckToHandFirstEmptySlot()),
+	FIGHT_OPTIONS(new FightOptions()),
+	
 	;
 
 	private AGameState gameState = null;

@@ -2,6 +2,7 @@ package gui;
 
 import controller.Credentials;
 import controller.Flow;
+import controller.Life;
 import controller.Lists;
 import enums.EGameState;
 import javafx.application.Application;
@@ -56,6 +57,7 @@ public class Friday extends Application {
 		primaryStage.show();
 
 		Lists.INSTANCE.instantiate();
+		Life.INSTANCE.instantiate();
 		Executor.INSTANCE.runLater(() -> Flow.INSTANCE.executeGameState(EGameState.START_GAME));
 
 	}
