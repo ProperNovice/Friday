@@ -1,11 +1,17 @@
 package gameState;
 
+import controller.AbilitiesCanBeResolved;
 import controller.Flow;
 import controller.Life;
 import controller.Lists;
+import controller.Modifiers;
+import enums.EAbility;
 import enums.EGameState;
 import enums.EText;
+import interfaces.IAbilityAble;
+import model.CardFighting;
 import model.CardSlot;
+import model.SideKnowledge;
 import utils.Text;
 
 public class FightOptions extends AGameState {
@@ -13,10 +19,9 @@ public class FightOptions extends AGameState {
 	@Override
 	public void handleGameStateChange() {
 
-		if (getLifeEText() != null)
-			Text.INSTANCE.showText(getLifeEText());
-
+		handleETextToShow();
 		Text.INSTANCE.showText(EText.RESOLVE_FIGHT);
+		handleResolveAbilityText();
 
 	}
 
@@ -41,9 +46,7 @@ public class FightOptions extends AGameState {
 
 	}
 
-	private EText getLifeEText() {
-
-		EText eText = null;
+	private void handleETextToShow() {
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots()) {
 
@@ -51,15 +54,39 @@ public class FightOptions extends AGameState {
 				continue;
 
 			if (cardSlot.containsFreeCard())
-				eText = EText.DRAW_CARD_FREE;
+				Text.INSTANCE.showText(EText.DRAW_CARD_FREE);
 			else if (Life.INSTANCE.getLifeCurrent() > 0)
-				eText = EText.DRAW_CARD_ONE_LIFE;
+				Text.INSTANCE.showText(EText.DRAW_CARD_ONE_LIFE);
 
 			break;
 
 		}
 
-		return eText;
+	}
+
+	private void handleResolveAbilityText() {
+
+		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots()) {
+
+			if (!cardSlot.containsCardFighting())
+				continue;
+
+			CardFighting cardFighting = cardSlot.getCardFighting();
+
+			if (cardFighting == Modifiers.INSTANCE.getCardFightingAgainst())
+				continue;
+
+			SideKnowledge sideKnowledge = cardFighting.getSideKnowledge();
+
+			if (!(sideKnowledge instanceof IAbilityAble))
+				continue;
+
+			IAbilityAble iAbilityAble = (IAbilityAble) sideKnowledge;
+			EAbility eAbility = iAbilityAble.getEAbility();
+
+			AbilitiesCanBeResolved.INSTANCE.canBeResolved(cardFighting, eAbility);
+
+		}
 
 	}
 

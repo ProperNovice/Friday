@@ -7,7 +7,9 @@ import controller.Modifiers;
 import enums.EAbility;
 import enums.EGameState;
 import interfaces.ISideHazardAble;
+import model.AbilityImageView;
 import model.CardFighting;
+import model.CardFightingAging;
 import model.CardFightingHazardKnowledge;
 import model.CardSlot;
 import model.SideKnowledge;
@@ -25,13 +27,19 @@ public class StartGame extends AGameState {
 //		Flow.INSTANCE.proceed();
 
 		addRandomHazardCardToHand();
-		
-		addCardToHandWithAbility(EAbility.PLUS_TWO_CARDS);
-		addCardToHandWithAbility(EAbility.PLUS_TWO_CARDS);
-		
-		addCardsFromDeckToDiscardPile(16);
+
+		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_ONE_LIFE);
+		addCardToHandFromDeckAgingWithAbility(EAbility.MINUS_TWO_LIFE);
+		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE);
+
+		addCardsFromDeckToDiscardPile(18);
 		loseLife(18);
-		Flow.INSTANCE.executeGameState(EGameState.FIGHT_START);
+		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
+		
+		AbilityImageView abilityImageView = new AbilityImageView();
+//		abilityImageView.getImageView().setVisible(true);
+		abilityImageView.setCanBeUsedVisibleTrue();
+		abilityImageView.setHasAlreadyBeenUsedVisibleTrue();
 
 	}
 
@@ -54,7 +62,7 @@ public class StartGame extends AGameState {
 
 	}
 
-	protected void addCardToHandWithAbility(EAbility eAbility) {
+	protected void addCardToHandFromDeckHazardWithAbility(EAbility eAbility) {
 
 		CardFightingHazardKnowledge cardToAdd = null;
 
@@ -77,10 +85,45 @@ public class StartGame extends AGameState {
 
 		if (cardToAdd == null)
 			return;
-		
+
 		cardToAdd.getImageView().setRotate(180);
 		cardToAdd.getImageView().flip();
 		Lists.INSTANCE.deckHazardKnowledge.getArrayList().remove(cardToAdd);
+
+		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots())
+			if (!cardSlot.containsCardFighting()) {
+				cardSlot.addCardFightingRelocate(cardToAdd);
+				break;
+			}
+
+	}
+
+	protected void addCardToHandFromDeckAgingWithAbility(EAbility eAbility) {
+
+		CardFightingAging cardToAdd = null;
+
+		for (CardFightingAging cardAging : Lists.INSTANCE.deckAging) {
+
+			SideKnowledge sideKnowledge = cardAging.getSideKnowledge();
+
+			if (!(sideKnowledge instanceof SideKnowledgeAbility))
+				continue;
+
+			SideKnowledgeAbility sideKnowledgeAbility = (SideKnowledgeAbility) sideKnowledge;
+
+			if (sideKnowledgeAbility.getEAbility() != eAbility)
+				continue;
+
+			cardToAdd = cardAging;
+			break;
+
+		}
+
+		if (cardToAdd == null)
+			return;
+
+		cardToAdd.getImageView().flip();
+		Lists.INSTANCE.deckAging.getArrayList().remove(cardToAdd);
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots())
 			if (!cardSlot.containsCardFighting()) {

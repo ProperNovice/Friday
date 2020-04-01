@@ -1,8 +1,5 @@
 /controller/
-/utils/
 /gameState/
-/enums/
 /model/
 /images/
-/interfaces/
-/gui/
+/utils/

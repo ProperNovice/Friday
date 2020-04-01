@@ -11,6 +11,7 @@ public class ImageView implements INode {
 	private Image imageVisibilityFalse = new Image("misc/imageVisibilityFalse.png");
 	private double widthOriginal, heightOriginal, scale = 1, xClip = 0, yClip = 0;
 	private EventHandler eventHandler = null;
+	private double rotateValue = 0;
 
 	public ImageView(String path, Object object) {
 
@@ -162,7 +163,12 @@ public class ImageView implements INode {
 	}
 
 	public final void setRotate(double value) {
+		this.rotateValue = value;
 		PlatformFX.runLater(() -> this.imageView.setRotate(value));
+	}
+
+	public final boolean isRotated() {
+		return this.rotateValue != 0;
 	}
 
 	private void setEventHandler(EventHandlerAble eventHandlerAble) {
