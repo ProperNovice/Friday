@@ -48,7 +48,7 @@ public class TextGame implements EventHandlerAble {
 	}
 
 	public void relocate(double x, double y) {
-		this.text.relocate(x, y);
+		this.text.relocateTopLeft(x, y);
 	}
 
 	public void relocate(NumbersPair numbersPair) {

@@ -105,13 +105,13 @@ public class TextIndicator implements INode {
 	}
 
 	@Override
-	public void relocate(final double x, final double y) {
+	public void relocateTopLeft(final double x, final double y) {
 		PlatformFX.runLater(() -> this.text.relocate(x, y));
 	}
 
 	@Override
-	public void relocate(final NumbersPair numbersPair) {
-		relocate(numbersPair.x, numbersPair.y);
+	public void relocateTopLeft(final NumbersPair numbersPair) {
+		relocateTopLeft(numbersPair.x, numbersPair.y);
 	}
 
 	public void setEventHandler(EventHandlerAble eventHandlerAble) {

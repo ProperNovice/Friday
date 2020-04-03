@@ -3,7 +3,9 @@ package controller;
 import enums.EAbility;
 import model.CardFighting;
 import model.CardSlot;
+import model.HandPlayer;
 import utils.Logger;
+import utils.ShutDown;
 
 public enum AbilitiesCanBeResolved {
 
@@ -20,6 +22,7 @@ public enum AbilitiesCanBeResolved {
 			break;
 
 		case COPY_ONE:
+			ShutDown.INSTANCE.execute("AbilitiesCanBeResolved, COPY_ONE, you shouldn't be here");
 			break;
 
 		case DESTROY_ONE:
@@ -39,9 +42,11 @@ public enum AbilitiesCanBeResolved {
 			break;
 
 		case EXCHANGE_ONE:
+			canBeResolved = exchangeOne();
 			break;
 
 		case EXCHANGE_TWO:
+			canBeResolved = exchangeOne();
 			break;
 
 		case FIGHT_AGAINST_ALL_REMAINING_HAZARD_CARDS:
@@ -89,6 +94,7 @@ public enum AbilitiesCanBeResolved {
 			break;
 
 		case SORT_THREE_CARDS:
+			sortThreeCards();
 			break;
 
 		case STOP:
@@ -101,7 +107,7 @@ public enum AbilitiesCanBeResolved {
 		Logger.INSTANCE.log(eAbility);
 		Logger.INSTANCE.logNewLine(canBeResolved);
 
-		return false;
+		return canBeResolved;
 
 	}
 
@@ -130,6 +136,14 @@ public enum AbilitiesCanBeResolved {
 
 		return false;
 
+	}
+
+	private boolean exchangeOne() {
+		return HandPlayer.INSTANCE.size() > 1;
+	}
+
+	private boolean sortThreeCards() {
+		return Lists.INSTANCE.deckPlayer.getArrayList().size() > 1;
 	}
 
 }

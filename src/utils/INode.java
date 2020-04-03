@@ -2,9 +2,9 @@ package utils;
 
 public interface INode {
 
-	public void relocate(double x, double y);
+	public void relocateTopLeft(double x, double y);
 
-	public void relocate(NumbersPair numbersPair);
+	public void relocateTopLeft(NumbersPair numbersPair);
 
 	public double getLayoutX();
 

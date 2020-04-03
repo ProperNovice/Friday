@@ -8,11 +8,11 @@ public enum Credentials {
 
 	public String primaryStageTitle = "Friday";
 	public NumbersPair DimensionsFrame, DimensionsGapBetweenComponents, DimensionsCardFighting,
-			DimensionsCardStepPirate, DimensionsIndicatorFreeCard, DimensionsLifeToken, DimensionsUsedImages;
+			DimensionsCardStepPirate, DimensionsIndicatorFreeCard, DimensionsLifeToken, DimensionsAbilityImageView;
 	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep,
 			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge,
 			CoordinatesIndicatorFreeCard, CoordinatesHandPlayer, CoordinatesCardsHazardsDrawn, CoordinatesHazardToFight,
-			CoordinatesLifeTokens, CoordinatesDeckPirates, CoordinatesUsedImages;
+			CoordinatesLifeTokens, CoordinatesDeckPirates, CoordinatesAbilityImageView;
 	private NumbersPair DimensionsCardFightingOriginal, DimensionsCardStepPirateOriginal;
 	public double gapBetweenBorders = 25, textHeight = 50, gapBetweenLifeTokens;
 
@@ -30,12 +30,12 @@ public enum Credentials {
 		y = this.DimensionsCardFightingOriginal.y * x / this.DimensionsCardFightingOriginal.x;
 		this.DimensionsCardFighting = new NumbersPair(x, y);
 
-		x = this.DimensionsCardFighting.x / 3;
-		this.DimensionsUsedImages = new NumbersPair(x, x);
+		x = this.DimensionsCardFighting.x / 2;
+		this.DimensionsAbilityImageView = new NumbersPair(x, x);
 
 		x = this.DimensionsCardFighting.x / 2;
 		y = this.DimensionsCardFighting.y / 4;
-		this.CoordinatesUsedImages = new NumbersPair(x, y);
+		this.CoordinatesAbilityImageView = new NumbersPair(x, y);
 
 		y = (this.DimensionsCardFighting.y - this.DimensionsGapBetweenComponents.y) / 2;
 		x = this.DimensionsCardStepPirateOriginal.x * y / this.DimensionsCardStepPirateOriginal.y;

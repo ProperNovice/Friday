@@ -94,12 +94,12 @@ public class TextOption extends TextIndicator {
 	}
 
 	@Override
-	public void relocate(final double x, double y) {
+	public void relocateTopLeft(final double x, double y) {
 
 		PlatformFX.runLater(() -> {
 
 			this.text.relocate(x, y);
-			this.rectangle.relocate(x, y);
+			this.rectangle.relocateTopLeft(x, y);
 
 		});
 

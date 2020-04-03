@@ -1,6 +1,7 @@
 package model;
 
 import controller.Credentials;
+import controller.Modifiers;
 import utils.ArrayList;
 import utils.Coordinates;
 import utils.CoordinatesBuilder;
@@ -34,6 +35,26 @@ public enum HandPlayer {
 
 	public ArrayList<CardSlot> getCardSlots() {
 		return this.cardSlots;
+	}
+
+	public int size() {
+
+		int size = 0;
+
+		for (CardSlot cardSlot : this.cardSlots) {
+
+			if (!cardSlot.containsCardFighting())
+				continue;
+
+			if (cardSlot.getCardFighting() == Modifiers.INSTANCE.getCardFightingAgainst())
+				continue;
+
+			size++;
+
+		}
+
+		return size;
+
 	}
 
 }

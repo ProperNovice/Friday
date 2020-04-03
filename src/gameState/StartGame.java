@@ -7,7 +7,6 @@ import controller.Modifiers;
 import enums.EAbility;
 import enums.EGameState;
 import interfaces.ISideHazardAble;
-import model.AbilityImageView;
 import model.CardFighting;
 import model.CardFightingAging;
 import model.CardFightingHazardKnowledge;
@@ -28,18 +27,19 @@ public class StartGame extends AGameState {
 
 		addRandomHazardCardToHand();
 
-		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_ONE_LIFE);
-		addCardToHandFromDeckAgingWithAbility(EAbility.MINUS_TWO_LIFE);
-		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE);
+		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_TWO);
+//		addCardToHandFromDeckAgingWithAbility(EAbility.MINUS_TWO_LIFE);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE);
 
-		addCardsFromDeckToDiscardPile(18);
-		loseLife(18);
+		addCardsFromDeckToDiscardPile(5);
+//		loseLife(18);
+
+//		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound()
+//				.addLast(Lists.INSTANCE.handPlayer.getCardSlots().get(0).getCardFighting());
+
 		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
-		
-		AbilityImageView abilityImageView = new AbilityImageView();
-//		abilityImageView.getImageView().setVisible(true);
-		abilityImageView.setCanBeUsedVisibleTrue();
-		abilityImageView.setHasAlreadyBeenUsedVisibleTrue();
 
 	}
 
@@ -51,7 +51,7 @@ public class StartGame extends AGameState {
 
 		for (int counter = 1; counter <= cards; counter++) {
 
-			CardFighting cardFighting = Lists.INSTANCE.deckPlayer.getArrayList().removeFirst();
+			CardFighting cardFighting = Lists.INSTANCE.deckPlayer.getArrayList().removeRandom();
 			cardFighting.getImageView().flip();
 			Lists.INSTANCE.discardPilePlayer.getArrayList().addLast(cardFighting);
 

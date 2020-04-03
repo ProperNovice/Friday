@@ -82,7 +82,7 @@ public class Rectangle implements INode {
 	}
 
 	@Override
-	public void relocate(double x, double y) {
+	public void relocateTopLeft(double x, double y) {
 
 		this.topLeftX = x;
 		this.topLeftY = y;
@@ -91,8 +91,8 @@ public class Rectangle implements INode {
 	}
 
 	@Override
-	public void relocate(final NumbersPair numbersPair) {
-		relocate(numbersPair.x, numbersPair.y);
+	public void relocateTopLeft(final NumbersPair numbersPair) {
+		relocateTopLeft(numbersPair.x, numbersPair.y);
 	}
 
 	public void setWidth(double width) {

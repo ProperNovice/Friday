@@ -15,7 +15,7 @@ public class AbilityImageView implements ImageViewAble {
 
 		new ImageView("Ready.png", this, ELayerZ.B);
 		this.getImageView().setBack("Tap.png");
-		this.getImageView().setWidth(Credentials.INSTANCE.DimensionsUsedImages);
+		this.getImageView().setWidth(Credentials.INSTANCE.DimensionsAbilityImageView);
 
 		this.getImageView().setVisible(false);
 
@@ -32,6 +32,18 @@ public class AbilityImageView implements ImageViewAble {
 
 		this.getImageView().setVisible(true);
 		this.getImageView().flipBack();
+
+	}
+
+	public void relocate(CardFighting cardFighting) {
+
+		double x = cardFighting.getImageView().getLayoutX();
+		x += Credentials.INSTANCE.CoordinatesAbilityImageView.x;
+
+		double y = cardFighting.getImageView().getLayoutY();
+		y += Credentials.INSTANCE.CoordinatesAbilityImageView.y;
+
+		this.getImageView().relocateCenter(x, y);
 
 	}
 

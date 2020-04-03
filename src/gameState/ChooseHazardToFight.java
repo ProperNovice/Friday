@@ -21,7 +21,7 @@ public class ChooseHazardToFight extends AGameState {
 		Text.INSTANCE.concealText();
 
 		Lists.INSTANCE.cardsHazardsDrawn.getArrayList().remove(cardFighting);
-		cardFighting.getImageView().relocate(Credentials.INSTANCE.CoordinatesHazardToFight);
+		cardFighting.getImageView().relocateTopLeft(Credentials.INSTANCE.CoordinatesHazardToFight);
 
 		Lists.INSTANCE.discardPileHazardKnowledge.getArrayList()
 				.addFirst(Lists.INSTANCE.cardsHazardsDrawn.getArrayList().removeFirst());

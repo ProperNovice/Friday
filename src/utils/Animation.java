@@ -122,7 +122,7 @@ public enum Animation {
 			executeX();
 			executeY();
 
-			this.node.relocate(this.currentX, this.currentY);
+			this.node.relocateTopLeft(this.currentX, this.currentY);
 
 			if (Math.floor(this.currentX) != Math.floor(this.endingX))
 				return;

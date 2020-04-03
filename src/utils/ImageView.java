@@ -100,13 +100,21 @@ public class ImageView implements INode {
 	}
 
 	@Override
-	public void relocate(final double x, final double y) {
+	public void relocateTopLeft(final double x, final double y) {
 		PlatformFX.runLater(() -> this.imageView.relocate(x - this.xClip, y - this.yClip));
 	}
 
+	public void relocateCenter(final double x, final double y) {
+		relocateTopLeft(x - this.getWidth() / 2, y - this.getHeight() / 2);
+	}
+
 	@Override
-	public void relocate(final NumbersPair numbersPair) {
-		relocate(numbersPair.x, numbersPair.y);
+	public void relocateTopLeft(final NumbersPair numbersPair) {
+		relocateTopLeft(numbersPair.x, numbersPair.y);
+	}
+
+	public void relocateCenter(final NumbersPair numbersPair) {
+		relocateTopLeft(numbersPair.x - this.getWidth() / 2, numbersPair.y - this.getHeight() / 2);
 	}
 
 	public boolean contains(double x, double y) {

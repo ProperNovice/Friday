@@ -14,7 +14,7 @@ public class CardSlot {
 
 	public void addCardFightingRelocate(CardFighting cardFighting) {
 		this.cardFighting = cardFighting;
-		this.cardFighting.getImageView().relocate(this.coordinatesNumbersPair);
+		this.cardFighting.getImageView().relocateTopLeft(this.coordinatesNumbersPair);
 	}
 
 	public CardFighting getCardFighting() {

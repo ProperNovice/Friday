@@ -12,6 +12,7 @@ public enum EText {
 	RESOLVE_FIGHT("Resolve fight", TextTypeEnum.OPTION),
 	DRAW_CARD_FREE("Draw card free", TextTypeEnum.OPTION),
 	DRAW_CARD_ONE_LIFE("Draw card pay life", TextTypeEnum.OPTION),
+	CHOOSE_ABILITY("Choose ability", TextTypeEnum.INDICATOR),
 
 	;
 

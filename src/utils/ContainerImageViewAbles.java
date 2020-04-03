@@ -104,7 +104,7 @@ public class ContainerImageViewAbles<T> implements IListSize, ISaveLoadStateAble
 				break;
 
 			case RELOCATE:
-				imageView.relocate(numbersPair);
+				imageView.relocateTopLeft(numbersPair);
 				break;
 
 			}

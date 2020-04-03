@@ -32,13 +32,13 @@ public class Line implements INode {
 	}
 
 	@Override
-	public void relocate(double x, double y) {
+	public void relocateTopLeft(double x, double y) {
 		PlatformFX.runLater(() -> this.line.relocate(x, y));
 	}
 
 	@Override
-	public void relocate(final NumbersPair numbersPair) {
-		relocate(numbersPair.x, numbersPair.y);
+	public void relocateTopLeft(final NumbersPair numbersPair) {
+		relocateTopLeft(numbersPair.x, numbersPair.y);
 	}
 
 	@Override

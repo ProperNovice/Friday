@@ -52,19 +52,19 @@ public class ProgressBar {
 			this.topLeftX = x;
 			this.topLeftY = y;
 
-			this.rectangleProgressBar.relocate(this.topLeftX, this.topLeftY);
+			this.rectangleProgressBar.relocateTopLeft(this.topLeftX, this.topLeftY);
 
 			switch (this.progressBarOrientation) {
 
 			case HORIZONTAL:
-				this.rectangleFill.relocate(this.topLeftX, this.topLeftY);
+				this.rectangleFill.relocateTopLeft(this.topLeftX, this.topLeftY);
 				break;
 
 			case VERTICAL:
 
 				double yRectangleFill = this.topLeftY + this.height
 						- (this.height * this.progress);
-				this.rectangleFill.relocate(this.topLeftX, yRectangleFill);
+				this.rectangleFill.relocateTopLeft(this.topLeftX, yRectangleFill);
 				break;
 
 			}
@@ -107,7 +107,7 @@ public class ProgressBar {
 
 				double y = this.topLeftY + this.height
 						- (this.height * this.progress);
-				this.rectangleFill.relocate(this.topLeftX, y);
+				this.rectangleFill.relocateTopLeft(this.topLeftX, y);
 
 				double heightFill = this.height * this.progress;
 				this.rectangleFill.setHeight(heightFill);
