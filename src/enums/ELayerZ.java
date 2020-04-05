@@ -2,6 +2,6 @@ package enums;
 
 public enum ELayerZ {
 
-	A, B;
+	A, B, C;
 
 }

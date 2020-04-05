@@ -249,7 +249,7 @@ public enum AbilitiesManager {
 	}
 
 	private boolean sortThreeCards() {
-		return Lists.INSTANCE.deckPlayer.getArrayList().size() > 1;
+		return Lists.INSTANCE.deckPlayer.getArrayList().size() > 0;
 	}
 
 	public void resolveAbilityCardProceed(CardFighting cardFighting) {

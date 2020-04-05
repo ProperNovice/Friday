@@ -8,11 +8,13 @@ public enum Credentials {
 
 	public String primaryStageTitle = "Friday";
 	public NumbersPair DimensionsFrame, DimensionsGapBetweenComponents, DimensionsCardFighting,
-			DimensionsCardStepPirate, DimensionsIndicatorFreeCard, DimensionsLifeToken, DimensionsAbilityImageView;
+			DimensionsCardStepPirate, DimensionsIndicatorFreeCard, DimensionsLifeToken, DimensionsAbilityImageView,
+			DimensionsSortCardPanel;
 	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep,
 			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge,
 			CoordinatesIndicatorFreeCard, CoordinatesHandPlayer, CoordinatesCardsHazardsDrawn, CoordinatesHazardToFight,
-			CoordinatesLifeTokens, CoordinatesDeckPirates, CoordinatesAbilityImageView;
+			CoordinatesLifeTokens, CoordinatesDeckPirates, CoordinatesAbilityImageView, CoordinatesSortCardPanelBackground,
+			CoordinatesSortCardPanelCards;
 	private NumbersPair DimensionsCardFightingOriginal, DimensionsCardStepPirateOriginal;
 	public double gapBetweenBorders = 25, textHeight = 50, gapBetweenLifeTokens;
 
@@ -105,15 +107,15 @@ public enum Credentials {
 
 		calculateGapBetweenLifeTokens();
 
-		x = 2 * this.gapBetweenBorders;
-		x += 2 * this.DimensionsGapBetweenComponents.x;
-		x += 3 * this.DimensionsCardFighting.x;
-		System.out.println(x);
-		
-		y = 2 * this.gapBetweenBorders;
-		y += this.DimensionsGapBetweenComponents.y;
-		y += this.DimensionsCardFighting.y;
-		System.out.println(y);
+		this.DimensionsSortCardPanel = new NumbersPair(656, 446);
+
+		x = this.DimensionsFrame.x / 2;
+		y = this.DimensionsFrame.y / 2;
+		this.CoordinatesSortCardPanelBackground = new NumbersPair(x, y);
+
+		x = this.CoordinatesSortCardPanelBackground.x;
+		y = this.CoordinatesSortCardPanelBackground.y;
+		this.CoordinatesSortCardPanelCards = new NumbersPair(x, y);
 
 	}
 

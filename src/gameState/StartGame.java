@@ -44,7 +44,8 @@ public class StartGame extends AGameState {
 //		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound()
 //				.addLast(Lists.INSTANCE.handPlayer.getCardSlots().get(0).getCardFighting());
 
-		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
+//		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
+		Flow.INSTANCE.executeGameState(EGameState.SORT_THREE_CARDS);
 
 	}
 

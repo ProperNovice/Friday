@@ -12,6 +12,7 @@ import model.CardFightingHazardKnowledge;
 import model.CardPirate;
 import model.CardStep;
 import model.HandPlayer;
+import model.SortCardsPanel;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
@@ -31,6 +32,7 @@ public enum Lists implements ISaveLoadStateAble {
 	public ArrayList<CardPirate> deckPirates = new ArrayList<CardPirate>();
 	public ContainerImageViewAbles<CardPirate> cardPiratesInPlay;
 	public HandPlayer handPlayer = HandPlayer.INSTANCE;
+	public SortCardsPanel sortCardsPanel;
 
 	public void instantiate() {
 
@@ -40,6 +42,8 @@ public enum Lists implements ISaveLoadStateAble {
 		createDeckStep();
 		createDeckAging();
 		createDeckPirates();
+		
+		this.sortCardsPanel = SortCardsPanel.INSTANCE;
 
 		this.deckPlayer.relocateImageViews();
 		this.deckHazardKnowledge.relocateImageViews();
