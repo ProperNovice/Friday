@@ -25,13 +25,16 @@ public enum SortCardsPanel {
 	}
 
 	public void showBackgroundPanelAndRelocate(boolean value) {
-		
+
 		this.background.getImageView().setVisible(value);
 		this.background.getImageView().toFront();
-		
+
 		this.panel.relocateImageViews();
 		this.panel.toFront();
-		
+
+		for (CardFighting cardFighting : this.panel)
+			cardFighting.getImageView().setVisible(value);
+
 	}
 
 	private class Background implements ImageViewAble {

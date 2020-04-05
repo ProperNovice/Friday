@@ -66,7 +66,7 @@ public enum HandPlayer implements Iterable<CardSlot> {
 
 		for (CardSlot cardSlot : this.cardSlots)
 			if (cardSlot.containsCardFighting())
-				if (cardFighting.equals(cardFighting))
+				if (cardSlot.getCardFighting().equals(cardFighting))
 					return true;
 
 		return false;

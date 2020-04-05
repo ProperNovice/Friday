@@ -38,7 +38,7 @@ public class StartGame extends AGameState {
 		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, false);
 
-		addCardsFromDeckToDiscardPile(5);
+//		addCardsFromDeckToDiscardPile(5);
 //		loseLife(18);
 
 //		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound()

@@ -44,10 +44,15 @@ public abstract class AGameState {
 
 	public final void executeCardPressed(Card card) {
 
+		if (!(card instanceof CardFighting))
+			return;
+
 		if (Lists.INSTANCE.cardsHazardsDrawn.getArrayList().contains(card))
 			executeCardPressedHazardsDrawn((CardFighting) card);
 		else if (Lists.INSTANCE.handPlayer.contains((CardFighting) card))
 			executeCardFightingPressedHand((CardFighting) card);
+		else if (Lists.INSTANCE.sortCardsPanel.getPanel().getArrayList().contains(card))
+			executeCardFightingPressedSortCardPanel((CardFighting) card);
 
 	}
 
@@ -74,6 +79,10 @@ public abstract class AGameState {
 	}
 
 	protected void executeCardFightingPressedHand(CardFighting cardFighting) {
+
+	}
+
+	protected void executeCardFightingPressedSortCardPanel(CardFighting cardFighting) {
 
 	}
 
