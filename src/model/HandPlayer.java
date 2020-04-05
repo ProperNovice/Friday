@@ -1,12 +1,14 @@
 package model;
 
+import java.util.Iterator;
+
 import controller.Credentials;
 import controller.Modifiers;
 import utils.ArrayList;
 import utils.Coordinates;
 import utils.CoordinatesBuilder;
 
-public enum HandPlayer {
+public enum HandPlayer implements Iterable<CardSlot> {
 
 	INSTANCE;
 
@@ -69,6 +71,11 @@ public enum HandPlayer {
 
 		return false;
 
+	}
+
+	@Override
+	public Iterator<CardSlot> iterator() {
+		return this.cardSlots.iterator();
 	}
 
 }

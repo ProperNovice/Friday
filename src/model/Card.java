@@ -33,4 +33,16 @@ public abstract class Card implements ImageViewAble, EventHandlerAble {
 		Flow.INSTANCE.getCurrentGameState().executeCardPressed(this);
 	}
 
+	@Override
+	public void handleMouseEntered() {
+		Flow.INSTANCE.getCurrentGameState().executeCardWhenEntered(this);
+	}
+
+	@Override
+	public void handleMouseExited() {
+		Flow.INSTANCE.getCurrentGameState().executeCardWhenExited(this);
+	}
+	
+	
+
 }

@@ -1,6 +1,7 @@
 package gameState;
 
 import controller.Lists;
+import controller.Modifiers;
 import enums.EText;
 import javafx.scene.input.KeyCode;
 import model.Card;
@@ -47,6 +48,24 @@ public abstract class AGameState {
 			executeCardPressedHazardsDrawn((CardFighting) card);
 		else if (Lists.INSTANCE.handPlayer.contains((CardFighting) card))
 			executeCardFightingPressedHand((CardFighting) card);
+
+	}
+
+	public final void executeCardWhenEntered(Card card) {
+
+		if (!card.equals(Modifiers.INSTANCE.getCardFightingAgainst()))
+			return;
+
+		card.getImageView().toFront();
+
+	}
+
+	public final void executeCardWhenExited(Card card) {
+
+		if (!card.equals(Modifiers.INSTANCE.getCardFightingAgainst()))
+			return;
+
+		card.getImageView().toBack();
 
 	}
 

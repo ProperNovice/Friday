@@ -11,7 +11,7 @@ public class DestroyOne extends AGameState {
 	@Override
 	public void handleGameStateChange() {
 
-		EText.CHOOSE_CARD_TO_DESTROY.showText();
+		EText.CHOOSE_CARD.showText();
 
 	}
 

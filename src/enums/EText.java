@@ -15,9 +15,7 @@ public enum EText {
 	DRAW_CARD_FREE("Draw card free", TextTypeEnum.OPTION),
 	DRAW_CARD_ONE_LIFE("Draw card pay life", TextTypeEnum.OPTION),
 	CHOOSE_ABILITY("Choose ability", TextTypeEnum.INDICATOR),
-	CHOOSE_CARD_TO_DESTROY("Choose card\nto destroy", TextTypeEnum.INDICATOR),
-	CHOOSE_CARD_TO_COPY("Choose card\nto copy", TextTypeEnum.INDICATOR),
-	CHOOSE_CARD_TO_EXCHANGE("Choose card\nto exchange", TextTypeEnum.INDICATOR),
+	CHOOSE_CARD("Choose card", TextTypeEnum.INDICATOR),
 
 	;
 

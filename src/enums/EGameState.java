@@ -18,7 +18,11 @@ public enum EGameState {
 	DRAW_CARD_FROM_DECK_TO_HAND_RIGHT_SIDE(new DrawCardFromDeckToHandRightSide()),
 	DESTROY_ONE(new DestroyOne()),
 	COPY_ONE(new CopyOne()),
-	EXCHANGE_ONE(new ExchangeOne()),
+	EXCHANGE_ONE_FIRST(new ExchangeOneFirst()),
+	EXCHANGE_ONE_SECOND(new ExchangeOneSecond()),
+	DRAW_CARD_FROM_DECK_TO_HAND_SPECIFIC_SLOT(new DrawCardFromDeckToHandSpecificCardSlot()),
+	BELOW_THE_PILE_ONE(new BelowThePileOne()),
+	SORT_THREE_CARDS(new SortThreeCards()),
 	
 	;
 

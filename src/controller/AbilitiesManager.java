@@ -200,7 +200,7 @@ public enum AbilitiesManager {
 			break;
 
 		case SORT_THREE_CARDS:
-			sortThreeCards();
+			canBeResolved = sortThreeCards();
 			break;
 
 		case STOP:
@@ -288,18 +288,20 @@ public enum AbilitiesManager {
 			break;
 
 		case SORT_THREE_CARDS:
+			Flow.INSTANCE.addFirst(EGameState.SORT_THREE_CARDS);
 			break;
 
 		case EXCHANGE_ONE:
-			Flow.INSTANCE.addFirst(EGameState.EXCHANGE_ONE);
+			Flow.INSTANCE.addFirst(EGameState.EXCHANGE_ONE_FIRST);
 			break;
 
 		case EXCHANGE_TWO:
-			Flow.INSTANCE.addFirst(EGameState.EXCHANGE_ONE);
-			Flow.INSTANCE.addFirst(EGameState.EXCHANGE_ONE);
+			Flow.INSTANCE.addFirst(EGameState.EXCHANGE_ONE_SECOND);
+			Flow.INSTANCE.addFirst(EGameState.EXCHANGE_ONE_FIRST);
 			break;
 
 		case BELOW_THE_PILE_ONE:
+			Flow.INSTANCE.addFirst(EGameState.BELOW_THE_PILE_ONE);
 			break;
 
 		default:

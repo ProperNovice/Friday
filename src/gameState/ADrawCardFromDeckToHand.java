@@ -76,8 +76,16 @@ public abstract class ADrawCardFromDeckToHand extends AGameState {
 
 		CardSlot cardSlot = getCardSlotToAddTheCard();
 		cardSlot.addCardFightingRelocate(cardFighting);
+		
+		cardHandToFront();
 
-		cardFighting.getImageView().toFront();
+	}
+
+	private void cardHandToFront() {
+
+		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots())
+			if (cardSlot.containsCardFighting())
+				cardSlot.getCardFighting().getImageView().toFront();
 
 	}
 

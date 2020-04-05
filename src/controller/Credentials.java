@@ -105,6 +105,16 @@ public enum Credentials {
 
 		calculateGapBetweenLifeTokens();
 
+		x = 2 * this.gapBetweenBorders;
+		x += 2 * this.DimensionsGapBetweenComponents.x;
+		x += 3 * this.DimensionsCardFighting.x;
+		System.out.println(x);
+		
+		y = 2 * this.gapBetweenBorders;
+		y += this.DimensionsGapBetweenComponents.y;
+		y += this.DimensionsCardFighting.y;
+		System.out.println(y);
+
 	}
 
 	private void calculateGapBetweenLifeTokens() {

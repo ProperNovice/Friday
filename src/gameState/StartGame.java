@@ -33,7 +33,7 @@ public class StartGame extends AGameState {
 		addCardToHandFromDeckHazardWithAbility(EAbility.DESTROY_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_TWO, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_ONE_LIFE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.SORT_THREE_CARDS, true);
 		addCardToHandFromDeckAgingWithAbility(EAbility.MINUS_TWO_LIFE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, false);
@@ -104,6 +104,8 @@ public class StartGame extends AGameState {
 				break;
 			}
 
+		cardHandToFront();
+
 	}
 
 	protected void addCardToHandFromDeckAgingWithAbility(EAbility eAbility, boolean flipFront) {
@@ -141,6 +143,8 @@ public class StartGame extends AGameState {
 				break;
 			}
 
+		cardHandToFront();
+
 	}
 
 	protected void addRandomHazardCardToHand() {
@@ -157,6 +161,16 @@ public class StartGame extends AGameState {
 
 		setCardSlotsAndPrint(freeCardsToDraw);
 		Modifiers.INSTANCE.setCardFightingAgainst(cardFighting);
+
+		cardHandToFront();
+
+	}
+
+	protected void cardHandToFront() {
+
+		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots())
+			if (cardSlot.containsCardFighting())
+				cardSlot.getCardFighting().getImageView().toFront();
 
 	}
 
