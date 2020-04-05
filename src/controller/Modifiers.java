@@ -45,7 +45,8 @@ public enum Modifiers implements ISaveLoadStateAble {
 
 	@Override
 	public void loadState() {
-
+		this.cardFightingHaveBeenResolvedThisRound.clear();
+		this.cardFightingAgainst = null;
 	}
 
 }

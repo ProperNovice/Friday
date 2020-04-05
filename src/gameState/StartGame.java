@@ -27,11 +27,16 @@ public class StartGame extends AGameState {
 
 		addRandomHazardCardToHand();
 
-//		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE);
-		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_TWO);
-//		addCardToHandFromDeckAgingWithAbility(EAbility.MINUS_TWO_LIFE);
-//		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE);
-//		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE);
+		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, false);
+		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_TWO_CARDS, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.DESTROY_ONE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_TWO, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_ONE_LIFE, true);
+		addCardToHandFromDeckAgingWithAbility(EAbility.MINUS_TWO_LIFE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, false);
 
 		addCardsFromDeckToDiscardPile(5);
 //		loseLife(18);
@@ -62,7 +67,7 @@ public class StartGame extends AGameState {
 
 	}
 
-	protected void addCardToHandFromDeckHazardWithAbility(EAbility eAbility) {
+	protected void addCardToHandFromDeckHazardWithAbility(EAbility eAbility, boolean flipFront) {
 
 		CardFightingHazardKnowledge cardToAdd = null;
 
@@ -87,7 +92,10 @@ public class StartGame extends AGameState {
 			return;
 
 		cardToAdd.getImageView().setRotate(180);
-		cardToAdd.getImageView().flip();
+
+		if (flipFront)
+			cardToAdd.getImageView().flip();
+
 		Lists.INSTANCE.deckHazardKnowledge.getArrayList().remove(cardToAdd);
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots())
@@ -98,7 +106,7 @@ public class StartGame extends AGameState {
 
 	}
 
-	protected void addCardToHandFromDeckAgingWithAbility(EAbility eAbility) {
+	protected void addCardToHandFromDeckAgingWithAbility(EAbility eAbility, boolean flipFront) {
 
 		CardFightingAging cardToAdd = null;
 
@@ -122,7 +130,9 @@ public class StartGame extends AGameState {
 		if (cardToAdd == null)
 			return;
 
-		cardToAdd.getImageView().flip();
+		if (flipFront)
+			cardToAdd.getImageView().flip();
+
 		Lists.INSTANCE.deckAging.getArrayList().remove(cardToAdd);
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots())

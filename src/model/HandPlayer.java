@@ -37,7 +37,7 @@ public enum HandPlayer {
 		return this.cardSlots;
 	}
 
-	public int size() {
+	public int sizeNotDestroyed() {
 
 		int size = 0;
 
@@ -49,11 +49,25 @@ public enum HandPlayer {
 			if (cardSlot.getCardFighting() == Modifiers.INSTANCE.getCardFightingAgainst())
 				continue;
 
+			if (cardSlot.getCardFighting().getImageView().isFlippedBack())
+				continue;
+
 			size++;
 
 		}
 
 		return size;
+
+	}
+
+	public boolean contains(CardFighting cardFighting) {
+
+		for (CardSlot cardSlot : this.cardSlots)
+			if (cardSlot.containsCardFighting())
+				if (cardFighting.equals(cardFighting))
+					return true;
+
+		return false;
 
 	}
 

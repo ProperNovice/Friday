@@ -1,40 +1,40 @@
 package gameState;
 
-import controller.AbilitiesCanBeResolved;
+import controller.AbilitiesManager;
 import controller.AbilityImageViewList;
 import controller.Flow;
 import controller.Life;
 import controller.Lists;
 import controller.Modifiers;
-import enums.EAbility;
 import enums.EGameState;
 import enums.EText;
-import interfaces.IAbilityAble;
-import model.AbilityImageView;
 import model.CardFighting;
 import model.CardSlot;
-import model.SideKnowledge;
-import utils.ArrayList;
 import utils.Text;
 
 public class FightOptions extends AGameState {
 
-	private ArrayList<CardFighting> cardAbilitiesCompleteList = new ArrayList<CardFighting>();
-	private ArrayList<CardFighting> cardAbilitiesCanBeResolvedNonCopy = new ArrayList<CardFighting>();
-	private ArrayList<CardFighting> cardAbilitiesCanBeResolvedOnlyCopy = new ArrayList<CardFighting>();
-
 	@Override
 	public void handleGameStateChange() {
 
-		AbilityImageViewList.INSTANCE.releaseAllAbilitiesImageView();
-
-		this.cardAbilitiesCompleteList.clear();
-		this.cardAbilitiesCanBeResolvedNonCopy.clear();
-		this.cardAbilitiesCanBeResolvedOnlyCopy.clear();
-
-		handleETextToShow();
+		handleTextDrawToShow();
 		Text.INSTANCE.showText(EText.RESOLVE_FIGHT);
-		handleResolveAbilityText();
+		AbilitiesManager.INSTANCE.setUpResolveAbilities();
+
+	}
+
+	@Override
+	protected void executeCardFightingPressedHand(CardFighting cardFighting) {
+
+		if (!AbilitiesManager.INSTANCE.getCardAbilitiesCanBeResolvedNonCopy().contains(cardFighting))
+			if (!AbilitiesManager.INSTANCE.getCardAbilitiesCanBeResolvedOnlyCopy().contains(cardFighting))
+				return;
+
+		Text.INSTANCE.concealText();
+
+		AbilityImageViewList.INSTANCE.releaseAbilityImageView(cardFighting);
+		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound().addLast(cardFighting);
+		AbilitiesManager.INSTANCE.resolveAbilityCardProceed(cardFighting);
 
 	}
 
@@ -44,11 +44,13 @@ public class FightOptions extends AGameState {
 		switch (eText) {
 
 		case DRAW_CARD_FREE:
+			Flow.INSTANCE.addFirst(EGameState.FIGHT_OPTIONS);
 			Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_FIRST_EMPTY_SLOT);
 			break;
 
 		case DRAW_CARD_ONE_LIFE:
 			Life.INSTANCE.loseLife(1);
+			Flow.INSTANCE.addFirst(EGameState.FIGHT_OPTIONS);
 			Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_FIRST_EMPTY_SLOT);
 			break;
 
@@ -59,7 +61,7 @@ public class FightOptions extends AGameState {
 
 	}
 
-	private void handleETextToShow() {
+	private void handleTextDrawToShow() {
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots()) {
 
@@ -72,85 +74,6 @@ public class FightOptions extends AGameState {
 				Text.INSTANCE.showText(EText.DRAW_CARD_ONE_LIFE);
 
 			break;
-
-		}
-
-	}
-
-	private void handleResolveAbilityText() {
-
-		createListAbilitesComplete();
-		createListAbilitiesCanBeResolved();
-		setAbilityImageViewsToCardsThatCanBeResolved();
-
-	}
-
-	private void createListAbilitesComplete() {
-
-		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots()) {
-
-			if (!cardSlot.containsCardFighting())
-				continue;
-
-			CardFighting cardFighting = cardSlot.getCardFighting();
-
-			if (cardFighting == Modifiers.INSTANCE.getCardFightingAgainst())
-				continue;
-
-			SideKnowledge sideKnowledge = cardFighting.getSideKnowledge();
-
-			if (!(sideKnowledge instanceof IAbilityAble))
-				continue;
-
-			this.cardAbilitiesCompleteList.addLast(cardFighting);
-
-		}
-
-	}
-
-	private void createListAbilitiesCanBeResolved() {
-
-		for (CardFighting cardFighting : this.cardAbilitiesCompleteList) {
-
-			if (Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound().contains(cardFighting))
-				continue;
-
-			IAbilityAble iAbilityAble = (IAbilityAble) cardFighting.getSideKnowledge();
-			EAbility eAbility = iAbilityAble.getEAbility();
-
-			if (eAbility == EAbility.COPY_ONE)
-				this.cardAbilitiesCanBeResolvedOnlyCopy.addLast(cardFighting);
-
-			else if (AbilitiesCanBeResolved.INSTANCE.canBeResolved(cardFighting, eAbility))
-				this.cardAbilitiesCanBeResolvedNonCopy.addLast(cardFighting);
-
-		}
-
-	}
-
-	private void setAbilityImageViewsToCardsThatCanBeResolved() {
-
-		if (!this.cardAbilitiesCanBeResolvedNonCopy.isEmpty())
-			setListAbilityImageViewsTrue(this.cardAbilitiesCanBeResolvedNonCopy);
-
-		int cardAbilitiesInHand = 0;
-		cardAbilitiesInHand += this.cardAbilitiesCanBeResolvedNonCopy.size();
-		cardAbilitiesInHand += Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound().size();
-
-		if (cardAbilitiesInHand > 0)
-			setListAbilityImageViewsTrue(this.cardAbilitiesCanBeResolvedOnlyCopy);
-
-	}
-
-	private void setListAbilityImageViewsTrue(ArrayList<CardFighting> list) {
-
-		for (CardFighting cardFighting : list) {
-
-			AbilityImageView abilityImageView = AbilityImageViewList.INSTANCE
-					.getAbilityImageViewForCardFighting(cardFighting);
-
-			abilityImageView.setCanBeUsedVisibleTrue();
-			abilityImageView.relocate(cardFighting);
 
 		}
 

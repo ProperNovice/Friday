@@ -47,6 +47,10 @@ public enum Flow {
 		return this.currentGameState.getGameState();
 	}
 
+	public void addFirst(EGameState eGameState) {
+		this.flow.addFirst(eGameState);
+	}
+
 	public void addLast(EGameState eGameState) {
 		this.flow.addLast(eGameState);
 	}

@@ -1,5 +1,7 @@
 package enums;
 
+import utils.Text;
+
 public enum EText {
 
 	BLANK("", TextTypeEnum.INDICATOR),
@@ -13,6 +15,9 @@ public enum EText {
 	DRAW_CARD_FREE("Draw card free", TextTypeEnum.OPTION),
 	DRAW_CARD_ONE_LIFE("Draw card pay life", TextTypeEnum.OPTION),
 	CHOOSE_ABILITY("Choose ability", TextTypeEnum.INDICATOR),
+	CHOOSE_CARD_TO_DESTROY("Choose card\nto destroy", TextTypeEnum.INDICATOR),
+	CHOOSE_CARD_TO_COPY("Choose card\nto copy", TextTypeEnum.INDICATOR),
+	CHOOSE_CARD_TO_EXCHANGE("Choose card\nto exchange", TextTypeEnum.INDICATOR),
 
 	;
 
@@ -26,6 +31,10 @@ public enum EText {
 	private EText(String string, TextTypeEnum textTypeEnum) {
 		this.string = string;
 		this.textTypeEnum = textTypeEnum;
+	}
+	
+	public void showText() {
+		Text.INSTANCE.showText(this);
 	}
 
 	public String getString() {

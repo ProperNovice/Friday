@@ -43,14 +43,18 @@ public abstract class AGameState {
 
 	public final void executeCardPressed(Card card) {
 
-		card.print();
-
 		if (Lists.INSTANCE.cardsHazardsDrawn.getArrayList().contains(card))
 			executeCardPressedHazardsDrawn((CardFighting) card);
+		else if (Lists.INSTANCE.handPlayer.contains((CardFighting) card))
+			executeCardFightingPressedHand((CardFighting) card);
 
 	}
 
 	protected void executeCardPressedHazardsDrawn(CardFighting cardFighting) {
+
+	}
+
+	protected void executeCardFightingPressedHand(CardFighting cardFighting) {
 
 	}
 

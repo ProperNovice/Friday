@@ -264,7 +264,7 @@ public class ImageView implements INode {
 
 	public void flip() {
 
-		if (this.imageShowing == this.imageFront)
+		if (this.imageShowing.equals(this.imageFront))
 			this.imageShowing = this.imageBack;
 		else
 			this.imageShowing = this.imageFront;
@@ -281,6 +281,14 @@ public class ImageView implements INode {
 	public void flipBack() {
 		this.imageShowing = this.imageBack;
 		setImageShowing();
+	}
+
+	public boolean isFlippedFront() {
+		return this.imageShowing.equals(this.imageFront);
+	}
+
+	public boolean isFlippedBack() {
+		return this.imageShowing.equals(this.imageBack);
 	}
 
 	private void setImageShowing() {
