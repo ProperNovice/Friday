@@ -13,8 +13,8 @@ public enum Credentials {
 	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep,
 			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge,
 			CoordinatesIndicatorFreeCard, CoordinatesHandPlayer, CoordinatesCardsHazardsDrawn, CoordinatesHazardToFight,
-			CoordinatesLifeTokens, CoordinatesDeckPirates, CoordinatesAbilityImageView, CoordinatesSortCardPanelBackground,
-			CoordinatesSortCardPanelCards;
+			CoordinatesLifeTokens, CoordinatesDeckPirates, CoordinatesAbilityImageView,
+			CoordinatesSortCardPanelBackground, CoordinatesSortCardPanelCards, CoordinatesFightingIndicator;
 	private NumbersPair DimensionsCardFightingOriginal, DimensionsCardStepPirateOriginal;
 	public double gapBetweenBorders = 25, textHeight = 50, gapBetweenLifeTokens;
 
@@ -87,6 +87,10 @@ public enum Credentials {
 
 		x = this.CoordinatesDeckPirates.x + this.DimensionsCardStepPirate.x + this.DimensionsGapBetweenComponents.x;
 		y = this.gapBetweenBorders;
+		this.CoordinatesFightingIndicator = new NumbersPair(x, y);
+
+		x = this.CoordinatesFightingIndicator.x;
+		y = this.CoordinatesFightingIndicator.y + this.textHeight;
 		this.CoordinatesTextPanel = new NumbersPair(x, y);
 
 		x = this.CoordinatesDeckHazardKnowledge.x + this.DimensionsCardFighting.x / 2;

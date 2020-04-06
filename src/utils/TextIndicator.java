@@ -128,6 +128,14 @@ public class TextIndicator implements INode {
 
 	}
 
+	public final void setText(final String text) {
+		PlatformFX.runLater(() -> this.text.setText(text));
+	}
+
+	public final void setText(final int text) {
+		PlatformFX.runLater(() -> this.text.setText(Integer.toString(text)));
+	}
+
 	public final String getText() {
 		return this.text.getText();
 	}

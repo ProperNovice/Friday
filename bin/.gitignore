@@ -1,7 +1,5 @@
-/controller/
-/gameState/
 /utils/
-/model/
+/gameState/
 /enums/
-/images/
-/gui/
+/controller/
+/model/

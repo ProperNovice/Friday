@@ -6,10 +6,14 @@ import controller.Flow;
 import controller.Life;
 import controller.Lists;
 import controller.Modifiers;
+import enums.EAbility;
 import enums.EGameState;
 import enums.EText;
+import interfaces.IAbilityAble;
 import model.CardFighting;
+import model.CardFightingAging;
 import model.CardSlot;
+import model.SideKnowledge;
 import utils.Text;
 
 public class FightOptions extends AGameState {
@@ -51,7 +55,7 @@ public class FightOptions extends AGameState {
 		case DRAW_CARD_ONE_LIFE:
 			Life.INSTANCE.loseLife(1);
 			Flow.INSTANCE.addFirst(EGameState.FIGHT_OPTIONS);
-			Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_FIRST_EMPTY_SLOT);
+			Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_RIGHT_SIDE);
 			break;
 
 		default:
@@ -65,8 +69,31 @@ public class FightOptions extends AGameState {
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots()) {
 
-			if (cardSlot.containsCardFighting())
-				continue;
+			if (cardSlot.containsCardFighting()) {
+
+				CardFighting cardFighting = cardSlot.getCardFighting();
+				
+				if (cardFighting.getImageView().isFlippedBack())
+					continue;
+
+				if (!(cardFighting instanceof CardFightingAging))
+					continue;
+
+				SideKnowledge sideKnowledge = cardFighting.getSideKnowledge();
+
+				if (!(sideKnowledge instanceof IAbilityAble))
+					continue;
+
+				IAbilityAble iAbilityAble = (IAbilityAble) sideKnowledge;
+				EAbility eAbility = iAbilityAble.getEAbility();
+
+				if (!eAbility.equals(EAbility.STOP))
+					continue;
+
+				Text.INSTANCE.showText(EText.DRAW_CARD_ONE_LIFE);
+				break;
+
+			}
 
 			if (cardSlot.containsFreeCard())
 				Text.INSTANCE.showText(EText.DRAW_CARD_FREE);

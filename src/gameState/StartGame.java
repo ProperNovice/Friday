@@ -27,25 +27,30 @@ public class StartGame extends AGameState {
 
 		addRandomHazardCardToHand();
 
-		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, false);
+		eStepProceed();
+		eStepProceed();
+
+		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_TWO_CARDS, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.DESTROY_ONE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
+		addCardToHandFromDeckHazardWithAbility(EAbility.PHASE_MINUS_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_TWO, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.SORT_THREE_CARDS, true);
-		addCardToHandFromDeckAgingWithAbility(EAbility.MINUS_TWO_LIFE, true);
+		addCardToHandFromDeckAgingWithAbility(EAbility.STOP, true);
+//		addCardToHandFromDeckAgingWithAbility(EAbility.HIGHEST_CARD_EQUALS_ZERO, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, false);
 
-//		addCardsFromDeckToDiscardPile(5);
+		addCardsFromDeckToDiscardPile(5);
 //		loseLife(18);
 
 //		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound()
 //				.addLast(Lists.INSTANCE.handPlayer.getCardSlots().get(0).getCardFighting());
 
-//		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
-		Flow.INSTANCE.executeGameState(EGameState.SORT_THREE_CARDS);
+		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
 
 	}
 
@@ -218,6 +223,14 @@ public class StartGame extends AGameState {
 			cardFighting.getImageView().setVisible(false);
 
 		}
+
+	}
+
+	protected void eStepProceed() {
+
+		Lists.INSTANCE.deckStep.getArrayList().addLast(Lists.INSTANCE.deckStep.getArrayList().removeFirst());
+		Lists.INSTANCE.deckStep.toFront();
+		Modifiers.INSTANCE.eStepAdvance();
 
 	}
 

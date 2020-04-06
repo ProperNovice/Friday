@@ -16,9 +16,10 @@ public enum EText {
 	DRAW_CARD_ONE_LIFE("Draw card pay life", TextTypeEnum.OPTION),
 	CHOOSE_ABILITY("Choose ability", TextTypeEnum.INDICATOR),
 	CHOOSE_CARD("Choose card", TextTypeEnum.INDICATOR),
-	DESTROY_CARD("Destroy card", TextTypeEnum.INDICATOR),
+	DISCARD_CARD("Discard card", TextTypeEnum.INDICATOR),
 	SHOW_BOARD("Show board", TextTypeEnum.OPTION),
 	SHOW_PANEL("Show panel", TextTypeEnum.OPTION),
+	PUT_CARD_ON_TOP("Put card on top", TextTypeEnum.INDICATOR),
 
 	;
 

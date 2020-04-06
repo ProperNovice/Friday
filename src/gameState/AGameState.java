@@ -43,6 +43,8 @@ public abstract class AGameState {
 	}
 
 	public final void executeCardPressed(Card card) {
+		
+		card.print();
 
 		if (!(card instanceof CardFighting))
 			return;

@@ -41,6 +41,8 @@ public enum Flow {
 
 		this.currentGameState.getGameState().handleGameStateChange();
 
+		FightingPoints.INSTANCE.setFightingPointsUpdateIndicator();
+
 	}
 
 	public AGameState getCurrentGameState() {

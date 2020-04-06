@@ -19,6 +19,10 @@ public class HashMap<K, V> implements Iterable<K> {
 		return this.hashMap.put(key, value);
 	}
 
+	public V remove(K key) {
+		return this.hashMap.remove(key);
+	}
+
 	@Override
 	public Iterator<K> iterator() {
 
@@ -48,7 +52,7 @@ public class HashMap<K, V> implements Iterable<K> {
 		Logger.INSTANCE.log("/*");
 
 		for (Map.Entry<K, V> entry : this.hashMap.entrySet())
-			Logger.INSTANCE.log(entry.getKey() + " - " + entry.getValue());
+			Logger.INSTANCE.log(entry.getKey() + " -> " + entry.getValue());
 
 		Logger.INSTANCE.logNewLine("*/");
 

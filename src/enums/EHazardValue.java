@@ -1,5 +1,7 @@
 package enums;
 
+import utils.ShutDown;
+
 public enum EHazardValue {
 
 	ONE(1, 0, 1, 3), TWO(2, 1, 3, 6), THREE(3, 2, 5, 8), FOUR(4, 4, 7, 11), FIVE(5, 5, 9, 14);
@@ -33,6 +35,10 @@ public enum EHazardValue {
 
 		case RED:
 			stepValue = this.redStepValue;
+			break;
+
+		case PIRATES:
+			ShutDown.INSTANCE.execute("EHazardValue, PIRATES, you shouldn't be here");
 			break;
 
 		}

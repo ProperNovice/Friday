@@ -42,7 +42,7 @@ public enum Lists implements ISaveLoadStateAble {
 		createDeckStep();
 		createDeckAging();
 		createDeckPirates();
-		
+
 		this.sortCardsPanel = SortCardsPanel.INSTANCE;
 
 		this.deckPlayer.relocateImageViews();
@@ -194,9 +194,8 @@ public enum Lists implements ISaveLoadStateAble {
 				.sideKnowledge(1, EAbility.DOUBLE_ONE).sideHazard(EHazardValue.TWO).buildCardFightingHazardKnowledge());
 
 		for (int counter = 1; counter <= 2; counter++)
-			this.deckHazardKnowledge.getArrayList()
-					.addLast(new CardBuilder().fileName("Exploring - Weapon").sideKnowledge(2, EAbility.DOUBLE_ONE)
-							.sideHazard(EHazardValue.TWO).buildCardFightingHazardKnowledge());
+			this.deckHazardKnowledge.getArrayList().addLast(new CardBuilder().fileName("Exploring - Weapon")
+					.sideKnowledge(2).sideHazard(EHazardValue.TWO).buildCardFightingHazardKnowledge());
 
 		this.deckHazardKnowledge.getArrayList()
 				.addLast(new CardBuilder().fileName("Further - Strategy").sideKnowledge(2, EAbility.EXCHANGE_ONE)
