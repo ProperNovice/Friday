@@ -23,6 +23,10 @@ public enum EGameState {
 	DRAW_CARD_FROM_DECK_TO_HAND_SPECIFIC_SLOT(new DrawCardFromDeckToHandSpecificCardSlot()),
 	BELOW_THE_PILE_ONE(new BelowThePileOne()),
 	SORT_THREE_CARDS(new SortThreeCards()),
+	FIGHT_RESOLVE(new FightResolve()),
+	FIGHT_WON(new FightWon()),
+	FIGHT_LOST(new FightLost()),
+	HANDLE_FIGHT_LOST(new HandleFightLost()),
 	
 	;
 

@@ -20,6 +20,11 @@ public enum EText {
 	SHOW_BOARD("Show board", TextTypeEnum.OPTION),
 	SHOW_PANEL("Show panel", TextTypeEnum.OPTION),
 	PUT_CARD_ON_TOP("Put card on top", TextTypeEnum.INDICATOR),
+	USE_DOUBLE("Use double", TextTypeEnum.INDICATOR),
+	YES("Yes", TextTypeEnum.OPTION),
+	NO("No", TextTypeEnum.OPTION),
+	FIGHT_WON("Fight won", TextTypeEnum.INDICATOR),
+	FIGHT_LOST("Fight lost", TextTypeEnum.INDICATOR),
 
 	;
 

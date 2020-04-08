@@ -58,6 +58,11 @@ public class FightOptions extends AGameState {
 			Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_RIGHT_SIDE);
 			break;
 
+		case RESOLVE_FIGHT:
+			AbilityImageViewList.INSTANCE.releaseAllAbilitiesImageView();
+			Flow.INSTANCE.executeGameState(EGameState.FIGHT_RESOLVE);
+			break;
+
 		default:
 			break;
 
@@ -72,7 +77,7 @@ public class FightOptions extends AGameState {
 			if (cardSlot.containsCardFighting()) {
 
 				CardFighting cardFighting = cardSlot.getCardFighting();
-				
+
 				if (cardFighting.getImageView().isFlippedBack())
 					continue;
 

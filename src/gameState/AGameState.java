@@ -43,7 +43,7 @@ public abstract class AGameState {
 	}
 
 	public final void executeCardPressed(Card card) {
-		
+
 		card.print();
 
 		if (!(card instanceof CardFighting))
@@ -86,6 +86,10 @@ public abstract class AGameState {
 
 	protected void executeCardFightingPressedSortCardPanel(CardFighting cardFighting) {
 
+	}
+
+	public boolean fightingPointsVisibility() {
+		return true;
 	}
 
 }

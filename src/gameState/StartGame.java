@@ -31,17 +31,19 @@ public class StartGame extends AGameState {
 		eStepProceed();
 
 		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_TWO_CARDS, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.PHASE_MINUS_ONE, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_TWO, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.SORT_THREE_CARDS, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_TWO_CARDS, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.PHASE_MINUS_ONE, false);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_TWO, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.SORT_THREE_CARDS, true);
 		addCardToHandFromDeckAgingWithAbility(EAbility.STOP, true);
 //		addCardToHandFromDeckAgingWithAbility(EAbility.HIGHEST_CARD_EQUALS_ZERO, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE, true);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE, true);
 		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, false);
 
 		addCardsFromDeckToDiscardPile(5);

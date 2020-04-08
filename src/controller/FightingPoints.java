@@ -18,35 +18,58 @@ public enum FightingPoints {
 	INSTANCE;
 
 	private TextIndicator textIndicator = new TextIndicator();
-	private HashMap<Integer, Integer> mapFightingValues = new HashMap<Integer, Integer>();
+	private HashMap<Integer, ArrayList<CardFighting>> mapFightingValues = new HashMap<>();
 	private HashMap<EStep, EStep> mapMinusOneStep = new HashMap<EStep, EStep>();
 	private int playerFightingPointsNoDouble, playerFightingPointsWithDouble, hazardFightingPoints;
-	private ArrayList<EAbility> listAbilitiesCurrent = new ArrayList<EAbility>(),
-			listAbilitiesRelevant = new ArrayList<EAbility>();
+	private ArrayList<CardFighting> cardsDouble = new ArrayList<CardFighting>();
+	private boolean containsPhaseMinusOne, containsHighestCardEqualsZero;
 
 	private FightingPoints() {
 
 		this.textIndicator.setHeight(Credentials.INSTANCE.textHeight);
-		this.textIndicator.relocateTopLeft(Credentials.INSTANCE.CoordinatesFightingIndicator);
+		this.textIndicator.relocateTopLeft(Credentials.INSTANCE.CoordinatesTextIndicators);
 
 		for (int counter = -5; counter <= 4; counter++)
-			this.mapFightingValues.put(counter, 0);
+			this.mapFightingValues.put(counter, new ArrayList<CardFighting>());
 
 		this.mapMinusOneStep.put(EStep.GREEN, EStep.GREEN);
 		this.mapMinusOneStep.put(EStep.YELLOW, EStep.GREEN);
 		this.mapMinusOneStep.put(EStep.RED, EStep.YELLOW);
 
-		this.listAbilitiesRelevant.addLast(EAbility.DOUBLE_ONE);
-		this.listAbilitiesRelevant.addLast(EAbility.PHASE_MINUS_ONE);
-		this.listAbilitiesRelevant.addLast(EAbility.HIGHEST_CARD_EQUALS_ZERO);
-
-		printMap();
-
 	}
 
 	public void setFightingPointsUpdateIndicator() {
 
+		if (!Flow.INSTANCE.getCurrentGameState().fightingPointsVisibility()) {
+
+			this.textIndicator.setVisible(false);
+			return;
+
+		} else
+			this.textIndicator.setVisible(true);
+
 		clearCredentials();
+		setMapFightingValues();
+		calculatePlayerFightingPoints();
+		calculateHazardFightingPoints();
+		printMap();
+		setText();
+
+	}
+
+	private void clearCredentials() {
+
+		clearMap();
+		this.playerFightingPointsNoDouble = 0;
+		this.playerFightingPointsWithDouble = 0;
+		this.hazardFightingPoints = 0;
+		this.cardsDouble.clear();
+		this.containsPhaseMinusOne = false;
+		this.containsHighestCardEqualsZero = false;
+
+	}
+
+	private void setMapFightingValues() {
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer) {
 
@@ -64,7 +87,7 @@ public enum FightingPoints {
 			SideKnowledge sideKnowledge = cardFighting.getSideKnowledge();
 
 			int points = sideKnowledge.getFightingValue();
-			this.mapFightingValues.put(points, this.mapFightingValues.get(points) + 1);
+			this.mapFightingValues.get(points).addLast(cardFighting);
 
 			if (!(sideKnowledge instanceof IAbilityAble))
 				continue;
@@ -72,24 +95,26 @@ public enum FightingPoints {
 			IAbilityAble iAbilityAble = (IAbilityAble) sideKnowledge;
 			EAbility eAbility = iAbilityAble.getEAbility();
 
-			if (this.listAbilitiesRelevant.contains(eAbility))
-				this.listAbilitiesCurrent.addLast(eAbility);
+			switch (eAbility) {
+
+			case DOUBLE_ONE:
+				this.cardsDouble.addLast(cardFighting);
+				break;
+
+			case HIGHEST_CARD_EQUALS_ZERO:
+				this.containsHighestCardEqualsZero = true;
+				break;
+
+			case PHASE_MINUS_ONE:
+				this.containsPhaseMinusOne = true;
+				break;
+
+			default:
+				break;
+
+			}
 
 		}
-
-		this.listAbilitiesCurrent.printList();
-
-		setText();
-
-	}
-
-	private void clearCredentials() {
-
-		clearMap();
-		this.playerFightingPointsNoDouble = 0;
-		this.playerFightingPointsWithDouble = 0;
-		this.hazardFightingPoints = 0;
-		this.listAbilitiesCurrent.clear();
 
 	}
 
@@ -99,9 +124,9 @@ public enum FightingPoints {
 		Logger.INSTANCE.log("fighting points");
 
 		for (int counter = -5; counter <= 4; counter++)
-			if (this.mapFightingValues.get(counter) > 0)
-				Logger.INSTANCE.log(counter + "*" + this.mapFightingValues.get(counter) + " -> "
-						+ counter * this.mapFightingValues.get(counter));
+			if (this.mapFightingValues.get(counter).size() > 0)
+				Logger.INSTANCE.log(counter + "*" + this.mapFightingValues.get(counter).size() + " -> "
+						+ counter * this.mapFightingValues.get(counter).size());
 
 		Logger.INSTANCE.logNewLine("*/");
 
@@ -110,22 +135,18 @@ public enum FightingPoints {
 	private void clearMap() {
 
 		for (int counter = -5; counter <= 4; counter++)
-			this.mapFightingValues.put(counter, 0);
+			this.mapFightingValues.get(counter).clear();
 
 	}
 
 	private void setText() {
 
-		calculatePlayerFightingPoints();
-		calculateHazardFightingPoints();
-		printMap();
-
-		String text = "Fight: ";
+		String text = "";
 
 		text += this.playerFightingPointsNoDouble;
 
-		if (this.playerFightingPointsWithDouble > 0)
-			text += "(d" + (this.playerFightingPointsNoDouble + this.playerFightingPointsWithDouble) + ")";
+		if (this.playerFightingPointsWithDouble > this.playerFightingPointsNoDouble)
+			text += "(d" + this.playerFightingPointsWithDouble + ")";
 
 		text += "/";
 		text += this.hazardFightingPoints;
@@ -144,16 +165,16 @@ public enum FightingPoints {
 
 	private void calculateHighestCardZeroAbility() {
 
-		if (!this.listAbilitiesCurrent.contains(EAbility.HIGHEST_CARD_EQUALS_ZERO))
+		if (!this.containsHighestCardEqualsZero)
 			return;
 
 		for (int counter = 4; counter >= 1; counter--) {
 
-			if (this.mapFightingValues.get(counter) == 0)
+			if (this.mapFightingValues.get(counter).isEmpty())
 				continue;
 
-			this.mapFightingValues.put(counter, this.mapFightingValues.get(counter) - 1);
-			this.mapFightingValues.put(0, this.mapFightingValues.get(0) + 1);
+			CardFighting cardFighting = this.mapFightingValues.get(counter).removeFirst();
+			this.mapFightingValues.get(0).addLast(cardFighting);
 			break;
 
 		}
@@ -163,28 +184,36 @@ public enum FightingPoints {
 	private void calculateFightingCardPoints() {
 
 		for (int counter = -5; counter <= 4; counter++)
-			this.playerFightingPointsNoDouble += counter * this.mapFightingValues.get(counter);
+			this.playerFightingPointsNoDouble += counter * this.mapFightingValues.get(counter).size();
 
 	}
 
 	private void calculateDoubleAbility() {
 
-		int cardsDouble = 0;
+		this.playerFightingPointsWithDouble = this.playerFightingPointsNoDouble;
 
-		for (EAbility eAbility : this.listAbilitiesCurrent)
-			if (eAbility.equals(EAbility.DOUBLE_ONE))
-				cardsDouble++;
+		int cardsDoubleToResolve = this.cardsDouble.size();
 
-		if (cardsDouble == 0)
+		if (cardsDoubleToResolve == 0)
 			return;
 
 		for (int counter = 4; counter >= 1; counter--) {
 
-			int cardsDoubleToPlay = Math.min(cardsDouble, this.mapFightingValues.get(counter));
-			cardsDouble -= cardsDoubleToPlay;
+			for (CardFighting cardFighting : this.mapFightingValues.get(counter)) {
 
-			for (int q = 1; q <= cardsDoubleToPlay; q++)
+				if (this.cardsDouble.contains(cardFighting))
+					continue;
+
 				this.playerFightingPointsWithDouble += counter;
+				cardsDoubleToResolve--;
+
+				if (cardsDoubleToResolve == 0)
+					break;
+
+			}
+
+			if (cardsDoubleToResolve == 0)
+				break;
 
 		}
 
@@ -194,7 +223,7 @@ public enum FightingPoints {
 
 		EStep eStep = Modifiers.INSTANCE.getEStep();
 
-		if (this.listAbilitiesCurrent.contains(EAbility.PHASE_MINUS_ONE))
+		if (this.containsPhaseMinusOne)
 			eStep = this.mapMinusOneStep.get(eStep);
 
 		CardFighting cardFighting = Modifiers.INSTANCE.getCardFightingAgainst();
@@ -203,6 +232,18 @@ public enum FightingPoints {
 
 		this.hazardFightingPoints = sideHazard.getEHazardValue().getStepValue(eStep);
 
+	}
+
+	public int getPlayerFightingPointsNoDouble() {
+		return this.playerFightingPointsNoDouble;
+	}
+
+	public int getPlayerFightingPointsWithDouble() {
+		return this.playerFightingPointsWithDouble;
+	}
+
+	public int getHazardFightingPoints() {
+		return this.hazardFightingPoints;
 	}
 
 }

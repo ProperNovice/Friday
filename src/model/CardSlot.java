@@ -25,12 +25,8 @@ public class CardSlot {
 		return this.cardFighting != null;
 	}
 
-	public CardFighting removeCardFighting() {
-
-		CardFighting cardFighting = this.cardFighting;
+	public void removeCardFighting() {
 		this.cardFighting = null;
-		return cardFighting;
-
 	}
 
 	public void setContainsFreeCard(boolean containsFreeCard) {
