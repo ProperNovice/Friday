@@ -15,16 +15,21 @@ public enum AbilityImageViewList {
 
 	}
 
-	public AbilityImageView getAbilityImageViewForCardFighting(CardFighting cardFighting) {
+	public void setAbilityImageViewForCardFighting(CardFighting cardFighting) {
 
-		for (CardAbilityObject cardAbilityObject : this.list)
-			if (cardAbilityObject.getCardFighting() == cardFighting)
-				return cardAbilityObject.getAbilityImageView();
+		CardAbilityObject cardAbilityObject = null;
 
-		CardAbilityObject cardAbilityObject = new CardAbilityObject(cardFighting);
-		this.list.addLast(cardAbilityObject);
+		for (CardAbilityObject cardAbilityObjectTemp : this.list)
+			if (cardAbilityObjectTemp.getCardFighting() == cardFighting)
+				cardAbilityObject = cardAbilityObjectTemp;
 
-		return cardAbilityObject.getAbilityImageView();
+		if (cardAbilityObject == null) {
+			cardAbilityObject = new CardAbilityObject(cardFighting);
+			this.list.addLast(cardAbilityObject);
+		}
+
+		cardAbilityObject.getAbilityImageView().setCanBeUsedVisibleTrue();
+		cardAbilityObject.getAbilityImageView().relocate(cardFighting);
 
 	}
 

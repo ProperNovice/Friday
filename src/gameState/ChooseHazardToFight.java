@@ -4,6 +4,7 @@ import controller.Credentials;
 import controller.Lists;
 import enums.EText;
 import model.CardFighting;
+import model.CardFightingHazardKnowledge;
 import utils.Text;
 
 public class ChooseHazardToFight extends AGameState {
@@ -17,10 +18,10 @@ public class ChooseHazardToFight extends AGameState {
 
 	@Override
 	protected void executeCardPressedHazardsDrawn(CardFighting cardFighting) {
-		
+
 		Text.INSTANCE.concealText();
 
-		Lists.INSTANCE.cardsHazardsDrawn.getArrayList().remove(cardFighting);
+		Lists.INSTANCE.cardsHazardsDrawn.getArrayList().remove((CardFightingHazardKnowledge) cardFighting);
 		cardFighting.getImageView().relocateTopLeft(Credentials.INSTANCE.CoordinatesHazardToFight);
 
 		Lists.INSTANCE.discardPileHazardKnowledge.getArrayList()
@@ -28,6 +29,11 @@ public class ChooseHazardToFight extends AGameState {
 		Lists.INSTANCE.discardPileHazardKnowledge.relocateImageViews();
 		Lists.INSTANCE.discardPileHazardKnowledge.toBack();
 
+	}
+
+	@Override
+	public boolean fightingPointsCalculate() {
+		return false;
 	}
 
 }

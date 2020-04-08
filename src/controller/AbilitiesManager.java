@@ -3,7 +3,6 @@ package controller;
 import enums.EAbility;
 import enums.EGameState;
 import interfaces.IAbilityAble;
-import model.AbilityImageView;
 import model.CardFighting;
 import model.CardSlot;
 import model.HandPlayer;
@@ -97,15 +96,8 @@ public enum AbilitiesManager {
 
 	private void setListAbilityImageViewsTrue(ArrayList<CardFighting> list) {
 
-		for (CardFighting cardFighting : list) {
-
-			AbilityImageView abilityImageView = AbilityImageViewList.INSTANCE
-					.getAbilityImageViewForCardFighting(cardFighting);
-
-			abilityImageView.setCanBeUsedVisibleTrue();
-			abilityImageView.relocate(cardFighting);
-
-		}
+		for (CardFighting cardFighting : list)
+			AbilityImageViewList.INSTANCE.setAbilityImageViewForCardFighting(cardFighting);
 
 	}
 

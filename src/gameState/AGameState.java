@@ -88,7 +88,7 @@ public abstract class AGameState {
 
 	}
 
-	public boolean fightingPointsVisibility() {
+	public boolean fightingPointsCalculate() {
 		return true;
 	}
 

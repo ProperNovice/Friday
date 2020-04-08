@@ -4,9 +4,8 @@ import controller.Lists;
 import controller.Modifiers;
 import model.CardFighting;
 import model.CardSlot;
-import utils.ContainerImageViewAbles;
 
-public abstract class FightEnded extends AGameState {
+public abstract class AFightEnded extends AGameState {
 
 	@Override
 	public void handleGameStateChange() {
@@ -32,7 +31,7 @@ public abstract class FightEnded extends AGameState {
 
 	}
 
-	protected void putCardsToDeckPreviouslyOwned(boolean toFront) {
+	protected void putCardsToDiscardPileFromHandPreviouslyOwned(boolean toFront) {
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer) {
 
@@ -56,19 +55,17 @@ public abstract class FightEnded extends AGameState {
 
 	}
 
-	protected void addHazardFightingAgainstToDiscardPile(ContainerImageViewAbles<CardFighting> list) {
+	protected void removeHazardFightingAgainstFromHand(boolean rotate) {
 
-		CardFighting cardFighting = Modifiers.INSTANCE.getCardFightingAgainst();
-		cardFighting.getImageView().setRotate(180);
+		CardFighting cardFightingHazardKnowledge = Modifiers.INSTANCE.getCardFightingAgainst();
+
+		if (rotate)
+			cardFightingHazardKnowledge.getImageView().setRotate(180);
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer)
 			if (cardSlot.containsCardFighting())
-				if (cardSlot.getCardFighting().equals(cardFighting))
+				if (cardSlot.getCardFighting().equals(cardFightingHazardKnowledge))
 					cardSlot.removeCardFighting();
-
-		list.getArrayList().addFirst(cardFighting);
-		list.relocateImageViews();
-		list.toFront();
 
 	}
 

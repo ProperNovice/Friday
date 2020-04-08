@@ -1,8 +1,11 @@
 package gameState;
 
+import controller.Flow;
 import controller.Lists;
+import enums.EGameState;
 import enums.EText;
 import model.CardFighting;
+import model.CardFightingHazardKnowledge;
 import utils.Text;
 
 public class HandleHazardCardsDrawnTwo extends AHandleHazardCardsDrawn {
@@ -19,10 +22,14 @@ public class HandleHazardCardsDrawnTwo extends AHandleHazardCardsDrawn {
 
 		Text.INSTANCE.concealText();
 
-		Lists.INSTANCE.cardsHazardsDrawn.getArrayList().remove(cardFighting);
+		CardFightingHazardKnowledge cardFightingHazardKnowledge = (CardFightingHazardKnowledge) cardFighting;
+
+		Lists.INSTANCE.cardsHazardsDrawn.getArrayList().remove(cardFightingHazardKnowledge);
 		addCardToHand(cardFighting);
 
 		addCardToDiscardPileHazardKnowledge(Lists.INSTANCE.cardsHazardsDrawn.getArrayList().removeFirst());
+
+		Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_FIRST_EMPTY_SLOT);
 
 	}
 

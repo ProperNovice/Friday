@@ -60,7 +60,7 @@ public class FightOptions extends AGameState {
 
 		case RESOLVE_FIGHT:
 			AbilityImageViewList.INSTANCE.releaseAllAbilitiesImageView();
-			Flow.INSTANCE.executeGameState(EGameState.FIGHT_RESOLVE);
+			Flow.INSTANCE.proceed();
 			break;
 
 		default:

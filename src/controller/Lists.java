@@ -24,11 +24,11 @@ public enum Lists implements ISaveLoadStateAble {
 	INSTANCE;
 
 	public ArrayList<ISaveLoadStateAble> iSaveLoadStateAbles = new ArrayList<ISaveLoadStateAble>();
-	public ContainerImageViewAbles<CardFighting> deckPlayer, discardPilePlayer, discardPileHazardKnowledge,
-			cardsHazardsDrawn, hazardToFight;
+	public ContainerImageViewAbles<CardFighting> deckPlayer, discardPilePlayer;
 	public ContainerImageViewAbles<CardStep> deckStep;
 	public ContainerImageViewAbles<CardFightingAging> deckAging;
-	public ContainerImageViewAbles<CardFightingHazardKnowledge> deckHazardKnowledge;
+	public ContainerImageViewAbles<CardFightingHazardKnowledge> deckHazardKnowledge, discardPileHazardKnowledge,
+			cardsHazardsDrawn;
 	public ArrayList<CardPirate> deckPirates = new ArrayList<CardPirate>();
 	public ContainerImageViewAbles<CardPirate> cardPiratesInPlay;
 	public HandPlayer handPlayer = HandPlayer.INSTANCE;
@@ -51,6 +51,8 @@ public enum Lists implements ISaveLoadStateAble {
 		this.deckAging.relocateImageViews();
 
 		Logger.INSTANCE.logNewLine("lists instantiated -> " + this.iSaveLoadStateAbles.size());
+
+		ListsCheck.INSTANCE.start();
 
 	}
 
@@ -88,22 +90,17 @@ public enum Lists implements ISaveLoadStateAble {
 
 		// discardPileHazardKnowledge
 
-		this.discardPileHazardKnowledge = new ContainerImageViewAbles<CardFighting>(new CoordinatesBuilder()
-				.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPileHazardKnowledge)
-				.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
+		this.discardPileHazardKnowledge = new ContainerImageViewAbles<CardFightingHazardKnowledge>(
+				new CoordinatesBuilder()
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDiscardPileHazardKnowledge)
+						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
 		// cardsHazardDrawn
 
-		this.cardsHazardsDrawn = new ContainerImageViewAbles<CardFighting>(
+		this.cardsHazardsDrawn = new ContainerImageViewAbles<CardFightingHazardKnowledge>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardFighting)
 						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesCardsHazardsDrawn)
 						.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).build());
-
-		// hazardToFight
-
-		this.hazardToFight = new ContainerImageViewAbles<CardFighting>(
-				new CoordinatesBuilder().coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesHazardToFight)
-						.rearrangeTypeEnum(RearrangeTypeEnum.STATIC).build());
 
 		// deckPirates
 

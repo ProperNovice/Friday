@@ -3,6 +3,7 @@ package controller;
 import enums.EStep;
 import interfaces.ISaveLoadStateAble;
 import model.CardFighting;
+import model.CardFightingHazardKnowledge;
 import utils.ArrayList;
 import utils.ShutDown;
 
@@ -10,7 +11,7 @@ public enum Modifiers implements ISaveLoadStateAble {
 
 	INSTANCE;
 
-	private CardFighting cardFightingAgainst = null;
+	private CardFightingHazardKnowledge cardFightingAgainst = null;
 	private ArrayList<CardFighting> cardFightingHaveBeenResolvedThisRound = new ArrayList<CardFighting>();
 	private EStep eStep = EStep.GREEN;
 
@@ -18,11 +19,11 @@ public enum Modifiers implements ISaveLoadStateAble {
 
 	}
 
-	public void setCardFightingAgainst(CardFighting cardFighting) {
+	public void setCardFightingAgainst(CardFightingHazardKnowledge cardFighting) {
 		this.cardFightingAgainst = cardFighting;
 	}
 
-	public CardFighting getCardFightingAgainst() {
+	public CardFightingHazardKnowledge getCardFightingAgainst() {
 		return this.cardFightingAgainst;
 	}
 

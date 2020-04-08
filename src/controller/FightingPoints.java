@@ -40,13 +40,7 @@ public enum FightingPoints {
 
 	public void setFightingPointsUpdateIndicator() {
 
-		if (!Flow.INSTANCE.getCurrentGameState().fightingPointsVisibility()) {
-
-			this.textIndicator.setVisible(false);
-			return;
-
-		} else
-			this.textIndicator.setVisible(true);
+		this.textIndicator.setVisible(true);
 
 		clearCredentials();
 		setMapFightingValues();
@@ -244,6 +238,10 @@ public enum FightingPoints {
 
 	public int getHazardFightingPoints() {
 		return this.hazardFightingPoints;
+	}
+
+	public void setVisibleIndicatorFalse() {
+		this.textIndicator.setVisible(false);
 	}
 
 }

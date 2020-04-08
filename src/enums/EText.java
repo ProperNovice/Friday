@@ -25,7 +25,8 @@ public enum EText {
 	NO("No", TextTypeEnum.OPTION),
 	FIGHT_WON("Fight won", TextTypeEnum.INDICATOR),
 	FIGHT_LOST("Fight lost", TextTypeEnum.INDICATOR),
-
+	DESTROY_CARD("Destroy card", TextTypeEnum.INDICATOR),
+	
 	;
 
 	private String string = null;

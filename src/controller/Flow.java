@@ -11,12 +11,16 @@ public enum Flow {
 
 	private EGameState currentGameState = null;
 	private ArrayList<EGameState> flow = new ArrayList<>();
+	private ArrayList<EGameState> turn = new ArrayList<>();
 
 	private Flow() {
 		createTurns();
 	}
 
 	public void proceed() {
+
+		if (this.flow.isEmpty())
+			this.flow.addAll(this.turn);
 
 		this.currentGameState = this.flow.removeFirst();
 		executeGameState();
@@ -32,6 +36,11 @@ public enum Flow {
 
 	private void createTurns() {
 
+		this.turn.addLast(EGameState.HANDLE_NEXT_ENCOUNTER);
+		this.turn.addLast(EGameState.FIGHT_OPTIONS);
+		this.turn.addLast(EGameState.FIGHT_RESOLVE);
+		this.turn.addLast(EGameState.END_TURN);
+
 	}
 
 	private void executeGameState() {
@@ -41,7 +50,12 @@ public enum Flow {
 
 		this.currentGameState.getGameState().handleGameStateChange();
 
-		FightingPoints.INSTANCE.setFightingPointsUpdateIndicator();
+		boolean fightingPointCalculate = this.currentGameState.getGameState().fightingPointsCalculate();
+
+		if (fightingPointCalculate)
+			FightingPoints.INSTANCE.setFightingPointsUpdateIndicator();
+		else
+			FightingPoints.INSTANCE.setVisibleIndicatorFalse();
 
 	}
 
@@ -55,6 +69,10 @@ public enum Flow {
 
 	public void addLast(EGameState eGameState) {
 		this.flow.addLast(eGameState);
+	}
+
+	public void clear() {
+		this.flow.clear();
 	}
 
 }

@@ -20,7 +20,7 @@ public abstract class AHandleHazardCardsDrawn extends AGameState {
 				.addCardFightingRelocate(cardFightingHazardKnowledge);
 
 		setCardSlotsAndPrint(freeCardsToDraw);
-		Modifiers.INSTANCE.setCardFightingAgainst(cardFighting);
+		Modifiers.INSTANCE.setCardFightingAgainst((CardFightingHazardKnowledge) cardFighting);
 
 	}
 
@@ -59,11 +59,16 @@ public abstract class AHandleHazardCardsDrawn extends AGameState {
 
 	}
 
-	protected void addCardToDiscardPileHazardKnowledge(CardFighting cardFighting) {
+	protected void addCardToDiscardPileHazardKnowledge(CardFightingHazardKnowledge cardFightingHazardKnowledge) {
 
-		Lists.INSTANCE.discardPileHazardKnowledge.getArrayList().addLast(cardFighting);
+		Lists.INSTANCE.discardPileHazardKnowledge.getArrayList().addFirst(cardFightingHazardKnowledge);
 		Lists.INSTANCE.discardPileHazardKnowledge.relocateImageViews();
 
+	}
+
+	@Override
+	public boolean fightingPointsCalculate() {
+		return false;
 	}
 
 }

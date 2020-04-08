@@ -1,8 +1,10 @@
 package gameState;
 
+import controller.Flow;
 import controller.Lists;
+import enums.EGameState;
 import enums.EText;
-import model.CardFighting;
+import model.CardFightingHazardKnowledge;
 import utils.Text;
 
 public class HandleHazardCardsDrawnOne extends AHandleHazardCardsDrawn {
@@ -19,22 +21,21 @@ public class HandleHazardCardsDrawnOne extends AHandleHazardCardsDrawn {
 	protected void executeTextOption(EText eText) {
 
 		Text.INSTANCE.concealText();
-		CardFighting cardFighting = Lists.INSTANCE.cardsHazardsDrawn.getArrayList().removeFirst();
+		CardFightingHazardKnowledge cardFightingHazardKnowledge = Lists.INSTANCE.cardsHazardsDrawn.getArrayList()
+				.removeFirst();
 
 		if (eText == EText.FIGHT_THE_HAZARD) {
-			super.addCardToHand(cardFighting);
+
+			super.addCardToHand(cardFightingHazardKnowledge);
+			Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_FIRST_EMPTY_SLOT);
+
 		} else if (eText == EText.SKIP_THE_HAZARD) {
-			super.addCardToDiscardPileHazardKnowledge(cardFighting);
+
+			super.addCardToDiscardPileHazardKnowledge(cardFightingHazardKnowledge);
+			Flow.INSTANCE.clear();
+			Flow.INSTANCE.executeGameState(EGameState.END_TURN);
+
 		}
-
-	}
-
-	@Override
-	protected void executeCardPressedHazardsDrawn(CardFighting cardFighting) {
-
-		Text.INSTANCE.concealText();
-		Lists.INSTANCE.cardsHazardsDrawn.getArrayList().removeFirst();
-		super.addCardToHand(cardFighting);
 
 	}
 

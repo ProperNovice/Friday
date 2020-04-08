@@ -5,7 +5,6 @@ import controller.Life;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EAbility;
-import enums.EGameState;
 import interfaces.ISideHazardAble;
 import model.CardFighting;
 import model.CardFightingAging;
@@ -23,14 +22,13 @@ public class StartGame extends AGameState {
 //		Flow.INSTANCE.addLast(EGameState.DRAW_HAZARD_CARDS);
 //		Flow.INSTANCE.addLast(EGameState.CHOOSE_HAZARD_TO_FIGHT);
 //
-//		Flow.INSTANCE.proceed();
 
-		addRandomHazardCardToHand();
-
-		eStepProceed();
-		eStepProceed();
-
-		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
+//		addRandomHazardCardToHand();
+//
+//		eStepProceed();
+//		eStepProceed();
+//
+//		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
 //		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_TWO_CARDS, true);
 //		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, true);
 //		addCardToHandFromDeckHazardWithAbility(EAbility.DOUBLE_ONE, true);
@@ -41,18 +39,23 @@ public class StartGame extends AGameState {
 //		addCardToHandFromDeckHazardWithAbility(EAbility.PHASE_MINUS_ONE, false);
 //		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_TWO, true);
 //		addCardToHandFromDeckHazardWithAbility(EAbility.SORT_THREE_CARDS, true);
-		addCardToHandFromDeckAgingWithAbility(EAbility.STOP, true);
+//		addCardToHandFromDeckAgingWithAbility(EAbility.STOP, true);
 //		addCardToHandFromDeckAgingWithAbility(EAbility.HIGHEST_CARD_EQUALS_ZERO, true);
 //		addCardToHandFromDeckHazardWithAbility(EAbility.BELOW_THE_PILE_ONE, true);
-		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, false);
-
-		addCardsFromDeckToDiscardPile(5);
+//		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, false);
+//
+//		addCardsFromDeckToDiscardPile(5);
 //		loseLife(18);
 
 //		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound()
 //				.addLast(Lists.INSTANCE.handPlayer.getCardSlots().get(0).getCardFighting());
 
-		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
+//		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
+//		Flow.INSTANCE.executeGameState(EGameState.FIGHT_LOST);
+
+//		removeHazards(29);
+
+		Flow.INSTANCE.proceed();
 
 	}
 
@@ -168,7 +171,7 @@ public class StartGame extends AGameState {
 				.addCardFightingRelocate(cardFightingHazardKnowledge);
 
 		setCardSlotsAndPrint(freeCardsToDraw);
-		Modifiers.INSTANCE.setCardFightingAgainst(cardFighting);
+		Modifiers.INSTANCE.setCardFightingAgainst((CardFightingHazardKnowledge) cardFighting);
 
 		cardHandToFront();
 
@@ -234,6 +237,11 @@ public class StartGame extends AGameState {
 		Lists.INSTANCE.deckStep.toFront();
 		Modifiers.INSTANCE.eStepAdvance();
 
+	}
+
+	@Override
+	public boolean fightingPointsCalculate() {
+		return false;
 	}
 
 }

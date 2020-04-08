@@ -5,6 +5,7 @@ import controller.Lists;
 import enums.EGameState;
 import enums.EText;
 import model.CardFighting;
+import model.CardFightingHazardKnowledge;
 import utils.Text;
 
 public class DrawHazardCards extends AGameState {
@@ -40,12 +41,17 @@ public class DrawHazardCards extends AGameState {
 
 			CardFighting cardFighting = Lists.INSTANCE.deckHazardKnowledge.getArrayList().removeFirst();
 			cardFighting.getImageView().flip();
-			Lists.INSTANCE.cardsHazardsDrawn.getArrayList().addLast(cardFighting);
+			Lists.INSTANCE.cardsHazardsDrawn.getArrayList().addLast((CardFightingHazardKnowledge) cardFighting);
 
 		}
 
 		Lists.INSTANCE.cardsHazardsDrawn.relocateImageViews();
 
+	}
+
+	@Override
+	public boolean fightingPointsCalculate() {
+		return false;
 	}
 
 }
