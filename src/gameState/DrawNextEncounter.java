@@ -4,7 +4,7 @@ import controller.Flow;
 import controller.Modifiers;
 import enums.EGameState;
 
-public class HandleNextEncounter extends AGameState {
+public class DrawNextEncounter extends AGameState {
 
 	@Override
 	public void handleGameStateChange() {
@@ -13,8 +13,8 @@ public class HandleNextEncounter extends AGameState {
 
 		switch (Modifiers.INSTANCE.getEStep()) {
 
-		case PIRATES:
-			eGameState = EGameState.HANDLE_PIRATE;
+		case PIRATE:
+			eGameState = EGameState.DRAW_PIRATE;
 			break;
 
 		default:

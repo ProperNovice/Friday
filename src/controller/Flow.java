@@ -36,7 +36,7 @@ public enum Flow {
 
 	private void createTurns() {
 
-		this.turn.addLast(EGameState.HANDLE_NEXT_ENCOUNTER);
+		this.turn.addLast(EGameState.DRAW_NEXT_ENCOUNTER);
 		this.turn.addLast(EGameState.FIGHT_OPTIONS);
 		this.turn.addLast(EGameState.FIGHT_RESOLVE);
 		this.turn.addLast(EGameState.END_TURN);

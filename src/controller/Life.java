@@ -10,7 +10,7 @@ public enum Life {
 
 	INSTANCE;
 
-	private ContainerImageViewAbles<LifeToken> lifeTokens;
+	private ContainerImageViewAbles<LifeToken> lifeTokensCurrent;
 	private int lifeCurrent = 20, lifeTotal = 22;
 
 	private Life() {
@@ -27,7 +27,7 @@ public enum Life {
 
 	private void createList() {
 
-		this.lifeTokens = new ContainerImageViewAbles<LifeToken>(
+		this.lifeTokensCurrent = new ContainerImageViewAbles<LifeToken>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsLifeToken)
 						.gapX(Credentials.INSTANCE.gapBetweenLifeTokens).gapY(0)
 						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesLifeTokensPivot)
@@ -38,9 +38,9 @@ public enum Life {
 	private void createLifeTokens() {
 
 		for (int counter = 1; counter <= 22; counter++)
-			this.lifeTokens.getArrayList().addLast(new LifeToken());
+			this.lifeTokensCurrent.getArrayList().addLast(new LifeToken());
 
-		this.lifeTokens.relocateImageViews();
+		this.lifeTokensCurrent.relocateImageViews();
 
 	}
 
@@ -78,8 +78,8 @@ public enum Life {
 
 	private void handleLifeTokensFlipSide() {
 
-		for (LifeToken lifeToken : this.lifeTokens)
-			if (this.lifeTokens.getArrayList().indexOf(lifeToken) < this.lifeCurrent)
+		for (LifeToken lifeToken : this.lifeTokensCurrent)
+			if (this.lifeTokensCurrent.getArrayList().indexOf(lifeToken) < this.lifeCurrent)
 				lifeToken.getImageView().flipFront();
 			else
 				lifeToken.getImageView().flipBack();

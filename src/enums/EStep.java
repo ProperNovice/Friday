@@ -2,6 +2,6 @@ package enums;
 
 public enum EStep {
 
-	GREEN, YELLOW, RED, PIRATES
+	GREEN, YELLOW, RED, PIRATE
 
 }

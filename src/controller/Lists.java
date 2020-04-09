@@ -16,6 +16,7 @@ import model.SortCardsPanel;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
+import utils.DirectionEnum;
 import utils.Logger;
 import utils.RearrangeTypeEnum;
 
@@ -106,6 +107,7 @@ public enum Lists implements ISaveLoadStateAble {
 
 		this.cardPiratesInPlay = new ContainerImageViewAbles<CardPirate>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardStepPirate)
+						.directionEnumVertical(DirectionEnum.UP)
 						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckPirates).objectsPerRow(1).build());
 
 	}

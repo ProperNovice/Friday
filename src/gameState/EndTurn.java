@@ -6,28 +6,23 @@ import controller.Modifiers;
 import enums.EStep;
 import enums.EText;
 import model.CardFightingHazardKnowledge;
+import model.CardStep;
 
 public class EndTurn extends AGameState {
 
 	@Override
 	public void handleGameStateChange() {
 
-		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound().clear();
+		Modifiers.INSTANCE.loadState();
 
-		if (!Lists.INSTANCE.deckHazardKnowledge.getArrayList().isEmpty())
+		if (!Lists.INSTANCE.deckHazardKnowledge.getArrayList().isEmpty()
+				|| Modifiers.INSTANCE.getEStep().equals(EStep.PIRATE))
 			Flow.INSTANCE.proceed();
 
 		else {
 
-			if (Modifiers.INSTANCE.getEStep().equals(EStep.PIRATES))
-				Flow.INSTANCE.proceed();
-
-			else {
-
-				EText.ADVANCING_STEP.showText();
-				EText.CONTINUE.showText();
-
-			}
+			EText.ADVANCING_STEP.showText();
+			EText.CONTINUE.showText();
 
 		}
 
@@ -43,6 +38,11 @@ public class EndTurn extends AGameState {
 
 	private void handleAdvanceStep() {
 
+		Modifiers.INSTANCE.eStepAdvance();
+
+		if (Modifiers.INSTANCE.getEStep().equals(EStep.PIRATE))
+			return;
+
 		Lists.INSTANCE.deckHazardKnowledge.getArrayList()
 				.addAll(Lists.INSTANCE.discardPileHazardKnowledge.getArrayList());
 
@@ -56,9 +56,10 @@ public class EndTurn extends AGameState {
 		Lists.INSTANCE.deckHazardKnowledge.getArrayList().shuffle();
 		Lists.INSTANCE.deckHazardKnowledge.toFront();
 
-		Lists.INSTANCE.deckStep.getArrayList().addLast(Lists.INSTANCE.deckStep.getArrayList().removeFirst());
+		CardStep cardStep = Lists.INSTANCE.deckStep.getArrayList().removeFirst();
+		cardStep.getImageView().setVisible(false);
+
 		Lists.INSTANCE.deckStep.toFront();
-		Modifiers.INSTANCE.eStepAdvance();
 
 	}
 

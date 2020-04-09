@@ -1,6 +1,6 @@
 package gameState;
 
-public class HandlePirate extends AGameState {
+public class DrawPirate extends AGameState {
 
 	@Override
 	public void handleGameStateChange() {

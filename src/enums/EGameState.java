@@ -27,8 +27,8 @@ public enum EGameState {
 	FIGHT_WON(new FightWon()),
 	FIGHT_LOST(new FightLost()),
 	HANDLE_FIGHT_LOST(new HandleFightLost()),
-	HANDLE_NEXT_ENCOUNTER(new HandleNextEncounter()),
-	HANDLE_PIRATE(new HandlePirate()),
+	DRAW_NEXT_ENCOUNTER(new DrawNextEncounter()),
+	DRAW_PIRATE(new DrawPirate()),
 	
 	;
 

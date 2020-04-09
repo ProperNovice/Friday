@@ -53,7 +53,7 @@ public class StartGame extends AGameState {
 //		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
 //		Flow.INSTANCE.executeGameState(EGameState.FIGHT_LOST);
 
-//		removeHazards(29);
+		removeHazards(29);
 
 		Flow.INSTANCE.proceed();
 

@@ -37,7 +37,7 @@ public enum EHazardValue {
 			stepValue = this.redStepValue;
 			break;
 
-		case PIRATES:
+		case PIRATE:
 			ShutDown.INSTANCE.execute("EHazardValue, PIRATES, you shouldn't be here");
 			break;
 

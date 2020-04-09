@@ -72,7 +72,7 @@ public enum Credentials {
 		this.CoordinatesDeckStep = new NumbersPair(x, y);
 
 		x = this.CoordinatesDeckStep.x + this.DimensionsCardStepPirate.x + this.DimensionsGapBetweenComponents.x;
-		y = this.CoordinatesDeckStep.y;
+		y = this.CoordinatesDeckStep.y + this.DimensionsCardStepPirate.y + this.DimensionsGapBetweenComponents.y;
 		this.CoordinatesDeckPirates = new NumbersPair(x, y);
 
 		x = this.CoordinatesDeckPlayer.x;
