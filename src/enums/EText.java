@@ -27,6 +27,7 @@ public enum EText {
 	FIGHT_LOST("Fight lost", TextTypeEnum.INDICATOR),
 	DESTROY_CARD("Destroy card", TextTypeEnum.INDICATOR),
 	ADVANCING_STEP("Advancing step", TextTypeEnum.INDICATOR),
+	PIRATE_ENCOUNTER("Pirate encounter", TextTypeEnum.INDICATOR),
 	
 	;
 

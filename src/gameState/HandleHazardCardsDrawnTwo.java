@@ -4,7 +4,6 @@ import controller.Flow;
 import controller.Lists;
 import enums.EGameState;
 import enums.EText;
-import model.CardFighting;
 import model.CardFightingHazardKnowledge;
 import utils.Text;
 
@@ -18,14 +17,12 @@ public class HandleHazardCardsDrawnTwo extends AHandleHazardCardsDrawn {
 	}
 
 	@Override
-	protected void executeCardPressedHazardsDrawn(CardFighting cardFighting) {
+	protected void executeCardPressedHazardsDrawn(CardFightingHazardKnowledge cardFightingHazardKnowledge) {
 
 		Text.INSTANCE.concealText();
 
-		CardFightingHazardKnowledge cardFightingHazardKnowledge = (CardFightingHazardKnowledge) cardFighting;
-
 		Lists.INSTANCE.cardsHazardsDrawn.getArrayList().remove(cardFightingHazardKnowledge);
-		addCardToHand(cardFighting);
+		addCardToHand(cardFightingHazardKnowledge);
 
 		addCardToDiscardPileHazardKnowledge(Lists.INSTANCE.cardsHazardsDrawn.getArrayList().removeFirst());
 

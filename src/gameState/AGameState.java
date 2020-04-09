@@ -6,6 +6,7 @@ import enums.EText;
 import javafx.scene.input.KeyCode;
 import model.Card;
 import model.CardFighting;
+import model.CardFightingHazardKnowledge;
 import utils.KeyCodeHandler;
 import utils.Logger;
 import utils.Text;
@@ -50,7 +51,7 @@ public abstract class AGameState {
 			return;
 
 		if (Lists.INSTANCE.cardsHazardsDrawn.getArrayList().contains(card))
-			executeCardPressedHazardsDrawn((CardFighting) card);
+			executeCardPressedHazardsDrawn((CardFightingHazardKnowledge) card);
 		else if (Lists.INSTANCE.handPlayer.contains((CardFighting) card))
 			executeCardFightingPressedHand((CardFighting) card);
 		else if (Lists.INSTANCE.sortCardsPanel.getPanel().getArrayList().contains(card))
@@ -76,7 +77,7 @@ public abstract class AGameState {
 
 	}
 
-	protected void executeCardPressedHazardsDrawn(CardFighting cardFighting) {
+	protected void executeCardPressedHazardsDrawn(CardFightingHazardKnowledge cardFightingHazardKnowledge) {
 
 	}
 

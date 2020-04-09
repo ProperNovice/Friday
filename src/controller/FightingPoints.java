@@ -220,8 +220,7 @@ public enum FightingPoints {
 		if (this.containsPhaseMinusOne)
 			eStep = this.mapMinusOneStep.get(eStep);
 
-		CardFighting cardFighting = Modifiers.INSTANCE.getCardFightingAgainst();
-		CardFightingHazardKnowledge cardFightingHazardKnowledge = (CardFightingHazardKnowledge) cardFighting;
+		CardFightingHazardKnowledge cardFightingHazardKnowledge = Modifiers.INSTANCE.getCardFightingAgainst();
 		SideHazard sideHazard = cardFightingHazardKnowledge.getSideHazard();
 
 		this.hazardFightingPoints = sideHazard.getEHazardValue().getStepValue(eStep);

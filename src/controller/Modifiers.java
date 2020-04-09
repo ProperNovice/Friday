@@ -42,7 +42,7 @@ public enum Modifiers implements ISaveLoadStateAble {
 		this.additionalFightingCostLifeDraw = additionalFightingCostLifeDraw;
 	}
 
-	public int getAAdditionalFightingCostLifeDraw() {
+	public int getAdditionalFightingCostLifeDraw() {
 		return this.additionalFightingCostLifeDraw;
 	}
 

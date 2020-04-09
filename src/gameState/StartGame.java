@@ -25,8 +25,9 @@ public class StartGame extends AGameState {
 
 //		addRandomHazardCardToHand();
 //
-//		eStepProceed();
-//		eStepProceed();
+		eStepProceed();
+		eStepProceed();
+		eStepProceed();
 //
 //		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
 //		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_TWO_CARDS, true);
@@ -53,7 +54,7 @@ public class StartGame extends AGameState {
 //		Flow.INSTANCE.executeGameState(EGameState.FIGHT_OPTIONS);
 //		Flow.INSTANCE.executeGameState(EGameState.FIGHT_LOST);
 
-		removeHazards(29);
+//		removeHazards(29);
 
 		Flow.INSTANCE.proceed();
 
