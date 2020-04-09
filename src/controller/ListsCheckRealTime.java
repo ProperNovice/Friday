@@ -6,19 +6,19 @@ import model.CardSlot;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 
-public enum ListsCheck {
+public enum ListsCheckRealTime {
 
 	INSTANCE;
 
-	private ArrayList<ListSize> listsContainer = new ArrayList<ListsCheck.ListSize>();
+	private ArrayList<ListSize> listsContainer = new ArrayList<ListsCheckRealTime.ListSize>();
 
-	private ListsCheck() {
+	private ListsCheckRealTime() {
 
 		this.listsContainer.addLast(new ListSize("deck player", Lists.INSTANCE.deckPlayer));
 		this.listsContainer.addLast(new ListSize("discard pile player", Lists.INSTANCE.discardPilePlayer));
-		this.listsContainer.addLast(new ListSize("deck hazard", Lists.INSTANCE.deckHazardKnowledge));
-		this.listsContainer.addLast(new ListSize("discard pile hazard", Lists.INSTANCE.discardPileHazardKnowledge));
-		this.listsContainer.addLast(new ListSize("deck age", Lists.INSTANCE.deckAging));
+		this.listsContainer.addLast(new ListSize("deck haz", Lists.INSTANCE.deckHazardKnowledge));
+		this.listsContainer.addLast(new ListSize("discard pile haz", Lists.INSTANCE.discardPileHazardKnowledge));
+		this.listsContainer.addLast(new ListSize("deck aging", Lists.INSTANCE.deckAging));
 		this.listsContainer.addLast(new ListSize("haz drawn", Lists.INSTANCE.cardsHazardsDrawn));
 
 	}

@@ -30,7 +30,7 @@ public enum HandPlayer implements Iterable<CardSlot> {
 
 	private void createList() {
 
-		for (int counter = 0; counter <= 19; counter++)
+		for (int counter = 0; counter <= 29; counter++)
 			this.cardSlots.addLast(new CardSlot(this.coordinates.getCoordinate(counter)));
 
 	}

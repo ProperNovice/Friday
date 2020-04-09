@@ -52,7 +52,7 @@ public enum Lists implements ISaveLoadStateAble {
 
 		Logger.INSTANCE.logNewLine("lists instantiated -> " + this.iSaveLoadStateAbles.size());
 
-		ListsCheck.INSTANCE.start();
+		ListsCheckRealTime.INSTANCE.start();
 
 	}
 

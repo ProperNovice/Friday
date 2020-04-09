@@ -4,6 +4,7 @@ import model.LifeToken;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.Logger;
+import utils.RearrangeTypeEnum;
 
 public enum Life {
 
@@ -29,7 +30,8 @@ public enum Life {
 		this.lifeTokens = new ContainerImageViewAbles<LifeToken>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsLifeToken)
 						.gapX(Credentials.INSTANCE.gapBetweenLifeTokens).gapY(0)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesLifeTokens).objectsPerRow(11).build());
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesLifeTokensPivot)
+						.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).objectsPerRow(11).build());
 
 	}
 

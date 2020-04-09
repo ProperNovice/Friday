@@ -61,7 +61,9 @@ public abstract class ADrawCardFromDeckToHand extends AGameState {
 		}
 
 		if (cardFightingAgingToAdd == null)
-			cardFightingAgingToAdd = Lists.INSTANCE.deckAging.getArrayList().removeRandom();
+			cardFightingAgingToAdd = Lists.INSTANCE.deckAging.getArrayList().getRandom();
+
+		Lists.INSTANCE.deckAging.getArrayList().remove(cardFightingAgingToAdd);
 
 		cardFightingAgingToAdd.getImageView().flip();
 
@@ -76,7 +78,7 @@ public abstract class ADrawCardFromDeckToHand extends AGameState {
 
 		CardSlot cardSlot = getCardSlotToAddTheCard();
 		cardSlot.addCardFightingRelocate(cardFighting);
-		
+
 		cardHandToFront();
 
 	}

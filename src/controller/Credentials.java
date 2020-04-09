@@ -13,8 +13,9 @@ public enum Credentials {
 	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep,
 			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge,
 			CoordinatesIndicatorFreeCard, CoordinatesHandPlayer, CoordinatesCardsHazardsDrawn, CoordinatesHazardToFight,
-			CoordinatesLifeTokens, CoordinatesDeckPirates, CoordinatesAbilityImageView,
-			CoordinatesSortCardPanelBackground, CoordinatesSortCardPanelCards, CoordinatesTextIndicators;
+			CoordinatesLifeTokensTopLeft, CoordinatesLifeTokensPivot, CoordinatesDeckPirates,
+			CoordinatesAbilityImageView, CoordinatesSortCardPanelBackground, CoordinatesSortCardPanelCards,
+			CoordinatesTextIndicators;
 	private NumbersPair DimensionsCardFightingOriginal, DimensionsCardStepPirateOriginal;
 	public double gapBetweenBorders = 25, textHeight = 50, gapBetweenLifeTokens;
 
@@ -43,7 +44,7 @@ public enum Credentials {
 		x = this.DimensionsCardStepPirateOriginal.x * y / this.DimensionsCardStepPirateOriginal.y;
 		this.DimensionsCardStepPirate = new NumbersPair(x, y);
 
-		y = 2 * this.gapBetweenBorders + this.DimensionsGapBetweenComponents.y + 5 * this.DimensionsCardFighting.y / 2;
+		y = 2 * this.gapBetweenBorders + this.DimensionsGapBetweenComponents.y + 6 * this.DimensionsCardFighting.y / 2;
 		this.DimensionsFrame = new NumbersPair(1920, y);
 
 		this.CoordinatesDeckPlayer = new NumbersPair(this.gapBetweenBorders, this.gapBetweenBorders);
@@ -107,7 +108,11 @@ public enum Credentials {
 
 		x = this.CoordinatesDeckStep.x;
 		y = this.CoordinatesDeckStep.y + this.DimensionsCardStepPirate.y + this.DimensionsGapBetweenComponents.y;
-		this.CoordinatesLifeTokens = new NumbersPair(x, y);
+		this.CoordinatesLifeTokensTopLeft = new NumbersPair(x, y);
+
+		x = this.CoordinatesLifeTokensTopLeft.x + this.DimensionsCardStepPirate.x / 2;
+		y = this.CoordinatesLifeTokensTopLeft.y + this.DimensionsCardStepPirate.y / 2;
+		this.CoordinatesLifeTokensPivot = new NumbersPair(x, y);
 
 		calculateGapBetweenLifeTokens();
 

@@ -14,7 +14,7 @@ public class HandleNextEncounter extends AGameState {
 		switch (Modifiers.INSTANCE.getEStep()) {
 
 		case PIRATES:
-			eGameState = null;
+			eGameState = EGameState.HANDLE_PIRATE;
 			break;
 
 		default:
