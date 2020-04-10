@@ -156,14 +156,14 @@ public enum FightingPoints {
 
 		// TODO
 
-		calculateAbilitesBefore();
 		calculateHighestCardZeroAbility();
 		calculateFightingCardPoints();
 		calculateDoubleAbility();
-
+		calculateAbilitesAfter();
+		
 	}
 
-	private void calculateAbilitesBefore() {
+	private void calculateAbilitesAfter() {
 
 		if (!Modifiers.INSTANCE.getEStep().equals(EStep.PIRATE))
 			return;
@@ -187,8 +187,7 @@ public enum FightingPoints {
 
 		int cardsNotCounting = totalHandCards / 2;
 
-		System.out.println(totalHandCards);
-		System.out.println(cardsNotCounting);
+		
 
 	}
 
