@@ -46,7 +46,7 @@ public enum FightingPoints {
 		this.textIndicator.setVisible(true);
 
 		clearCredentials();
-		setMapFightingValues(); // TODO
+		setMapFightingValues();
 		calculatePlayerFightingPoints();
 		calculateEncounterFightingPoints();
 		printMap();
@@ -154,9 +154,41 @@ public enum FightingPoints {
 
 	private void calculatePlayerFightingPoints() {
 
+		// TODO
+
+		calculateAbilitesBefore();
 		calculateHighestCardZeroAbility();
 		calculateFightingCardPoints();
 		calculateDoubleAbility();
+
+	}
+
+	private void calculateAbilitesBefore() {
+
+		if (!Modifiers.INSTANCE.getEStep().equals(EStep.PIRATE))
+			return;
+
+		CardPirate cardPirate = Modifiers.INSTANCE.getCardPirateAgainst();
+		SidePirate sidePirate = cardPirate.getSidePirate();
+
+		if (!(sidePirate instanceof SidePirateAbility))
+			return;
+
+		IAbilityAble iAbilityAble = (IAbilityAble) sidePirate;
+		EAbility eAbility = iAbilityAble.getEAbility();
+
+		if (!eAbility.equals(EAbility.ONLY_HALF_OF_THE_FACE_UP_FIGHTING_CARDS_COUNT))
+			return;
+
+		int totalHandCards = 0;
+
+		for (int counter = -5; counter <= 4; counter++)
+			totalHandCards += this.mapFightingValues.get(counter).size();
+
+		int cardsNotCounting = totalHandCards / 2;
+
+		System.out.println(totalHandCards);
+		System.out.println(cardsNotCounting);
 
 	}
 

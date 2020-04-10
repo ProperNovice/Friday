@@ -57,8 +57,8 @@ public class StartGame extends AGameState {
 //		removeAgingCards(8);
 //		addHazardFromDeckToDiscard(4);
 
-//		for (int counter = 1; counter <= 3; counter++)
-//			eStepProceed();
+		for (int counter = 1; counter <= 3; counter++)
+			eStepProceed();
 
 //		Modifiers.INSTANCE.setCardPirateAgainst(Lists.INSTANCE.cardPiratesInPlay.getArrayList().getFirst());
 //		Flow.INSTANCE.executeGameState(EGameState.FIGHT_LOST);

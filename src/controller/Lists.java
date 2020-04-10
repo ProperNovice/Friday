@@ -371,7 +371,7 @@ public enum Lists implements ISaveLoadStateAble {
 		for (CardPirate cardPirate : this.deckPirates)
 			cardPirate.getImageView().setVisible(false);
 
-		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.remove(7)); // TODO
+		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.remove(6)); // TODO
 		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
 
 		this.cardPiratesInPlay.relocateImageViews();
