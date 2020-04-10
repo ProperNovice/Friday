@@ -5,9 +5,12 @@ import enums.EStep;
 import interfaces.IAbilityAble;
 import model.CardFighting;
 import model.CardFightingHazardKnowledge;
+import model.CardPirate;
 import model.CardSlot;
 import model.SideHazard;
 import model.SideKnowledge;
+import model.SidePirate;
+import model.SidePirateAbility;
 import utils.ArrayList;
 import utils.HashMap;
 import utils.Logger;
@@ -20,7 +23,7 @@ public enum FightingPoints {
 	private TextIndicator textIndicator = new TextIndicator();
 	private HashMap<Integer, ArrayList<CardFighting>> mapFightingValues = new HashMap<>();
 	private HashMap<EStep, EStep> mapMinusOneStep = new HashMap<EStep, EStep>();
-	private int playerFightingPointsNoDouble, playerFightingPointsWithDouble, hazardFightingPoints;
+	private int playerFightingPointsNoDouble, playerFightingPointsWithDouble, encounterFightingPoints;
 	private ArrayList<CardFighting> cardsDouble = new ArrayList<CardFighting>();
 	private boolean containsPhaseMinusOne, containsHighestCardEqualsZero;
 
@@ -43,9 +46,9 @@ public enum FightingPoints {
 		this.textIndicator.setVisible(true);
 
 		clearCredentials();
-		setMapFightingValues();
+		setMapFightingValues(); // TODO
 		calculatePlayerFightingPoints();
-		calculateHazardFightingPoints();
+		calculateEncounterFightingPoints();
 		printMap();
 		setText();
 
@@ -56,7 +59,7 @@ public enum FightingPoints {
 		clearMap();
 		this.playerFightingPointsNoDouble = 0;
 		this.playerFightingPointsWithDouble = 0;
-		this.hazardFightingPoints = 0;
+		this.encounterFightingPoints = 0;
 		this.cardsDouble.clear();
 		this.containsPhaseMinusOne = false;
 		this.containsHighestCardEqualsZero = false;
@@ -143,7 +146,7 @@ public enum FightingPoints {
 			text += "(d" + this.playerFightingPointsWithDouble + ")";
 
 		text += "/";
-		text += this.hazardFightingPoints;
+		text += this.encounterFightingPoints;
 
 		this.textIndicator.setText(text);
 
@@ -213,17 +216,75 @@ public enum FightingPoints {
 
 	}
 
-	private void calculateHazardFightingPoints() {
+	private void calculateEncounterFightingPoints() {
 
 		EStep eStep = Modifiers.INSTANCE.getEStep();
+
+		switch (eStep) {
+
+		case PIRATE:
+			calculatePirateFightingPoints();
+			break;
+
+		default:
+			calculateHazardFightingPoints(eStep);
+			break;
+
+		}
+
+	}
+
+	private void calculateHazardFightingPoints(EStep eStep) {
 
 		if (this.containsPhaseMinusOne)
 			eStep = this.mapMinusOneStep.get(eStep);
 
-		CardFightingHazardKnowledge cardFightingHazardKnowledge = Modifiers.INSTANCE.getCardFightingAgainst();
+		CardFightingHazardKnowledge cardFightingHazardKnowledge = (CardFightingHazardKnowledge) Modifiers.INSTANCE
+				.getCardFightingAgainst();
 		SideHazard sideHazard = cardFightingHazardKnowledge.getSideHazard();
 
-		this.hazardFightingPoints = sideHazard.getEHazardValue().getStepValue(eStep);
+		this.encounterFightingPoints = sideHazard.getEHazardValue().getStepValue(eStep);
+
+	}
+
+	private void calculatePirateFightingPoints() {
+
+		CardPirate cardPirate = Modifiers.INSTANCE.getCardPirateAgainst();
+		SidePirate sidePirate = cardPirate.getSidePirate();
+
+		if (!(sidePirate instanceof SidePirateAbility)) {
+			this.encounterFightingPoints = sidePirate.getFightingValue();
+			return;
+		}
+
+		IAbilityAble iAbilityAble = (IAbilityAble) sidePirate;
+		EAbility eAbility = iAbilityAble.getEAbility();
+
+		switch (eAbility) {
+
+		case PLUS_TWO_HAZARD_POINTS_FOR_EACH_AGING_CARD:
+
+			int agingCardsCurrent = Lists.INSTANCE.deckAging.getSize();
+			int agingCardsUsed = Modifiers.INSTANCE.getAgingCardsStartingAmount() - agingCardsCurrent;
+			this.encounterFightingPoints = 2 * agingCardsUsed;
+
+			break;
+
+		case FIGHT_AGAINST_ALL_REMAINING_HAZARD_CARDS:
+
+			this.encounterFightingPoints = 0;
+
+			for (CardFightingHazardKnowledge cardFightingHazardKnowledge : Lists.INSTANCE.discardPileHazardKnowledge)
+				this.encounterFightingPoints += cardFightingHazardKnowledge.getSideHazard().getEHazardValue()
+						.getStepValue(EStep.RED);
+
+			break;
+
+		default:
+			this.encounterFightingPoints = sidePirate.getFightingValue();
+			break;
+
+		}
 
 	}
 
@@ -235,8 +296,8 @@ public enum FightingPoints {
 		return this.playerFightingPointsWithDouble;
 	}
 
-	public int getHazardFightingPoints() {
-		return this.hazardFightingPoints;
+	public int getEncounterFightingPoints() {
+		return this.encounterFightingPoints;
 	}
 
 	public void setVisibleIndicatorFalse() {

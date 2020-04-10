@@ -41,7 +41,10 @@ public enum Lists implements ISaveLoadStateAble {
 		createDeckPlayer();
 		createDeckHazardKnowledge();
 		createDeckStep();
+
 		createDeckAging();
+		Modifiers.INSTANCE.setAgingCardsStartingAmount(this.deckAging.getSize());
+
 		createDeckPirates();
 
 		this.sortCardsPanel = SortCardsPanel.INSTANCE;
@@ -326,7 +329,7 @@ public enum Lists implements ISaveLoadStateAble {
 
 		pirateNumber++;
 		this.deckPirates.addLast(new CardBuilder().fileName(filename + pirateNumber)
-				.sidePirate(5, 0, EAbility.PLUS_TWO_HAZARD_POINTS_FOR_EACH_FIGHTING_CARD).buildCardPirate());
+				.sidePirate(5, 0, EAbility.PLUS_TWO_HAZARD_POINTS_FOR_EACH_AGING_CARD).buildCardPirate());
 
 		// 5
 
@@ -368,7 +371,7 @@ public enum Lists implements ISaveLoadStateAble {
 		for (CardPirate cardPirate : this.deckPirates)
 			cardPirate.getImageView().setVisible(false);
 
-		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
+		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.remove(7)); // TODO
 		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
 
 		this.cardPiratesInPlay.relocateImageViews();

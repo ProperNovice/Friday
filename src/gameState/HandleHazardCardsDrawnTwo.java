@@ -7,7 +7,7 @@ import enums.EText;
 import model.CardFightingHazardKnowledge;
 import utils.Text;
 
-public class HandleHazardCardsDrawnTwo extends AHandleHazardCardsDrawn {
+public class HandleHazardCardsDrawnTwo extends AHandleEncounterCardsDrawn {
 
 	@Override
 	public void handleGameStateChange() {

@@ -6,6 +6,7 @@ import controller.FightingPoints;
 import controller.Flow;
 import controller.Life;
 import controller.Lists;
+import enums.EGameState;
 import enums.EText;
 import model.CardFighting;
 import model.CardSlot;
@@ -21,10 +22,19 @@ public class HandleFightLost extends AGameState {
 	public void handleGameStateChange() {
 
 		this.cardsToBeDestroyed.clear();
-		handleLifeLostSetIndicator();
+		handleLifeLost();
 
-		EText.DESTROY_CARD.showText();
-		EText.CONTINUE.showText();
+		if (Life.INSTANCE.getLifeCurrent() < 0) {
+
+			Flow.INSTANCE.clear();
+			Flow.INSTANCE.executeGameState(EGameState.END_GAME_LOSE);
+
+		} else {
+
+			EText.DESTROY_CARD.showText();
+			EText.CONTINUE.showText();
+
+		}
 
 	}
 
@@ -49,6 +59,8 @@ public class HandleFightLost extends AGameState {
 				Lists.INSTANCE.discardPilePlayer.getArrayList().addFirst(cardFighting);
 
 		}
+
+		DestroyCardLifeIndicator.INSTANCE.setIndicatorLifeToLoseSetText(this.lifeRemaining);
 
 		Lists.INSTANCE.discardPilePlayer.relocateImageViews();
 		Lists.INSTANCE.discardPilePlayer.toFront();
@@ -86,15 +98,13 @@ public class HandleFightLost extends AGameState {
 
 	}
 
-	private void handleLifeLostSetIndicator() {
+	private void handleLifeLost() {
 
 		int fightingValue = FightingPoints.INSTANCE.getPlayerFightingPointsWithDouble();
-		int hazardValue = FightingPoints.INSTANCE.getHazardFightingPoints();
+		int hazardValue = FightingPoints.INSTANCE.getEncounterFightingPoints();
 		this.lifeRemaining = hazardValue - fightingValue;
 
 		Life.INSTANCE.loseLife(this.lifeRemaining);
-
-		DestroyCardLifeIndicator.INSTANCE.setIndicatorLifeToLoseSetText(this.lifeRemaining);
 
 	}
 

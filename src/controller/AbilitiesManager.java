@@ -183,7 +183,7 @@ public enum AbilitiesManager {
 			canBeResolved = true;
 			break;
 
-		case PLUS_TWO_HAZARD_POINTS_FOR_EACH_FIGHTING_CARD:
+		case PLUS_TWO_HAZARD_POINTS_FOR_EACH_AGING_CARD:
 			canBeResolved = false;
 			break;
 

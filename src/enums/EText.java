@@ -13,7 +13,7 @@ public enum EText {
 	SKIP_THE_HAZARD("Skip the hazard", TextTypeEnum.OPTION),
 	RESOLVE_FIGHT("Resolve fight", TextTypeEnum.OPTION),
 	DRAW_CARD_FREE("Draw card free", TextTypeEnum.OPTION),
-	DRAW_CARD_ONE_LIFE("Draw card pay life", TextTypeEnum.OPTION),
+	DRAW_CARD_LOSE_LIFE("Draw card pay life", TextTypeEnum.OPTION),
 	CHOOSE_ABILITY("Choose ability", TextTypeEnum.INDICATOR),
 	CHOOSE_CARD("Choose card", TextTypeEnum.INDICATOR),
 	DISCARD_CARD("Discard card", TextTypeEnum.INDICATOR),

@@ -7,6 +7,8 @@ import javafx.scene.input.KeyCode;
 import model.Card;
 import model.CardFighting;
 import model.CardFightingHazardKnowledge;
+import model.CardFightingPirateProxy;
+import model.CardSlot;
 import utils.KeyCodeHandler;
 import utils.Logger;
 import utils.Text;
@@ -64,6 +66,9 @@ public abstract class AGameState {
 		if (!card.equals(Modifiers.INSTANCE.getCardFightingAgainst()))
 			return;
 
+		if (card instanceof CardFightingPirateProxy)
+			return;
+
 		card.getImageView().toFront();
 
 	}
@@ -72,8 +77,13 @@ public abstract class AGameState {
 
 		if (!card.equals(Modifiers.INSTANCE.getCardFightingAgainst()))
 			return;
+		
+		if (card instanceof CardFightingPirateProxy)
+			return;
 
-		card.getImageView().toBack();
+		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer)
+			if (cardSlot.containsCardFighting())
+				cardSlot.getCardFighting().getImageView().toFront();
 
 	}
 

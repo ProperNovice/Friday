@@ -52,8 +52,8 @@ public class FightOptions extends AGameState {
 			Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_FIRST_EMPTY_SLOT);
 			break;
 
-		case DRAW_CARD_ONE_LIFE:
-			Life.INSTANCE.loseLife(1);
+		case DRAW_CARD_LOSE_LIFE:
+			Life.INSTANCE.loseLife(Modifiers.INSTANCE.getAdditionalFightingCostLifeDraw());
 			Flow.INSTANCE.addFirst(EGameState.FIGHT_OPTIONS);
 			Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_RIGHT_SIDE);
 			break;
@@ -95,15 +95,15 @@ public class FightOptions extends AGameState {
 				if (!eAbility.equals(EAbility.STOP))
 					continue;
 
-				Text.INSTANCE.showText(EText.DRAW_CARD_ONE_LIFE);
+				Text.INSTANCE.showText(EText.DRAW_CARD_LOSE_LIFE);
 				break;
 
 			}
 
 			if (cardSlot.containsFreeCard())
 				Text.INSTANCE.showText(EText.DRAW_CARD_FREE);
-			else if (Life.INSTANCE.getLifeCurrent() > 0)
-				Text.INSTANCE.showText(EText.DRAW_CARD_ONE_LIFE);
+			else if (Life.INSTANCE.getLifeCurrent() >= Modifiers.INSTANCE.getAdditionalFightingCostLifeDraw())
+				Text.INSTANCE.showText(EText.DRAW_CARD_LOSE_LIFE);
 
 			break;
 

@@ -3,16 +3,14 @@ package gameState;
 import controller.Lists;
 import controller.Modifiers;
 import interfaces.ISideHazardAble;
-import model.CardFighting;
 import model.CardFightingHazardKnowledge;
 import model.CardSlot;
 import utils.Logger;
 
-public abstract class AHandleHazardCardsDrawn extends AGameState {
+public abstract class AHandleEncounterCardsDrawn extends AGameState {
 
-	protected void addCardToHand(CardFighting cardFighting) {
+	protected void addCardToHand(CardFightingHazardKnowledge cardFightingHazardKnowledge) {
 
-		CardFightingHazardKnowledge cardFightingHazardKnowledge = (CardFightingHazardKnowledge) cardFighting;
 		ISideHazardAble sideHazardAble = (ISideHazardAble) cardFightingHazardKnowledge;
 
 		int freeCardsToDraw = sideHazardAble.getSideHazard().getEHazardValue().getFreeCards();
@@ -20,11 +18,11 @@ public abstract class AHandleHazardCardsDrawn extends AGameState {
 				.addCardFightingRelocate(cardFightingHazardKnowledge);
 
 		setCardSlotsAndPrint(freeCardsToDraw);
-		Modifiers.INSTANCE.setCardFightingAgainst((CardFightingHazardKnowledge) cardFighting);
+		Modifiers.INSTANCE.setCardFightingAgainst(cardFightingHazardKnowledge);
 
 	}
 
-	public void setCardSlotsAndPrint(int freeCardsToDraw) {
+	protected void setCardSlotsAndPrint(int freeCardsToDraw) {
 
 		boolean toPrint = true;
 

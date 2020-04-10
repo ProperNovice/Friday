@@ -12,6 +12,7 @@ import model.CardFightingHazardKnowledge;
 import model.CardSlot;
 import model.SideKnowledge;
 import model.SideKnowledgeAbility;
+import utils.Executor;
 import utils.Logger;
 
 public class StartGame extends AGameState {
@@ -25,9 +26,6 @@ public class StartGame extends AGameState {
 
 //		addRandomHazardCardToHand();
 //
-		eStepProceed();
-		eStepProceed();
-		eStepProceed();
 //
 //		addCardToHandFromDeckHazardWithAbility(EAbility.EXCHANGE_ONE, true);
 //		addCardToHandFromDeckHazardWithAbility(EAbility.PLUS_TWO_CARDS, true);
@@ -46,7 +44,7 @@ public class StartGame extends AGameState {
 //		addCardToHandFromDeckHazardWithAbility(EAbility.COPY_ONE, false);
 //
 //		addCardsFromDeckToDiscardPile(5);
-//		loseLife(18);
+//		loseLife(20);
 
 //		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound()
 //				.addLast(Lists.INSTANCE.handPlayer.getCardSlots().get(0).getCardFighting());
@@ -56,7 +54,37 @@ public class StartGame extends AGameState {
 
 //		removeHazards(29);
 
+//		removeAgingCards(8);
+//		addHazardFromDeckToDiscard(4);
+
+//		for (int counter = 1; counter <= 3; counter++)
+//			eStepProceed();
+
+//		Modifiers.INSTANCE.setCardPirateAgainst(Lists.INSTANCE.cardPiratesInPlay.getArrayList().getFirst());
+//		Flow.INSTANCE.executeGameState(EGameState.FIGHT_LOST);
+
 		Flow.INSTANCE.proceed();
+
+	}
+
+	protected void removeAgingCards(int amount) {
+		for (int counter = 1; counter <= amount; counter++)
+			Lists.INSTANCE.deckAging.getArrayList().removeRandom();
+	}
+
+	protected void addHazardFromDeckToDiscard(int amount) {
+
+		for (int counter = 1; counter <= amount; counter++) {
+
+			CardFightingHazardKnowledge card = Lists.INSTANCE.deckHazardKnowledge.getArrayList().removeFirst();
+			Lists.INSTANCE.discardPileHazardKnowledge.getArrayList().addFirst(card);
+			card.getImageView().flipFront();
+			card.getImageView().toFront();
+
+			Lists.INSTANCE.discardPileHazardKnowledge.animateSynchronousLock();
+			Executor.INSTANCE.sleep(1000);
+
+		}
 
 	}
 

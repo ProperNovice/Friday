@@ -6,7 +6,6 @@ public enum EGameState {
 
 	START_GAME(new StartGame()),
 	END_TURN(new EndTurn()),
-	END_GAME(new EndGame()),
 	DRAW_HAZARD_CARDS(new DrawHazardCards()),
 	HANDLE_HAZARD_CARDS_DRAWN_ONE(new HandleHazardCardsDrawnOne()),
 	HANDLE_HAZARD_CARDS_DRAWN_TWO(new HandleHazardCardsDrawnTwo()),
@@ -28,6 +27,8 @@ public enum EGameState {
 	HANDLE_FIGHT_LOST(new HandleFightLost()),
 	DRAW_NEXT_ENCOUNTER(new DrawNextEncounter()),
 	DRAW_PIRATE(new DrawPirate()),
+	END_GAME_WIN(new EndGameWin()),
+	END_GAME_LOSE(new EndGameLose()),
 	
 	;
 

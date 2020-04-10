@@ -4,7 +4,9 @@ import enums.EStep;
 import interfaces.ISaveLoadStateAble;
 import model.CardFighting;
 import model.CardFightingHazardKnowledge;
+import model.CardFightingPirateProxy;
 import model.CardPirate;
+import model.SideKnowledge;
 import utils.ArrayList;
 import utils.ShutDown;
 
@@ -12,21 +14,39 @@ public enum Modifiers implements ISaveLoadStateAble {
 
 	INSTANCE;
 
-	private CardFightingHazardKnowledge cardFightingAgainst = null;
+	private CardFighting cardFightingAgainst = null;
 	private CardPirate cardPirateAgainst = null;
 	private ArrayList<CardFighting> cardFightingHaveBeenResolvedThisRound = new ArrayList<CardFighting>();
 	private EStep eStep = EStep.GREEN;
 	private int additionalFightingCostLifeDraw = 1;
+	private int agingCardsStartingAmount;
+	private CardFightingPirateProxy cardFightingPirateProxy = null;
 
 	private Modifiers() {
 
+		this.cardFightingPirateProxy = new CardFightingPirateProxy("Ship Back", new SideKnowledge(-1, -1));
+		this.cardFightingPirateProxy.getImageView().setVisible(false);
+
+	}
+
+	public void setPirateProxyFightingAgainst() {
+		this.cardFightingAgainst = this.cardFightingPirateProxy;
+		this.cardFightingPirateProxy.getImageView().setVisible(true);
+	}
+
+	public void setAgingCardsStartingAmount(int amount) {
+		this.agingCardsStartingAmount = amount;
+	}
+
+	public int getAgingCardsStartingAmount() {
+		return this.agingCardsStartingAmount;
 	}
 
 	public void setCardFightingAgainst(CardFightingHazardKnowledge cardFighting) {
 		this.cardFightingAgainst = cardFighting;
 	}
 
-	public CardFightingHazardKnowledge getCardFightingAgainst() {
+	public CardFighting getCardFightingAgainst() {
 		return this.cardFightingAgainst;
 	}
 

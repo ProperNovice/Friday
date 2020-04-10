@@ -23,13 +23,35 @@ public class FightLost extends AFightEnded {
 		super.handleDestroyedCards();
 		super.removeHazardFightingAgainstFromHand(false);
 
-		CardFightingHazardKnowledge cardFightingHazardKnowledge = Modifiers.INSTANCE.getCardFightingAgainst();
+		switch (Modifiers.INSTANCE.getEStep()) {
+
+		case PIRATE:
+			handleLoseAgainstPirate();
+			Flow.INSTANCE.clear();
+			Flow.INSTANCE.executeGameState(EGameState.END_GAME_LOSE);
+			break;
+
+		default:
+			handleLoseAgainstHazard();
+			Flow.INSTANCE.executeGameState(EGameState.HANDLE_FIGHT_LOST);
+			break;
+
+		}
+
+	}
+
+	private void handleLoseAgainstHazard() {
+
+		CardFightingHazardKnowledge cardFightingHazardKnowledge = (CardFightingHazardKnowledge) Modifiers.INSTANCE
+				.getCardFightingAgainst();
 		Lists.INSTANCE.discardPileHazardKnowledge.getArrayList().addFirst(cardFightingHazardKnowledge);
 		Lists.INSTANCE.discardPileHazardKnowledge.relocateImageViews();
 		Lists.INSTANCE.discardPileHazardKnowledge.toFront();
 
-		Flow.INSTANCE.executeGameState(EGameState.HANDLE_FIGHT_LOST);
+	}
 
+	private void handleLoseAgainstPirate() {
+		Modifiers.INSTANCE.getCardPirateAgainst().getImageView().setVisible(false);
 	}
 
 }

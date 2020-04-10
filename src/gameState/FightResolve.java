@@ -9,12 +9,18 @@ public class FightResolve extends AGameState {
 	@Override
 	public void handleGameStateChange() {
 
+		handleAgingAbilities();
+
 		if (FightingPoints.INSTANCE.getPlayerFightingPointsWithDouble() >= FightingPoints.INSTANCE
-				.getHazardFightingPoints())
+				.getEncounterFightingPoints())
 			fightWon();
 
 		else
 			fightLost();
+
+	}
+
+	private void handleAgingAbilities() {
 
 	}
 
