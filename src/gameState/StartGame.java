@@ -9,7 +9,7 @@ import card.SideKnowledgeAbility;
 import controller.Flow;
 import controller.Life;
 import controller.Lists;
-import controller.ListsSizeReaLTime;
+import controller.ListsSizeRealTime;
 import controller.Modifiers;
 import enums.EAbility;
 import enums.EGameState;
@@ -67,7 +67,7 @@ public class StartGame extends AGameState {
 
 //		Flow.INSTANCE.proceed();
 
-		ListsSizeReaLTime.INSTANCE.start();
+		ListsSizeRealTime.INSTANCE.start();
 		Flow.INSTANCE.executeGameState(EGameState.CHOOSE_DIFFICULTY_LEVEL);
 
 	}

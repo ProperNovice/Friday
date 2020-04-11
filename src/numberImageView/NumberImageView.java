@@ -7,7 +7,7 @@ import utils.ImageViewAble;
 
 public abstract class NumberImageView implements ImageViewAble {
 
-	private String filePath = "misc/numbers/circle black/";
+	private String filePath = "misc/numbers/" + Credentials.INSTANCE.sizeIndicatorFolder + "/";
 
 	public NumberImageView() {
 

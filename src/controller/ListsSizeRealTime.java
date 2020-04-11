@@ -20,14 +20,14 @@ import utils.HashMap;
 import utils.ObjectPool;
 import utils.RearrangeTypeEnum;
 
-public enum ListsSizeReaLTime {
+public enum ListsSizeRealTime {
 
 	INSTANCE;
 
 	private HashMap<Integer, Class<? extends NumberImageView>> mapNumberImageView = new HashMap<Integer, Class<? extends NumberImageView>>();
 	private ContainerImageViewAbles<NumberImageView> deckPlayer, deckHazardKnowledge, deckAging;
 
-	private ListsSizeReaLTime() {
+	private ListsSizeRealTime() {
 
 		createMapNumberImageView();
 		createContainers();
@@ -36,19 +36,21 @@ public enum ListsSizeReaLTime {
 
 	private void createContainers() {
 
+		double gapX = 1;
+
 		this.deckPlayer = new ContainerImageViewAbles<NumberImageView>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsListSizeIndicators)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesSizeIndicatorDeckPlayer)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesSizeIndicatorDeckPlayer).gapX(gapX)
 						.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).build());
 
 		this.deckHazardKnowledge = new ContainerImageViewAbles<NumberImageView>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsListSizeIndicators)
 						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesSizeIndicatorDeckHazardKnowledge)
-						.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).build());
+						.gapX(gapX).rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).build());
 
 		this.deckAging = new ContainerImageViewAbles<NumberImageView>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsListSizeIndicators)
-						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesSizeIndicatorDeckAging)
+						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesSizeIndicatorDeckAging).gapX(gapX)
 						.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).build());
 
 	}
