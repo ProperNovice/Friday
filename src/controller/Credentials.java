@@ -9,13 +9,14 @@ public enum Credentials {
 	public String primaryStageTitle = "Friday";
 	public NumbersPair DimensionsFrame, DimensionsGapBetweenComponents, DimensionsCardFighting,
 			DimensionsCardStepPirate, DimensionsIndicatorFreeCard, DimensionsLifeToken, DimensionsAbilityImageView,
-			DimensionsSortCardPanel;
+			DimensionsSortCardPanel, DimensionsListSizeIndicators;
 	public NumbersPair CoordinatesTextPanel, CoordinatesDeckPlayer, CoordinatesDeckHazardKnowledge, CoordinatesDeckStep,
 			CoordinatesDeckAging, CoordinatesDiscardPilePlayer, CoordinatesDiscardPileHazardKnowledge,
 			CoordinatesIndicatorFreeCard, CoordinatesHandPlayer, CoordinatesCardsHazardsDrawn, CoordinatesHazardToFight,
 			CoordinatesLifeTokensTopLeft, CoordinatesLifeTokensPivot, CoordinatesDeckPirates,
 			CoordinatesAbilityImageView, CoordinatesSortCardPanelBackground, CoordinatesSortCardPanelCards,
-			CoordinatesTextIndicators;
+			CoordinatesTextIndicators, CoordinatesSizeIndicatorDeckPlayer, CoordinatesSizeIndicatorDeckHazardKnowledge,
+			CoordinatesSizeIndicatorDeckAging;
 	private NumbersPair DimensionsCardFightingOriginal, DimensionsCardStepPirateOriginal;
 	public double gapBetweenBorders = 25, textHeight = 50, gapBetweenLifeTokens;
 
@@ -125,6 +126,21 @@ public enum Credentials {
 		x = this.CoordinatesSortCardPanelBackground.x;
 		y = this.CoordinatesSortCardPanelBackground.y;
 		this.CoordinatesSortCardPanelCards = new NumbersPair(x, y);
+
+		x = this.DimensionsCardFighting.x / 3;
+		this.DimensionsListSizeIndicators = new NumbersPair(x, x);
+
+		x = this.CoordinatesDeckPlayer.x + this.DimensionsCardFighting.x / 2;
+		y = this.CoordinatesDeckPlayer.y + this.DimensionsCardFighting.y / 2;
+		this.CoordinatesSizeIndicatorDeckPlayer = new NumbersPair(x, y);
+
+		x = this.CoordinatesDeckHazardKnowledge.x + this.DimensionsCardFighting.x / 2;
+		y = this.CoordinatesDeckHazardKnowledge.y + this.DimensionsCardFighting.y / 2;
+		this.CoordinatesSizeIndicatorDeckHazardKnowledge = new NumbersPair(x, y);
+
+		x = this.CoordinatesDeckAging.x + this.DimensionsCardFighting.x / 2;
+		y = this.CoordinatesDeckAging.y + this.DimensionsCardFighting.y / 2;
+		this.CoordinatesSizeIndicatorDeckAging = new NumbersPair(x, y);
 
 	}
 

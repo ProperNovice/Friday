@@ -45,13 +45,18 @@ public class ChooseDifficultyLevel extends AGameState {
 		difficultyLevel.createDecks();
 		Lists.INSTANCE.populateLists(difficultyLevel);
 		Life.INSTANCE.setMaximumLife(difficultyLevel);
-		
+
 		Flow.INSTANCE.proceed();
 
 	}
 
 	@Override
 	public boolean fightingPointsCalculate() {
+		return false;
+	}
+
+	@Override
+	public boolean updateListsSizeIndicators() {
 		return false;
 	}
 

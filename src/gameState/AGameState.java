@@ -102,5 +102,9 @@ public abstract class AGameState {
 	public boolean fightingPointsCalculate() {
 		return true;
 	}
+	
+	public boolean updateListsSizeIndicators() {
+		return true;
+	}
 
 }

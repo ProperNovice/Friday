@@ -9,6 +9,7 @@ import card.SideKnowledgeAbility;
 import controller.Flow;
 import controller.Life;
 import controller.Lists;
+import controller.ListsSizeReaLTime;
 import controller.Modifiers;
 import enums.EAbility;
 import enums.EGameState;
@@ -65,7 +66,8 @@ public class StartGame extends AGameState {
 //		Flow.INSTANCE.executeGameState(EGameState.FIGHT_LOST);
 
 //		Flow.INSTANCE.proceed();
-		
+
+		ListsSizeReaLTime.INSTANCE.start();
 		Flow.INSTANCE.executeGameState(EGameState.CHOOSE_DIFFICULTY_LEVEL);
 
 	}
@@ -273,6 +275,11 @@ public class StartGame extends AGameState {
 
 	@Override
 	public boolean fightingPointsCalculate() {
+		return false;
+	}
+
+	@Override
+	public boolean updateListsSizeIndicators() {
 		return false;
 	}
 
