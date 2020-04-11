@@ -1,11 +1,11 @@
 package gameState;
 
+import card.CardFightingHazardKnowledge;
 import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EStep;
 import enums.EText;
-import model.CardFightingHazardKnowledge;
 
 public class EndTurn extends AGameState {
 

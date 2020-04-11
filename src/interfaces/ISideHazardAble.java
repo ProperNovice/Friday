@@ -1,6 +1,6 @@
 package interfaces;
 
-import model.SideHazard;
+import card.SideHazard;
 
 public interface ISideHazardAble {
 

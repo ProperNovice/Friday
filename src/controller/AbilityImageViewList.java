@@ -1,7 +1,7 @@
 package controller;
 
+import card.CardFighting;
 import model.AbilityImageView;
-import model.CardFighting;
 import utils.ArrayList;
 import utils.ObjectPool;
 

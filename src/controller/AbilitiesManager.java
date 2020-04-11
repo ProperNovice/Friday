@@ -1,13 +1,13 @@
 package controller;
 
+import card.CardFighting;
+import card.CardSlot;
+import card.SideKnowledge;
+import card.SideKnowledgeAbility;
 import enums.EAbility;
 import enums.EGameState;
 import interfaces.IAbilityAble;
-import model.CardFighting;
-import model.CardSlot;
 import model.HandPlayer;
-import model.SideKnowledge;
-import model.SideKnowledgeAbility;
 import utils.ArrayList;
 import utils.Logger;
 import utils.ShutDown;
@@ -210,7 +210,32 @@ public enum AbilitiesManager {
 	}
 
 	private boolean belowThePileOne() {
-		return !Lists.INSTANCE.deckPlayer.getArrayList().isEmpty();
+
+		if (Lists.INSTANCE.deckPlayer.getArrayList().isEmpty())
+			return false;
+
+		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer) {
+
+			if (!cardSlot.containsCardFighting())
+				continue;
+
+			CardFighting cardFighting = cardSlot.getCardFighting();
+
+			if (Modifiers.INSTANCE.getCardFightingAgainst().equals(cardFighting))
+				continue;
+
+			if (Lists.INSTANCE.handPlayer.sizeNotDestroyed() == 1)
+				continue;
+
+			if (cardFighting.getImageView().isFlippedBack())
+				continue;
+
+			return true;
+
+		}
+
+		return false;
+
 	}
 
 	private boolean destroyOne(CardFighting cardFightingDestroy) {
@@ -249,7 +274,7 @@ public enum AbilitiesManager {
 		IAbilityAble iAbilityAble = (SideKnowledgeAbility) cardFighting.getSideKnowledge();
 		EAbility eAbility = iAbilityAble.getEAbility();
 
-		Flow.INSTANCE.addFirst(EGameState.FIGHT_OPTIONS);
+//		Flow.INSTANCE.addFirst(EGameState.FIGHT_OPTIONS); // TODO
 
 		switch (eAbility) {
 

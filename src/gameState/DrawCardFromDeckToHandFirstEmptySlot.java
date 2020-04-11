@@ -1,7 +1,7 @@
 package gameState;
 
+import card.CardSlot;
 import controller.Lists;
-import model.CardSlot;
 import utils.Logger;
 import utils.ShutDown;
 

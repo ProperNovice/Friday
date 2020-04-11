@@ -1,11 +1,11 @@
 package gameState;
 
+import card.CardFighting;
 import controller.AbilitiesManager;
 import controller.AbilityImageViewList;
 import controller.Flow;
 import controller.Lists;
 import enums.EText;
-import model.CardFighting;
 import utils.Text;
 
 public class SortThreeCards extends AGameState {

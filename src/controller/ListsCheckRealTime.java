@@ -1,8 +1,8 @@
 package controller;
 
+import card.Card;
+import card.CardSlot;
 import javafx.animation.AnimationTimer;
-import model.Card;
-import model.CardSlot;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 

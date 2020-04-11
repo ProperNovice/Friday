@@ -1,4 +1,4 @@
-package model;
+package card;
 
 import enums.EHazardValue;
 import enums.EStep;

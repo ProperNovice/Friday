@@ -1,12 +1,12 @@
 package controller;
 
+import card.CardFighting;
+import card.CardFightingHazardKnowledge;
+import card.CardFightingPirateProxy;
+import card.CardPirate;
+import card.SideKnowledge;
 import enums.EStep;
 import interfaces.ISaveLoadStateAble;
-import model.CardFighting;
-import model.CardFightingHazardKnowledge;
-import model.CardFightingPirateProxy;
-import model.CardPirate;
-import model.SideKnowledge;
 import utils.ArrayList;
 import utils.ShutDown;
 

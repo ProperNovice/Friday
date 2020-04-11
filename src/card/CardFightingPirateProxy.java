@@ -1,4 +1,4 @@
-package model;
+package card;
 
 public class CardFightingPirateProxy extends CardFighting {
 

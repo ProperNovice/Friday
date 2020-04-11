@@ -1,5 +1,6 @@
 package model;
 
+import card.CardFighting;
 import controller.Credentials;
 import enums.ELayerZ;
 import utils.ImageView;

@@ -1,9 +1,9 @@
 package gameState;
 
+import card.CardFighting;
 import controller.Flow;
 import controller.Modifiers;
 import enums.EText;
-import model.CardFighting;
 import utils.Text;
 
 public class DestroyOne extends AGameState {

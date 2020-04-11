@@ -1,4 +1,4 @@
-package model;
+package card;
 
 public class CardFightingRobinsonStarting extends CardFighting {
 

@@ -1,17 +1,17 @@
 package gameState;
 
+import card.CardFighting;
+import card.CardFightingAging;
+import card.CardFightingHazardKnowledge;
+import card.CardSlot;
+import card.SideKnowledge;
+import card.SideKnowledgeAbility;
 import controller.Flow;
 import controller.Life;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EAbility;
 import interfaces.ISideHazardAble;
-import model.CardFighting;
-import model.CardFightingAging;
-import model.CardFightingHazardKnowledge;
-import model.CardSlot;
-import model.SideKnowledge;
-import model.SideKnowledgeAbility;
 import utils.Executor;
 import utils.Logger;
 
@@ -57,8 +57,8 @@ public class StartGame extends AGameState {
 //		removeAgingCards(8);
 //		addHazardFromDeckToDiscard(4);
 
-		for (int counter = 1; counter <= 3; counter++)
-			eStepProceed();
+//		for (int counter = 1; counter <= 3; counter++)
+//			eStepProceed();
 
 //		Modifiers.INSTANCE.setCardPirateAgainst(Lists.INSTANCE.cardPiratesInPlay.getArrayList().getFirst());
 //		Flow.INSTANCE.executeGameState(EGameState.FIGHT_LOST);

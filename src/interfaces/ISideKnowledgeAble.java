@@ -1,6 +1,6 @@
 package interfaces;
 
-import model.SideKnowledge;
+import card.SideKnowledge;
 
 public interface ISideKnowledgeAble {
 

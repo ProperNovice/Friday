@@ -1,10 +1,10 @@
 package gameState;
 
+import card.CardFightingHazardKnowledge;
 import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EText;
-import model.CardFightingHazardKnowledge;
 
 public class DrawPirate extends AHandleEncounterCardsDrawn {
 

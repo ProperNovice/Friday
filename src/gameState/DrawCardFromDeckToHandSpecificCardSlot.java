@@ -1,6 +1,6 @@
 package gameState;
 
-import model.CardSlot;
+import card.CardSlot;
 
 public class DrawCardFromDeckToHandSpecificCardSlot extends ADrawCardFromDeckToHand {
 

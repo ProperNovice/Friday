@@ -1,12 +1,12 @@
 package gameState;
 
+import card.CardFighting;
+import card.SideKnowledge;
 import controller.AbilitiesManager;
 import controller.Modifiers;
 import enums.EAbility;
 import enums.EText;
 import interfaces.IAbilityAble;
-import model.CardFighting;
-import model.SideKnowledge;
 import utils.Text;
 
 public class CopyOne extends AGameState {

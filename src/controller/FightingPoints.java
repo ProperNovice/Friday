@@ -1,16 +1,17 @@
 package controller;
 
+import card.CardFighting;
+import card.CardFightingAging;
+import card.CardFightingHazardKnowledge;
+import card.CardPirate;
+import card.CardSlot;
+import card.SideHazard;
+import card.SideKnowledge;
+import card.SidePirate;
+import card.SidePirateAbility;
 import enums.EAbility;
 import enums.EStep;
 import interfaces.IAbilityAble;
-import model.CardFighting;
-import model.CardFightingHazardKnowledge;
-import model.CardPirate;
-import model.CardSlot;
-import model.SideHazard;
-import model.SideKnowledge;
-import model.SidePirate;
-import model.SidePirateAbility;
 import utils.ArrayList;
 import utils.HashMap;
 import utils.Logger;
@@ -158,9 +159,9 @@ public enum FightingPoints {
 
 		calculateHighestCardZeroAbility();
 		calculateFightingCardPoints();
-		calculateDoubleAbility();
 		calculateAbilitesAfter();
-		
+		calculateDoubleAbility();
+
 	}
 
 	private void calculateAbilitesAfter() {
@@ -177,8 +178,21 @@ public enum FightingPoints {
 		IAbilityAble iAbilityAble = (IAbilityAble) sidePirate;
 		EAbility eAbility = iAbilityAble.getEAbility();
 
-		if (!eAbility.equals(EAbility.ONLY_HALF_OF_THE_FACE_UP_FIGHTING_CARDS_COUNT))
-			return;
+		if (eAbility.equals(EAbility.ONLY_HALF_OF_THE_FACE_UP_FIGHTING_CARDS_COUNT))
+			calculateFightingAbilityOnlyHalfOfTheFaceUpCardsCount();
+		else if (eAbility.equals(EAbility.EACH_FACE_UP_FIGHTING_CARD_COUNTS_PLUS_ONE_FIGHTING_POINT))
+			calculateEachFaceUpFightingCardCountsPlusOneFightingPoint();
+
+	}
+
+	private void calculateEachFaceUpFightingCardCountsPlusOneFightingPoint() {
+
+		for (int counter = -5; counter <= 4; counter++)
+			this.playerFightingPointsNoDouble += this.mapFightingValues.get(counter).size();
+
+	}
+
+	private void calculateFightingAbilityOnlyHalfOfTheFaceUpCardsCount() {
 
 		int totalHandCards = 0;
 
@@ -187,7 +201,22 @@ public enum FightingPoints {
 
 		int cardsNotCounting = totalHandCards / 2;
 
-		
+		for (int counter = -5; counter <= 4; counter++) {
+
+			ArrayList<CardFighting> list = this.mapFightingValues.get(counter);
+			int cardsToRemove = Math.min(cardsNotCounting, list.size());
+
+			cardsNotCounting -= cardsToRemove;
+
+			for (int ctr = 1; ctr <= cardsToRemove; ctr++) {
+
+				for (CardFighting cardFighting : list.clone())
+					if (!(cardFighting instanceof CardFightingAging))
+						list.remove(cardFighting);
+
+			}
+
+		}
 
 	}
 

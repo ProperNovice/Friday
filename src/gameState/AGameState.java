@@ -1,14 +1,14 @@
 package gameState;
 
+import card.Card;
+import card.CardFighting;
+import card.CardFightingHazardKnowledge;
+import card.CardFightingPirateProxy;
+import card.CardSlot;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EText;
 import javafx.scene.input.KeyCode;
-import model.Card;
-import model.CardFighting;
-import model.CardFightingHazardKnowledge;
-import model.CardFightingPirateProxy;
-import model.CardSlot;
 import utils.KeyCodeHandler;
 import utils.Logger;
 import utils.Text;

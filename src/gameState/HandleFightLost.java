@@ -1,5 +1,8 @@
 package gameState;
 
+import card.CardFighting;
+import card.CardSlot;
+import card.SideKnowledge;
 import controller.AbilityImageViewList;
 import controller.DestroyCardLifeIndicator;
 import controller.FightingPoints;
@@ -8,9 +11,6 @@ import controller.Life;
 import controller.Lists;
 import enums.EGameState;
 import enums.EText;
-import model.CardFighting;
-import model.CardSlot;
-import model.SideKnowledge;
 import utils.ArrayList;
 
 public class HandleFightLost extends AGameState {
@@ -31,6 +31,7 @@ public class HandleFightLost extends AGameState {
 
 		} else {
 
+			DestroyCardLifeIndicator.INSTANCE.setIndicatorLifeToLoseSetText(this.lifeRemaining);
 			EText.DESTROY_CARD.showText();
 			EText.CONTINUE.showText();
 
@@ -59,8 +60,6 @@ public class HandleFightLost extends AGameState {
 				Lists.INSTANCE.discardPilePlayer.getArrayList().addFirst(cardFighting);
 
 		}
-
-		DestroyCardLifeIndicator.INSTANCE.setIndicatorLifeToLoseSetText(this.lifeRemaining);
 
 		Lists.INSTANCE.discardPilePlayer.relocateImageViews();
 		Lists.INSTANCE.discardPilePlayer.toFront();

@@ -1,16 +1,16 @@
 package controller;
 
+import card.CardBuilder;
+import card.CardFighting;
+import card.CardFightingAging;
+import card.CardFightingHazardKnowledge;
+import card.CardPirate;
+import card.CardStep;
 import enums.EAbility;
 import enums.ECardAgingType;
 import enums.EHazardValue;
 import enums.EStep;
 import interfaces.ISaveLoadStateAble;
-import model.CardBuilder;
-import model.CardFighting;
-import model.CardFightingAging;
-import model.CardFightingHazardKnowledge;
-import model.CardPirate;
-import model.CardStep;
 import model.HandPlayer;
 import model.SortCardsPanel;
 import utils.ArrayList;
@@ -371,7 +371,7 @@ public enum Lists implements ISaveLoadStateAble {
 		for (CardPirate cardPirate : this.deckPirates)
 			cardPirate.getImageView().setVisible(false);
 
-		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.remove(6)); // TODO
+		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
 		this.cardPiratesInPlay.getArrayList().addLast(this.deckPirates.removeRandom());
 
 		this.cardPiratesInPlay.relocateImageViews();

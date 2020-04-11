@@ -1,12 +1,12 @@
 package gameState;
 
+import card.CardFightingHazardKnowledge;
+import card.CardPirate;
 import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EGameState;
 import enums.EText;
-import model.CardFightingHazardKnowledge;
-import model.CardPirate;
 
 public class FightWon extends AFightEnded {
 

@@ -1,5 +1,6 @@
 package model;
 
+import card.CardFighting;
 import controller.Credentials;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;

@@ -2,6 +2,8 @@ package model;
 
 import java.util.Iterator;
 
+import card.CardFighting;
+import card.CardSlot;
 import controller.Credentials;
 import controller.Modifiers;
 import utils.ArrayList;

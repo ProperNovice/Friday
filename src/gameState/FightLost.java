@@ -1,11 +1,11 @@
 package gameState;
 
+import card.CardFightingHazardKnowledge;
 import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EGameState;
 import enums.EText;
-import model.CardFightingHazardKnowledge;
 
 public class FightLost extends AFightEnded {
 

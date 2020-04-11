@@ -1,5 +1,9 @@
 package gameState;
 
+import card.CardFighting;
+import card.CardFightingAging;
+import card.CardSlot;
+import card.SideKnowledge;
 import controller.AbilitiesManager;
 import controller.AbilityImageViewList;
 import controller.Flow;
@@ -10,10 +14,6 @@ import enums.EAbility;
 import enums.EGameState;
 import enums.EText;
 import interfaces.IAbilityAble;
-import model.CardFighting;
-import model.CardFightingAging;
-import model.CardSlot;
-import model.SideKnowledge;
 import utils.Text;
 
 public class FightOptions extends AGameState {

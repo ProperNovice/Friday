@@ -1,10 +1,10 @@
 package gameState;
 
+import card.CardFightingHazardKnowledge;
+import card.CardSlot;
 import controller.Lists;
 import controller.Modifiers;
 import interfaces.ISideHazardAble;
-import model.CardFightingHazardKnowledge;
-import model.CardSlot;
 import utils.Logger;
 
 public abstract class AHandleEncounterCardsDrawn extends AGameState {

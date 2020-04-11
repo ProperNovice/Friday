@@ -1,9 +1,9 @@
 package gameState;
 
+import card.CardFighting;
+import card.CardSlot;
 import controller.Lists;
 import controller.Modifiers;
-import model.CardFighting;
-import model.CardSlot;
 
 public abstract class AFightEnded extends AGameState {
 

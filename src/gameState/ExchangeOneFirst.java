@@ -1,13 +1,13 @@
 package gameState;
 
+import card.CardFighting;
+import card.CardSlot;
 import controller.AbilityImageViewList;
 import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EGameState;
 import enums.EText;
-import model.CardFighting;
-import model.CardSlot;
 import utils.Text;
 
 public class ExchangeOneFirst extends AGameState {

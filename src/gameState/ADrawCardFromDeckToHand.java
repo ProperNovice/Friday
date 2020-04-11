@@ -1,11 +1,11 @@
 package gameState;
 
+import card.CardFighting;
+import card.CardFightingAging;
+import card.CardSlot;
 import controller.Flow;
 import controller.Lists;
 import enums.ECardAgingType;
-import model.CardFighting;
-import model.CardFightingAging;
-import model.CardSlot;
 
 public abstract class ADrawCardFromDeckToHand extends AGameState {
 
