@@ -29,6 +29,7 @@ public enum EGameState {
 	DRAW_PIRATE(new DrawPirate()),
 	END_GAME_WIN(new EndGameWin()),
 	END_GAME_LOSE(new EndGameLose()),
+	CHOOSE_DIFFICULTY_LEVEL(new ChooseDifficultyLevel()),
 	
 	;
 

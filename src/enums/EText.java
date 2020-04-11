@@ -28,6 +28,11 @@ public enum EText {
 	DESTROY_CARD("Destroy card", TextTypeEnum.INDICATOR),
 	ADVANCING_STEP("Advancing step", TextTypeEnum.INDICATOR),
 	PIRATE_ENCOUNTER("Pirate encounter", TextTypeEnum.INDICATOR),
+	DIFFICULTY_LEVEL("Difficulty level", TextTypeEnum.INDICATOR),
+	ONE("One", TextTypeEnum.OPTION),
+	TWO("Two", TextTypeEnum.OPTION),
+	THREE("Three", TextTypeEnum.OPTION),
+	FOUR("Four", TextTypeEnum.OPTION),
 	
 	;
 

@@ -15,6 +15,7 @@ public enum Flow {
 
 	private Flow() {
 		createTurns();
+		this.flow.addFirst(EGameState.CHOOSE_DIFFICULTY_LEVEL);
 	}
 
 	public void proceed() {
@@ -40,7 +41,7 @@ public enum Flow {
 		this.turn.addLast(EGameState.FIGHT_OPTIONS);
 		this.turn.addLast(EGameState.FIGHT_RESOLVE);
 		this.turn.addLast(EGameState.END_TURN);
-
+		
 	}
 
 	private void executeGameState() {

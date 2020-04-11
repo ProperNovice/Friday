@@ -5,7 +5,6 @@ import card.CardFightingAging;
 import card.CardSlot;
 import controller.Flow;
 import controller.Lists;
-import enums.ECardAgingType;
 
 public abstract class ADrawCardFromDeckToHand extends AGameState {
 
@@ -27,7 +26,6 @@ public abstract class ADrawCardFromDeckToHand extends AGameState {
 
 	private void handleDeckAfterAddingCards() {
 
-		Lists.INSTANCE.deckPlayer.animateSynchronousLock();
 		Lists.INSTANCE.deckPlayer.getArrayList().shuffle();
 		Lists.INSTANCE.deckPlayer.toFront();
 
@@ -48,26 +46,10 @@ public abstract class ADrawCardFromDeckToHand extends AGameState {
 		if (Lists.INSTANCE.deckAging.getArrayList().isEmpty())
 			return;
 
-		CardFightingAging cardFightingAgingToAdd = null;
-
-		for (CardFightingAging cardFightingAging : Lists.INSTANCE.deckAging) {
-
-			if (cardFightingAging.getECardAgingType() == ECardAgingType.DIFFICULT)
-				continue;
-
-			cardFightingAgingToAdd = cardFightingAging;
-			break;
-
-		}
-
-		if (cardFightingAgingToAdd == null)
-			cardFightingAgingToAdd = Lists.INSTANCE.deckAging.getArrayList().getRandom();
-
-		Lists.INSTANCE.deckAging.getArrayList().remove(cardFightingAgingToAdd);
-
+		CardFightingAging cardFightingAgingToAdd = Lists.INSTANCE.deckAging.getArrayList().removeFirst();
 		cardFightingAgingToAdd.getImageView().flip();
-
 		Lists.INSTANCE.deckPlayer.getArrayList().addFirst(cardFightingAgingToAdd);
+		Lists.INSTANCE.deckPlayer.animateSynchronousLock();
 
 	}
 
