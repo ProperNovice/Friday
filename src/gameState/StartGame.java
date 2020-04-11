@@ -11,6 +11,7 @@ import controller.Life;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EAbility;
+import enums.EGameState;
 import interfaces.ISideHazardAble;
 import utils.Executor;
 import utils.Logger;
@@ -63,7 +64,9 @@ public class StartGame extends AGameState {
 //		Modifiers.INSTANCE.setCardPirateAgainst(Lists.INSTANCE.cardPiratesInPlay.getArrayList().getFirst());
 //		Flow.INSTANCE.executeGameState(EGameState.FIGHT_LOST);
 
-		Flow.INSTANCE.proceed();
+//		Flow.INSTANCE.proceed();
+		
+		Flow.INSTANCE.executeGameState(EGameState.CHOOSE_DIFFICULTY_LEVEL);
 
 	}
 

@@ -155,8 +155,6 @@ public enum FightingPoints {
 
 	private void calculatePlayerFightingPoints() {
 
-		// TODO
-
 		calculateHighestCardZeroAbility();
 		calculateFightingCardPoints();
 		calculateAbilitesAfter();
@@ -258,7 +256,13 @@ public enum FightingPoints {
 
 			for (CardFighting cardFighting : this.mapFightingValues.get(counter)) {
 
-				if (this.cardsDouble.contains(cardFighting))
+				boolean contains = false;
+
+				for (CardFighting cardDouble : this.cardsDouble)
+					if (cardDouble.equals(cardFighting))
+						contains = true;
+
+				if (contains)
 					continue;
 
 				this.playerFightingPointsWithDouble += counter;

@@ -9,7 +9,7 @@ public class DifficultyLevelTwo extends DifficultyLevelOne {
 
 		super.createDeckPlayer();
 
-		CardFighting cardFighting = super.deckAging.removeRandom();
+		CardFighting cardFighting = super.deckAging.removeFirst();
 		super.deckPlayer.addLast(cardFighting);
 
 	}
