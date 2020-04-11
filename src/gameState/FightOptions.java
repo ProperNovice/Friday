@@ -36,6 +36,8 @@ public class FightOptions extends AGameState {
 
 		Text.INSTANCE.concealText();
 
+		Flow.INSTANCE.addFirst(EGameState.FIGHT_OPTIONS);
+
 		AbilityImageViewList.INSTANCE.releaseAbilityImageView(cardFighting);
 		Modifiers.INSTANCE.getCardFightingHaveBeenResolvedThisRound().addLast(cardFighting);
 		AbilitiesManager.INSTANCE.resolveAbilityCardProceed(cardFighting);
@@ -71,6 +73,10 @@ public class FightOptions extends AGameState {
 	}
 
 	private void handleTextDrawToShow() {
+
+		if (Lists.INSTANCE.discardPilePlayer.getArrayList().isEmpty())
+			if (Lists.INSTANCE.deckAging.getArrayList().isEmpty())
+				return;
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots()) {
 

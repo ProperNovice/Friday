@@ -6,7 +6,6 @@ import card.CardFightingHazardKnowledge;
 import card.CardPirate;
 import card.CardStep;
 import difficultyLevel.DifficultyLevel;
-import enums.EStep;
 import interfaces.ISaveLoadStateAble;
 import model.HandPlayer;
 import model.SortCardsPanel;
@@ -27,7 +26,7 @@ public enum Lists implements ISaveLoadStateAble {
 	public ContainerImageViewAbles<CardFightingAging> deckAging;
 	public ContainerImageViewAbles<CardFightingHazardKnowledge> deckHazardKnowledge, discardPileHazardKnowledge,
 			cardsHazardsDrawn;
-	public ContainerImageViewAbles<CardPirate> cardPiratesInPlay;
+	public ContainerImageViewAbles<CardPirate> deckPirates;
 	public HandPlayer handPlayer = HandPlayer.INSTANCE;
 	public SortCardsPanel sortCardsPanel;
 
@@ -40,9 +39,15 @@ public enum Lists implements ISaveLoadStateAble {
 
 	public void populateLists(DifficultyLevel difficultyLevel) {
 
+		this.deckPlayer.getArrayList().clear();
+		this.deckHazardKnowledge.getArrayList().clear();
+		this.deckStep.getArrayList().clear();
+		this.deckAging.getArrayList().clear();
+		this.deckPirates.getArrayList().clear();
+
 		populateDeckPlayer(difficultyLevel);
 		populateDeckHazardKnowledge(difficultyLevel);
-		populateDeckStep();
+		populateDeckStep(difficultyLevel);
 
 		populateDeckAging(difficultyLevel);
 		Modifiers.INSTANCE.setAgingCardsStartingAmount(this.deckAging.getSize());
@@ -55,6 +60,7 @@ public enum Lists implements ISaveLoadStateAble {
 		this.deckHazardKnowledge.relocateImageViews();
 		this.deckStep.relocateImageViews();
 		this.deckAging.relocateImageViews();
+		this.deckPirates.relocateImageViews();
 
 		Logger.INSTANCE.logNewLine("lists instantiated -> " + this.iSaveLoadStateAbles.size());
 
@@ -108,7 +114,7 @@ public enum Lists implements ISaveLoadStateAble {
 
 		// deckPirates
 
-		this.cardPiratesInPlay = new ContainerImageViewAbles<CardPirate>(
+		this.deckPirates = new ContainerImageViewAbles<CardPirate>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsCardStepPirate)
 						.directionEnumVertical(DirectionEnum.UP)
 						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesDeckPirates).objectsPerRow(1).build());
@@ -143,11 +149,12 @@ public enum Lists implements ISaveLoadStateAble {
 
 	}
 
-	private void populateDeckStep() {
+	private void populateDeckStep(DifficultyLevel difficultyLevel) {
 
-		this.deckStep.getArrayList().addLast(new CardStep("Green Card", EStep.GREEN));
-		this.deckStep.getArrayList().addLast(new CardStep("Yellow Card", EStep.YELLOW));
-		this.deckStep.getArrayList().addLast(new CardStep("Red Card", EStep.RED));
+		this.deckStep.getArrayList().addAll(difficultyLevel.getDeckStep());
+
+		for (CardStep cardStep : this.deckStep)
+			cardStep.getImageView().setVisible(true);
 
 		this.deckStep.toFront();
 
@@ -169,10 +176,9 @@ public enum Lists implements ISaveLoadStateAble {
 
 	private void populateDeckPirates(DifficultyLevel difficultyLevel) {
 
-		this.cardPiratesInPlay.getArrayList().addAll(difficultyLevel.getTwoPirates());
-		this.cardPiratesInPlay.relocateImageViews();
+		this.deckPirates.getArrayList().addAll(difficultyLevel.getTwoPirates());
 
-		for (CardPirate cardPirate : this.cardPiratesInPlay)
+		for (CardPirate cardPirate : this.deckPirates)
 			cardPirate.getImageView().setVisible(true);
 
 	}

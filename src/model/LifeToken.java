@@ -17,6 +17,7 @@ public class LifeToken implements ImageViewAble {
 		new ImageView(fileName + "Color.png", this);
 		this.getImageView().setBack(fileName + "Black and White.png");
 		this.getImageView().setWidth(Credentials.INSTANCE.DimensionsLifeToken);
+		this.getImageView().setVisible(false);
 
 	}
 

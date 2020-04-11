@@ -60,16 +60,16 @@ public class FightWon extends AFightEnded {
 		Modifiers.INSTANCE.getCardPirateAgainst().getImageView().setVisible(false);
 		Modifiers.INSTANCE.getCardFightingAgainst().getImageView().setVisible(false);
 
-		CardPirate cardPirate = Lists.INSTANCE.cardPiratesInPlay.getArrayList().removeFirst();
+		CardPirate cardPirate = Lists.INSTANCE.deckPirates.getArrayList().removeFirst();
 		cardPirate.getImageView().setVisible(false);
 
-		if (Lists.INSTANCE.cardPiratesInPlay.getArrayList().isEmpty()) {
+		if (Lists.INSTANCE.deckPirates.getArrayList().isEmpty()) {
 
 			Flow.INSTANCE.clear();
 			Flow.INSTANCE.addFirst(EGameState.END_GAME_WIN);
 
 		} else
-			Lists.INSTANCE.cardPiratesInPlay.relocateImageViews();
+			Lists.INSTANCE.deckPirates.relocateImageViews();
 
 	}
 

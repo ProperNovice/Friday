@@ -67,8 +67,6 @@ public class EndTurn extends AGameState {
 		Lists.INSTANCE.deckHazardKnowledge.getArrayList().shuffle();
 		Lists.INSTANCE.deckHazardKnowledge.toFront();
 
-		Lists.INSTANCE.deckStep.toFront();
-
 	}
 
 	@Override

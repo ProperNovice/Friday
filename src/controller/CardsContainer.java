@@ -6,9 +6,11 @@ import card.CardFighting;
 import card.CardFightingAging;
 import card.CardFightingHazardKnowledge;
 import card.CardPirate;
+import card.CardStep;
 import enums.EAbility;
 import enums.ECardAgingType;
 import enums.EHazardValue;
+import enums.EStep;
 import utils.ArrayList;
 
 public enum CardsContainer {
@@ -20,6 +22,7 @@ public enum CardsContainer {
 	private ArrayList<CardFightingAging> deckAging = new ArrayList<CardFightingAging>();
 	private CardFightingAging cardFightingAgingVeryStupid = null;
 	private ArrayList<CardPirate> deckPirates = new ArrayList<CardPirate>();
+	private ArrayList<CardStep> deckStep = new ArrayList<CardStep>();
 
 	private CardsContainer() {
 
@@ -28,6 +31,7 @@ public enum CardsContainer {
 		createDeckAging();
 		createDeckPlayer();
 		createDeckPirates();
+		createDeckStep();
 
 		cardsSetVisibleFalse();
 
@@ -262,6 +266,15 @@ public enum CardsContainer {
 
 	}
 
+	private void createDeckStep() {
+
+		this.deckStep.addLast(new CardStep("Green", EStep.GREEN));
+		this.deckStep.addLast(new CardStep("Yellow", EStep.YELLOW));
+		this.deckStep.addLast(new CardStep("Red", EStep.RED));
+		this.deckStep.addLast(new CardStep("Pirate", EStep.PIRATE));
+
+	}
+
 	private void cardsSetVisibleFalse() {
 
 		for (Card card : this.deckPlayer)
@@ -297,12 +310,17 @@ public enum CardsContainer {
 		return this.deckPirates.clone();
 	}
 
+	public ArrayList<CardStep> getDeckStep() {
+		return this.deckStep.clone();
+	}
+
 	public void setCardsVisibleFalse() {
 
 		setListVisibleFalse(this.deckAging);
 		setListVisibleFalse(this.deckHazardKnowledge);
 		setListVisibleFalse(this.deckPirates);
 		setListVisibleFalse(this.deckPlayer);
+		setListVisibleFalse(this.deckStep);
 		this.cardFightingAgingVeryStupid.getImageView().setVisible(false);
 
 	}

@@ -4,6 +4,7 @@ import card.CardFighting;
 import card.CardFightingAging;
 import card.CardFightingHazardKnowledge;
 import card.CardPirate;
+import card.CardStep;
 import controller.CardsContainer;
 import enums.ECardAgingType;
 import utils.ArrayList;
@@ -13,6 +14,7 @@ public abstract class DifficultyLevel {
 	protected ArrayList<CardFighting> deckPlayer = new ArrayList<CardFighting>();
 	private ArrayList<CardFightingHazardKnowledge> deckHazardKnowledge = new ArrayList<CardFightingHazardKnowledge>();
 	protected ArrayList<CardFightingAging> deckAging = new ArrayList<CardFightingAging>();
+	private ArrayList<CardStep> deckStep = new ArrayList<CardStep>();
 
 	public DifficultyLevel() {
 
@@ -23,10 +25,12 @@ public abstract class DifficultyLevel {
 		this.deckHazardKnowledge.clear();
 		this.deckAging.clear();
 		this.deckPlayer.clear();
+		this.deckStep.clear();
 
 		createDeckHazardKnowledge();
 		createDeckAging();
 		createDeckPlayer();
+		createDeckStep();
 
 	}
 
@@ -56,6 +60,10 @@ public abstract class DifficultyLevel {
 		this.deckHazardKnowledge.addAll(CardsContainer.INSTANCE.getDeckHazardKnowledge());
 	}
 
+	private void createDeckStep() {
+		this.deckStep.addAll(CardsContainer.INSTANCE.getDeckStep());
+	}
+
 	public ArrayList<CardFighting> getDeckPlayer() {
 		return this.deckPlayer;
 	}
@@ -66,6 +74,10 @@ public abstract class DifficultyLevel {
 
 	public ArrayList<CardFightingAging> getDeckAging() {
 		return this.deckAging;
+	}
+
+	public final ArrayList<CardStep> getDeckStep() {
+		return this.deckStep;
 	}
 
 	public int getLife() {

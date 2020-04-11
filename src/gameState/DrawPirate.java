@@ -19,7 +19,7 @@ public class DrawPirate extends AHandleEncounterCardsDrawn {
 	@Override
 	protected void executeTextOption(EText eText) {
 
-		Modifiers.INSTANCE.setCardPirateAgainst(Lists.INSTANCE.cardPiratesInPlay.getArrayList().getFirst());
+		Modifiers.INSTANCE.setCardPirateAgainst(Lists.INSTANCE.deckPirates.getArrayList().getFirst());
 
 		Modifiers.INSTANCE.setPirateProxyFightingAgainst();
 

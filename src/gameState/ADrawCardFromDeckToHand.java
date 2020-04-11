@@ -14,6 +14,7 @@ public abstract class ADrawCardFromDeckToHand extends AGameState {
 		if (Lists.INSTANCE.deckPlayer.getArrayList().isEmpty()) {
 
 			addDiscardPileToDeck();
+			Lists.INSTANCE.deckPlayer.relocateImageViews();
 			addAgingCardToDeck();
 			handleDeckAfterAddingCards();
 
