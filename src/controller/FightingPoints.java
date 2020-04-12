@@ -277,17 +277,18 @@ public enum FightingPoints {
 
 			for (CardFighting cardFighting : this.mapFightingValues.get(counter)) {
 
-				boolean contains = false;
+				for (CardFighting cardDouble : this.cardsDouble) {
 
-				for (CardFighting cardDouble : this.cardsDouble)
 					if (cardDouble.equals(cardFighting))
-						contains = true;
+						continue;
 
-				if (contains)
-					continue;
+					this.playerFightingPointsWithDouble += counter;
+					cardsDoubleToResolve--;
 
-				this.playerFightingPointsWithDouble += counter;
-				cardsDoubleToResolve--;
+					if (cardsDoubleToResolve == 0)
+						break;
+
+				}
 
 				if (cardsDoubleToResolve == 0)
 					break;
