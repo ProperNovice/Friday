@@ -25,6 +25,7 @@ public enum RealTimeCardsHandFlipFront {
 		this.updateList.addLast(DrawCardFromDeckToHandFirstEmptySlot.class);
 		this.updateList.addLast(DrawCardFromDeckToHandRightSide.class);
 		this.updateList.addLast(DrawCardFromDeckToHandSpecificCardSlot.class);
+
 		this.updateList.addLast(ChooseDifficultyLevel.class);
 
 	}

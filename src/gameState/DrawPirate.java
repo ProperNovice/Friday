@@ -1,10 +1,14 @@
 package gameState;
 
 import card.CardFightingHazardKnowledge;
+import card.CardPirate;
+import card.SidePirate;
 import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
+import enums.EAbility;
 import enums.EText;
+import interfaces.IAbilityAble;
 
 public class DrawPirate extends AHandleEncounterCardsDrawn {
 
@@ -25,7 +29,25 @@ public class DrawPirate extends AHandleEncounterCardsDrawn {
 
 		setFreeCardsAndCardProxy();
 
+		checkPirateAbility();
+
 		Flow.INSTANCE.proceed();
+
+	}
+
+	private void checkPirateAbility() {
+
+		CardPirate cardPirate = Modifiers.INSTANCE.getCardPirateAgainst();
+		SidePirate sidePirate = (SidePirate) cardPirate.getSidePirate();
+
+		if (!(sidePirate instanceof IAbilityAble))
+			return;
+
+		IAbilityAble iAbilityAble = (IAbilityAble) sidePirate;
+		EAbility eAbility = iAbilityAble.getEAbility();
+
+		if (eAbility.equals(EAbility.EACH_ADDITIONAL_FIGHTING_CARD_COSTS_TWO_LIFE_POINTS))
+			Modifiers.INSTANCE.setAdditionalFightingCostLifeDraw(2);
 
 	}
 

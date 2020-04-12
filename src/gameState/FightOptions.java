@@ -21,8 +21,8 @@ public class FightOptions extends AGameState {
 	@Override
 	public void handleGameStateChange() {
 
-		handleTextDrawToShow();
 		Text.INSTANCE.showText(EText.RESOLVE_FIGHT);
+		handleTextDrawToShow();
 		AbilitiesManager.INSTANCE.setUpResolveAbilities();
 
 	}
