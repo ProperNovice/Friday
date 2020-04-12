@@ -17,6 +17,7 @@ import gameState.DrawHazardCards;
 import gameState.DrawNextEncounter;
 import gameState.DrawPirate;
 import gameState.EndGame;
+import gameState.EndGameWin;
 import gameState.EndTurn;
 import gameState.FightWon;
 import gameState.HandleFightLost;
@@ -404,6 +405,7 @@ public enum FightingPoints {
 		this.updateIndicatorGameStates.addLast(FightWon.class);
 		this.updateIndicatorGameStates.addLast(HandleFightLost.class);
 		this.updateIndicatorGameStates.addLast(StartGame.class);
+		this.updateIndicatorGameStates.addLast(EndGameWin.class);
 
 	}
 

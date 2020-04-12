@@ -37,6 +37,9 @@ public class FightResolve extends AGameState {
 
 			CardFighting cardFighting = (CardFighting) cardSlot.getCardFighting();
 
+			if (cardFighting.getImageView().isFlippedBack())
+				continue;
+
 			if (!(cardFighting instanceof CardFightingAging))
 				continue;
 

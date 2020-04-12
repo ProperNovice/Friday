@@ -120,6 +120,10 @@ public enum RealTimeListsSize {
 			indicatorList.getArrayList().clear();
 
 			int size = cardList.getSize();
+
+			if (size == 0)
+				return;
+
 			ArrayList<Integer> integerSize = getNumberList(size);
 
 			for (Integer integer : integerSize)
