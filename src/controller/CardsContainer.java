@@ -322,6 +322,9 @@ public enum CardsContainer {
 		setListVisibleFalse(this.deckPlayer);
 		setListVisibleFalse(this.deckStep);
 		this.cardFightingAgingVeryStupid.getImageView().setVisible(false);
+		
+		for (CardFightingHazardKnowledge cardFightingHazardKnowledge : this.deckHazardKnowledge)
+			cardFightingHazardKnowledge.getImageView().setRotate(0);
 
 	}
 

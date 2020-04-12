@@ -38,6 +38,7 @@ public enum Lists implements ISaveLoadStateAble {
 	}
 
 	public void clearLists() {
+
 		this.deckPlayer.getArrayList().clear();
 		this.discardPilePlayer.getArrayList().clear();
 		this.deckHazardKnowledge.getArrayList().clear();

@@ -2,6 +2,7 @@ package gameState;
 
 import controller.Flow;
 import controller.Lists;
+import controller.Modifiers;
 import enums.EGameState;
 import enums.EText;
 
@@ -11,6 +12,7 @@ public abstract class EndGame extends AGameState {
 	public void handleGameStateChange() {
 
 		Lists.INSTANCE.clearLists();
+		Modifiers.INSTANCE.getCardFightingPirateProxy().getImageView().setVisible(false);
 
 		getEText().showText();
 		EText.RESTART.showText();

@@ -19,6 +19,12 @@ public class FightResolve extends AGameState {
 
 		handleAgingAbilities();
 
+		if (Life.INSTANCE.getLifeCurrent() < 0) {
+			Flow.INSTANCE.clear();
+			Flow.INSTANCE.executeGameState(EGameState.END_GAME_LOSE);
+			return;
+		}
+
 		if (FightingPoints.INSTANCE.getPlayerFightingPointsWithDouble() >= FightingPoints.INSTANCE
 				.getEncounterFightingPoints())
 			fightWon();

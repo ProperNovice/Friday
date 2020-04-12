@@ -34,6 +34,10 @@ public enum Modifiers implements ISaveLoadStateAble {
 		this.cardFightingPirateProxy.getImageView().setVisible(true);
 	}
 
+	public CardFightingPirateProxy getCardFightingPirateProxy() {
+		return this.cardFightingPirateProxy;
+	}
+
 	public void setAgingCardsStartingAmount(int amount) {
 		this.agingCardsStartingAmount = amount;
 	}

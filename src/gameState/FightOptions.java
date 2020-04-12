@@ -74,9 +74,10 @@ public class FightOptions extends AGameState {
 
 	private void handleTextDrawToShow() {
 
-		if (Lists.INSTANCE.discardPilePlayer.getArrayList().isEmpty())
-			if (Lists.INSTANCE.deckAging.getArrayList().isEmpty())
-				return;
+		if (Lists.INSTANCE.deckPlayer.getArrayList().isEmpty())
+			if (Lists.INSTANCE.discardPilePlayer.getArrayList().isEmpty())
+				if (Lists.INSTANCE.deckAging.getArrayList().isEmpty())
+					return;
 
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots()) {
 
