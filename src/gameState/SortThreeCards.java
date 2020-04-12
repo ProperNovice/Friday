@@ -121,12 +121,12 @@ public class SortThreeCards extends AGameState {
 		Lists.INSTANCE.sortCardsPanel.showBackgroundPanelAndRelocate(true);
 		AbilityImageViewList.INSTANCE.releaseAllAbilitiesImageView();
 
+		this.status.eText.showText();
+
 		EText.SHOW_BOARD.showText();
 
-		if (this.status.continueIsShowing)
+		if (this.status.isShowingContinue())
 			EText.CONTINUE.showText();
-
-		this.status.eText.showText();
 
 	}
 
@@ -164,11 +164,15 @@ public class SortThreeCards extends AGameState {
 		DISCARD(EText.DISCARD_CARD, true), PUT_ON_TOP_OF_THE_DECK(EText.PUT_CARD_ON_TOP, false);
 
 		private EText eText = null;
-		private boolean continueIsShowing;
+		private boolean isShowingContinue;
 
 		private Status(EText eText, boolean continueIsShowing) {
 			this.eText = eText;
-			this.continueIsShowing = continueIsShowing;
+			this.isShowingContinue = continueIsShowing;
+		}
+
+		private boolean isShowingContinue() {
+			return this.isShowingContinue;
 		}
 
 	}
