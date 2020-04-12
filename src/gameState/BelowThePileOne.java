@@ -13,7 +13,7 @@ public class BelowThePileOne extends AGameState {
 
 	@Override
 	public void handleGameStateChange() {
-		
+
 		EText.CHOOSE_CARD.showText();
 
 	}
@@ -44,6 +44,8 @@ public class BelowThePileOne extends AGameState {
 
 			if (!cardSlot.getCardFighting().equals(cardFighting))
 				continue;
+
+			cardFighting.getImageView().flip();
 
 			cardSlot.removeCardFighting();
 

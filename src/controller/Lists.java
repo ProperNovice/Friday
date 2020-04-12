@@ -4,6 +4,7 @@ import card.CardFighting;
 import card.CardFightingAging;
 import card.CardFightingHazardKnowledge;
 import card.CardPirate;
+import card.CardSlot;
 import card.CardStep;
 import difficultyLevel.DifficultyLevel;
 import interfaces.ISaveLoadStateAble;
@@ -33,6 +34,21 @@ public enum Lists implements ISaveLoadStateAble {
 	public void instantiate() {
 
 		createLists();
+
+	}
+
+	public void clearLists() {
+		this.deckPlayer.getArrayList().clear();
+		this.discardPilePlayer.getArrayList().clear();
+		this.deckHazardKnowledge.getArrayList().clear();
+		this.discardPileHazardKnowledge.getArrayList().clear();
+		this.deckAging.getArrayList().clear();
+		this.cardsHazardsDrawn.getArrayList().clear();
+		this.deckPirates.getArrayList().clear();
+		this.deckStep.getArrayList().clear();
+
+		for (CardSlot cardSlot : this.handPlayer)
+			cardSlot.removeCardFighting();
 
 	}
 

@@ -112,10 +112,12 @@ public class TextOption extends TextIndicator {
 
 		PlatformFX.runLater(() -> {
 
-			this.rectangle.getPoints().clear();
+			this.rectangle.setVisible(value);
 
-			if (value)
-				resizePolyLine();
+//			this.rectangle.getPoints().clear();
+//
+//			if (value)
+//				resizePolyLine();
 
 		});
 

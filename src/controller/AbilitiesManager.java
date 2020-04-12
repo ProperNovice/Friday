@@ -9,7 +9,6 @@ import enums.EGameState;
 import interfaces.IAbilityAble;
 import model.HandPlayer;
 import utils.ArrayList;
-import utils.Logger;
 import utils.ShutDown;
 
 public enum AbilitiesManager {
@@ -201,9 +200,9 @@ public enum AbilitiesManager {
 
 		}
 
-		Logger.INSTANCE.log("can be resolved");
-		Logger.INSTANCE.log(eAbility);
-		Logger.INSTANCE.logNewLine(canBeResolved);
+//		Logger.INSTANCE.log("can be resolved");
+//		Logger.INSTANCE.log(eAbility);
+//		Logger.INSTANCE.logNewLine(canBeResolved);
 
 		return canBeResolved;
 

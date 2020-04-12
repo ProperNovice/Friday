@@ -6,7 +6,7 @@ public enum Credentials {
 
 	INSTANCE;
 
-	public String primaryStageTitle = "Friday", sizeIndicatorFolder = "circle gray";
+	public String primaryStageTitle = "Friday", sizeIndicatorFolder = "square gray";
 	public NumbersPair DimensionsFrame, DimensionsGapBetweenComponents, DimensionsCardFighting,
 			DimensionsCardStepPirate, DimensionsIndicatorFreeCard, DimensionsLifeToken, DimensionsAbilityImageView,
 			DimensionsSortCardPanel, DimensionsListSizeIndicators;

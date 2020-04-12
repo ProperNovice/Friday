@@ -13,6 +13,10 @@ import controller.Modifiers;
 import enums.EAbility;
 import enums.EGameState;
 import interfaces.ISideHazardAble;
+import realTime.RealTimeCardsHandFlipFront;
+import realTime.RealTimeDuplicateImageView;
+import realTime.RealTimeListsSize;
+import realTime.RealTimeListsTransferCards;
 import utils.Executor;
 import utils.Logger;
 
@@ -21,10 +25,10 @@ public class StartGame extends AGameState {
 	@Override
 	public void handleGameStateChange() {
 
-//		RealTimeListsSize.INSTANCE.start();
-//		RealTimeListsTransferCards.INSTANCE.start();
-//		RealTimeCardsHandFlipBack.INSTANCE.start();
-//		RealTimeDuplicateImageView.INSTANCE.start();
+		RealTimeListsSize.INSTANCE.start();
+		RealTimeListsTransferCards.INSTANCE.start();
+		RealTimeCardsHandFlipFront.INSTANCE.start();
+		RealTimeDuplicateImageView.INSTANCE.start();
 
 		Flow.INSTANCE.executeGameState(EGameState.CHOOSE_DIFFICULTY_LEVEL);
 

@@ -51,7 +51,7 @@ public enum RealTimeListsSize {
 
 	private void createContainers() {
 
-		double gapX = 1;
+		double gapX = 0;
 
 		this.deckPlayer = new ContainerImageViewAbles<NumberImageView>(
 				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsListSizeIndicators)

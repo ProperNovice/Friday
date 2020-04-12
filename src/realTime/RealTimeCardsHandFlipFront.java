@@ -5,6 +5,7 @@ import controller.Flow;
 import controller.Lists;
 import gameState.ADrawCardFromDeckToHand;
 import gameState.AGameState;
+import gameState.ChooseDifficultyLevel;
 import gameState.DrawCardFromDeckToHandFirstEmptySlot;
 import gameState.DrawCardFromDeckToHandRightSide;
 import gameState.DrawCardFromDeckToHandSpecificCardSlot;
@@ -12,18 +13,19 @@ import javafx.animation.AnimationTimer;
 import utils.ArrayList;
 import utils.ShutDown;
 
-public enum RealTimeCardsHandFlipBack {
+public enum RealTimeCardsHandFlipFront {
 
 	INSTANCE;
 
 	private ArrayList<Class<? extends AGameState>> updateList = new ArrayList<Class<? extends AGameState>>();
 
-	private RealTimeCardsHandFlipBack() {
+	private RealTimeCardsHandFlipFront() {
 
 		this.updateList.addLast(ADrawCardFromDeckToHand.class);
 		this.updateList.addLast(DrawCardFromDeckToHandFirstEmptySlot.class);
 		this.updateList.addLast(DrawCardFromDeckToHandRightSide.class);
 		this.updateList.addLast(DrawCardFromDeckToHandSpecificCardSlot.class);
+		this.updateList.addLast(ChooseDifficultyLevel.class);
 
 	}
 

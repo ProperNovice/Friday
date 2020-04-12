@@ -35,6 +35,7 @@ public enum RealTimeDuplicateImageView {
 			checkList(Lists.INSTANCE.deckHazardKnowledge);
 			checkList(Lists.INSTANCE.discardPileHazardKnowledge);
 			checkList(Lists.INSTANCE.deckAging);
+			checkList(Lists.INSTANCE.cardsHazardsDrawn);
 			checkHand();
 
 		}
