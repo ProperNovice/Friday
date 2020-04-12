@@ -50,12 +50,7 @@ public enum Flow {
 
 		this.currentGameState.getGameState().handleGameStateChange();
 
-		boolean fightingPointCalculate = this.currentGameState.getGameState().fightingPointsCalculate();
-
-		if (fightingPointCalculate)
-			FightingPoints.INSTANCE.setFightingPointsUpdateIndicator();
-		else
-			FightingPoints.INSTANCE.setVisibleIndicatorFalse();
+		FightingPoints.INSTANCE.setFightingPointsUpdateIndicator();
 
 	}
 

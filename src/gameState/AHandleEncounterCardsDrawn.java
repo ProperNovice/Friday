@@ -64,9 +64,4 @@ public abstract class AHandleEncounterCardsDrawn extends AGameState {
 
 	}
 
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-
 }

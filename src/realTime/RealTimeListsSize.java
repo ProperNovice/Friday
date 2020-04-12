@@ -1,6 +1,12 @@
-package controller;
+package realTime;
 
 import card.Card;
+import controller.Credentials;
+import controller.Flow;
+import controller.Lists;
+import gameState.AGameState;
+import gameState.ChooseDifficultyLevel;
+import gameState.StartGame;
 import javafx.animation.AnimationTimer;
 import numberImageView.NumberImageView;
 import numberImageView.NumberImageViewEight;
@@ -20,17 +26,26 @@ import utils.HashMap;
 import utils.ObjectPool;
 import utils.RearrangeTypeEnum;
 
-public enum ListsSizeRealTime {
+public enum RealTimeListsSize {
 
 	INSTANCE;
 
 	private HashMap<Integer, Class<? extends NumberImageView>> mapNumberImageView = new HashMap<Integer, Class<? extends NumberImageView>>();
 	private ContainerImageViewAbles<NumberImageView> deckPlayer, deckHazardKnowledge, deckAging;
+	private ArrayList<Class<? extends AGameState>> updateList = new ArrayList<Class<? extends AGameState>>();
 
-	private ListsSizeRealTime() {
+	private RealTimeListsSize() {
 
 		createMapNumberImageView();
 		createContainers();
+		createUpdateList();
+
+	}
+
+	private void createUpdateList() {
+
+		this.updateList.addLast(ChooseDifficultyLevel.class);
+		this.updateList.addLast(StartGame.class);
 
 	}
 
@@ -79,8 +94,14 @@ public enum ListsSizeRealTime {
 		@Override
 		public void handle(long now) {
 
-			if (!Flow.INSTANCE.getCurrentGameState().updateListsSizeIndicators())
+			if (updateList.contains(Flow.INSTANCE.getCurrentGameState().getClass())) {
+
+				setNumberImageViewsVisibleFalse(deckPlayer);
+				setNumberImageViewsVisibleFalse(deckHazardKnowledge);
+				setNumberImageViewsVisibleFalse(deckAging);
 				return;
+
+			}
 
 			update(deckPlayer, Lists.INSTANCE.deckPlayer);
 			update(deckHazardKnowledge, Lists.INSTANCE.deckHazardKnowledge);
@@ -91,8 +112,10 @@ public enum ListsSizeRealTime {
 		private void update(ContainerImageViewAbles<NumberImageView> indicatorList,
 				ContainerImageViewAbles<? extends Card> cardList) {
 
-			for (NumberImageView numberImageView : indicatorList)
+			for (NumberImageView numberImageView : indicatorList) {
 				ObjectPool.INSTANCE.release(numberImageView);
+				numberImageView.getImageView().setVisible(false);
+			}
 
 			indicatorList.getArrayList().clear();
 
@@ -122,6 +145,11 @@ public enum ListsSizeRealTime {
 
 			return list;
 
+		}
+
+		private void setNumberImageViewsVisibleFalse(ContainerImageViewAbles<NumberImageView> list) {
+			for (NumberImageView numberImageView : list)
+				numberImageView.getImageView().setVisible(false);
 		}
 
 	}

@@ -1,18 +1,19 @@
-package controller;
+package realTime;
 
 import card.Card;
 import card.CardSlot;
+import controller.Lists;
 import javafx.animation.AnimationTimer;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 
-public enum ListsCheckRealTime {
+public enum RealTimeListsTransferCards {
 
 	INSTANCE;
 
-	private ArrayList<ListSize> listsContainer = new ArrayList<ListsCheckRealTime.ListSize>();
+	private ArrayList<ListSize> listsContainer = new ArrayList<RealTimeListsTransferCards.ListSize>();
 
-	private ListsCheckRealTime() {
+	private RealTimeListsTransferCards() {
 
 		this.listsContainer.addLast(new ListSize("deck player", Lists.INSTANCE.deckPlayer));
 		this.listsContainer.addLast(new ListSize("discard pile player", Lists.INSTANCE.discardPilePlayer));

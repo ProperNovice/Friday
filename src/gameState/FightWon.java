@@ -73,9 +73,4 @@ public class FightWon extends AFightEnded {
 
 	}
 
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-
 }

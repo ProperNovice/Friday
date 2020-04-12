@@ -50,14 +50,4 @@ public class ChooseDifficultyLevel extends AGameState {
 
 	}
 
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-
-	@Override
-	public boolean updateListsSizeIndicators() {
-		return false;
-	}
-
 }

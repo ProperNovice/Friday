@@ -77,7 +77,7 @@ public abstract class AGameState {
 
 		if (!card.equals(Modifiers.INSTANCE.getCardFightingAgainst()))
 			return;
-		
+
 		if (card instanceof CardFightingPirateProxy)
 			return;
 
@@ -97,14 +97,6 @@ public abstract class AGameState {
 
 	protected void executeCardFightingPressedSortCardPanel(CardFighting cardFighting) {
 
-	}
-
-	public boolean fightingPointsCalculate() {
-		return true;
-	}
-	
-	public boolean updateListsSizeIndicators() {
-		return true;
 	}
 
 }

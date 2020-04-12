@@ -27,9 +27,4 @@ public class DrawNextEncounter extends AGameState {
 
 	}
 
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-
 }

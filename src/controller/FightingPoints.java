@@ -11,6 +11,18 @@ import card.SidePirate;
 import card.SidePirateAbility;
 import enums.EAbility;
 import enums.EStep;
+import gameState.AGameState;
+import gameState.ChooseDifficultyLevel;
+import gameState.DrawHazardCards;
+import gameState.DrawNextEncounter;
+import gameState.DrawPirate;
+import gameState.EndGame;
+import gameState.EndTurn;
+import gameState.FightWon;
+import gameState.HandleFightLost;
+import gameState.HandleHazardCardsDrawnOne;
+import gameState.HandleHazardCardsDrawnTwo;
+import gameState.StartGame;
 import interfaces.IAbilityAble;
 import utils.ArrayList;
 import utils.HashMap;
@@ -27,8 +39,11 @@ public enum FightingPoints {
 	private int playerFightingPointsNoDouble, playerFightingPointsWithDouble, encounterFightingPoints;
 	private ArrayList<CardFighting> cardsDouble = new ArrayList<CardFighting>();
 	private boolean containsPhaseMinusOne, containsHighestCardEqualsZero;
+	private ArrayList<Class<? extends AGameState>> updateIndicatorGameStates = new ArrayList<Class<? extends AGameState>>();
 
 	private FightingPoints() {
+
+		updateIndicatorAddGameStates();
 
 		this.textIndicator.setHeight(Credentials.INSTANCE.textHeight);
 		this.textIndicator.relocateTopLeft(Credentials.INSTANCE.CoordinatesTextIndicators);
@@ -43,6 +58,11 @@ public enum FightingPoints {
 	}
 
 	public void setFightingPointsUpdateIndicator() {
+
+		if (this.updateIndicatorGameStates.contains(Flow.INSTANCE.getCurrentGameState().getClass())) {
+			this.textIndicator.setVisible(false);
+			return;
+		}
 
 		this.textIndicator.setVisible(true);
 
@@ -366,6 +386,25 @@ public enum FightingPoints {
 
 	public void setVisibleIndicatorFalse() {
 		this.textIndicator.setVisible(false);
+	}
+
+	private void updateIndicatorAddGameStates() {
+
+//		this.updateIndicatorGameStates.addLast(AHandleEncounterCardsDrawn.class);
+		this.updateIndicatorGameStates.addLast(DrawPirate.class);
+		this.updateIndicatorGameStates.addLast(HandleHazardCardsDrawnOne.class);
+		this.updateIndicatorGameStates.addLast(HandleHazardCardsDrawnTwo.class);
+
+		this.updateIndicatorGameStates.addLast(ChooseDifficultyLevel.class);
+		this.updateIndicatorGameStates.addLast(DrawHazardCards.class);
+		this.updateIndicatorGameStates.addLast(DrawNextEncounter.class);
+		this.updateIndicatorGameStates.addLast(DrawPirate.class);
+		this.updateIndicatorGameStates.addLast(EndGame.class);
+		this.updateIndicatorGameStates.addLast(EndTurn.class);
+		this.updateIndicatorGameStates.addLast(FightWon.class);
+		this.updateIndicatorGameStates.addLast(HandleFightLost.class);
+		this.updateIndicatorGameStates.addLast(StartGame.class);
+
 	}
 
 }

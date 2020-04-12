@@ -11,26 +11,17 @@ public abstract class EndGame extends AGameState {
 
 		getEText().showText();
 		EText.RESTART.showText();
-		
+
 	}
-	
-	
 
 	@Override
 	protected void executeTextOption(EText eText) {
 
 		Flow.INSTANCE.clear();
 		Flow.INSTANCE.executeGameState(EGameState.CHOOSE_DIFFICULTY_LEVEL);
-		
+
 	}
 
-
-
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-	
 	protected abstract EText getEText();
 
 }

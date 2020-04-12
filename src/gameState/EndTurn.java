@@ -69,9 +69,4 @@ public class EndTurn extends AGameState {
 
 	}
 
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-
 }

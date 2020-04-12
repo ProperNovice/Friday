@@ -107,9 +107,4 @@ public class HandleFightLost extends AGameState {
 
 	}
 
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-
 }

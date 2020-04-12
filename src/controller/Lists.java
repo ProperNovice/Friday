@@ -33,7 +33,6 @@ public enum Lists implements ISaveLoadStateAble {
 	public void instantiate() {
 
 		createLists();
-		ListsCheckRealTime.INSTANCE.start();
 
 	}
 

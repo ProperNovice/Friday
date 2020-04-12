@@ -48,9 +48,4 @@ public class DrawPirate extends AHandleEncounterCardsDrawn {
 
 	}
 
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-
 }

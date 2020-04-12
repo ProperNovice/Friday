@@ -49,9 +49,4 @@ public class DrawHazardCards extends AGameState {
 
 	}
 
-	@Override
-	public boolean fightingPointsCalculate() {
-		return false;
-	}
-
 }
