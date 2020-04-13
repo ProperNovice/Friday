@@ -14,6 +14,7 @@ public enum KeyCodeHandler {
 		addKeyCode(KeyCode.W);
 		addKeyCode(KeyCode.E);
 		addKeyCode(KeyCode.R);
+		addKeyCode(KeyCode.T);
 
 	}
 

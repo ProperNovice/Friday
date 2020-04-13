@@ -273,8 +273,6 @@ public enum AbilitiesManager {
 		IAbilityAble iAbilityAble = (SideKnowledgeAbility) cardFighting.getSideKnowledge();
 		EAbility eAbility = iAbilityAble.getEAbility();
 
-//		Flow.INSTANCE.addFirst(EGameState.FIGHT_OPTIONS); // TODO
-
 		switch (eAbility) {
 
 		case PLUS_ONE_LIFE:

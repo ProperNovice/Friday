@@ -33,6 +33,7 @@ public enum EText {
 	TWO("Two", TextTypeEnum.OPTION),
 	THREE("Three", TextTypeEnum.OPTION),
 	FOUR("Four", TextTypeEnum.OPTION),
+	FIVE("Five", TextTypeEnum.OPTION),
 	YOU_WON("You won", TextTypeEnum.INDICATOR),
 	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
 	

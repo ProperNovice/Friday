@@ -19,6 +19,7 @@ import numberImageView.NumberImageViewSix;
 import numberImageView.NumberImageViewThree;
 import numberImageView.NumberImageViewTwo;
 import numberImageView.NumberImageViewZero;
+import utils.Animation;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
@@ -94,7 +95,8 @@ public enum RealTimeListsSize {
 		@Override
 		public void handle(long now) {
 
-			if (updateList.contains(Flow.INSTANCE.getCurrentGameState().getClass())) {
+			if (updateList.contains(Flow.INSTANCE.getCurrentGameState().getClass())
+					|| Animation.INSTANCE.isAnimating()) {
 
 				setNumberImageViewsVisibleFalse(deckPlayer);
 				setNumberImageViewsVisibleFalse(deckHazardKnowledge);

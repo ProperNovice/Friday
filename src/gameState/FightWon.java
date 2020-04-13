@@ -6,12 +6,21 @@ import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EGameState;
+import enums.EStep;
 import enums.EText;
 
 public class FightWon extends AFightEnded {
 
 	@Override
 	public void handleGameStateChange() {
+
+		if (gameWon()) {
+
+			Flow.INSTANCE.clear();
+			Flow.INSTANCE.executeGameState(EGameState.END_GAME_WIN);
+			return;
+
+		}
 
 		EText.FIGHT_WON.showText();
 		EText.CONTINUE.showText();
@@ -52,6 +61,18 @@ public class FightWon extends AFightEnded {
 
 	}
 
+	private boolean gameWon() {
+
+		if (!Modifiers.INSTANCE.getEStep().equals(EStep.PIRATE))
+			return false;
+
+		if (Lists.INSTANCE.deckPirates.getArrayList().size() > 1)
+			return false;
+
+		return true;
+
+	}
+
 	private void handleFightAgainstPirate() {
 
 		super.putCardsToDiscardPileFromHandPreviouslyOwned(true);
@@ -63,13 +84,7 @@ public class FightWon extends AFightEnded {
 		CardPirate cardPirate = Lists.INSTANCE.deckPirates.getArrayList().removeFirst();
 		cardPirate.getImageView().setVisible(false);
 
-		if (Lists.INSTANCE.deckPirates.getArrayList().isEmpty()) {
-
-			Flow.INSTANCE.clear();
-			Flow.INSTANCE.addFirst(EGameState.END_GAME_WIN);
-
-		} else
-			Lists.INSTANCE.deckPirates.relocateImageViews();
+		Lists.INSTANCE.deckPirates.relocateImageViews();
 
 	}
 

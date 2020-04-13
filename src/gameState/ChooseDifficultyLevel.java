@@ -19,6 +19,7 @@ public class ChooseDifficultyLevel extends AGameState {
 		this.map.put(EText.TWO, EDifficultyLevel.TWO);
 		this.map.put(EText.THREE, EDifficultyLevel.THREE);
 		this.map.put(EText.FOUR, EDifficultyLevel.FOUR);
+		this.map.put(EText.FIVE, EDifficultyLevel.FIVE);
 
 	}
 
@@ -33,6 +34,7 @@ public class ChooseDifficultyLevel extends AGameState {
 		EText.TWO.showText();
 		EText.THREE.showText();
 		EText.FOUR.showText();
+		EText.FIVE.showText();
 
 	}
 

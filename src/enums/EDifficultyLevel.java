@@ -8,6 +8,7 @@ public enum EDifficultyLevel {
 	TWO(new DifficultyLevelTwo()),
 	THREE(new DifficultyLevelThree()),
 	FOUR(new DifficultyLevelFour()),
+	FIVE(new DifficultyLevelFive()),
 	
 	;
 	

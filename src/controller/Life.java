@@ -12,7 +12,7 @@ public enum Life {
 
 	INSTANCE;
 
-	private ContainerImageViewAbles<LifeToken> lifeTokensCurrent, lifeTokens20life, lifeTokens18life;
+	private ContainerImageViewAbles<LifeToken> lifeTokensCurrent, lifeTokens20life, lifeTokens18life, lifeTokens16life;
 	private ArrayList<LifeToken> lifeTokens = new ArrayList<LifeToken>();
 	private int lifeCurrent = 20, lifeTotal = 22;
 
@@ -36,6 +36,8 @@ public enum Life {
 			this.lifeTokensCurrent = this.lifeTokens20life;
 		else if (lifeCurrent == 18)
 			this.lifeTokensCurrent = this.lifeTokens18life;
+		else if (lifeCurrent == 16)
+			this.lifeTokensCurrent = this.lifeTokens16life;
 
 		this.lifeTokensCurrent.getArrayList().clear();
 
@@ -64,6 +66,12 @@ public enum Life {
 						.gapX(Credentials.INSTANCE.gapBetweenLifeTokens).gapY(0)
 						.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesLifeTokensPivot)
 						.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).objectsPerRow(10).build());
+		
+		this.lifeTokens16life = new ContainerImageViewAbles<LifeToken>(
+				new CoordinatesBuilder().dimensionsNumbersPair(Credentials.INSTANCE.DimensionsLifeToken)
+				.gapX(Credentials.INSTANCE.gapBetweenLifeTokens).gapY(0)
+				.coordinatesNumbersPair(Credentials.INSTANCE.CoordinatesLifeTokensPivot)
+				.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT).objectsPerRow(9).build());
 
 		this.lifeTokensCurrent = this.lifeTokens20life;
 
