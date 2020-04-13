@@ -127,6 +127,7 @@ public enum Modifiers implements ISaveLoadStateAble {
 		this.cardFightingAgainst = null;
 		this.cardPirateAgainst = null;
 		this.additionalFightingCostLifeDraw = 1;
+		this.cardFightingPirateProxy.getImageView().setVisible(false);
 
 	}
 
