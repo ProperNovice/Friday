@@ -39,7 +39,8 @@ public enum FightingPoints {
 	private HashMap<EStep, EStep> mapMinusOneStep = new HashMap<EStep, EStep>();
 	private int playerFightingPointsNoDouble, playerFightingPointsWithDouble, encounterFightingPoints;
 	private ArrayList<CardFighting> cardsDouble = new ArrayList<CardFighting>();
-	private boolean containsPhaseMinusOne, containsHighestCardEqualsZero;
+	private boolean containsPhaseMinusOne;
+	private int highestCardEqualsZeroCount = 0;
 	private ArrayList<Class<? extends AGameState>> updateIndicatorGameStates = new ArrayList<Class<? extends AGameState>>();
 
 	private FightingPoints() {
@@ -84,7 +85,7 @@ public enum FightingPoints {
 		this.encounterFightingPoints = 0;
 		this.cardsDouble.clear();
 		this.containsPhaseMinusOne = false;
-		this.containsHighestCardEqualsZero = false;
+		this.highestCardEqualsZeroCount = 0;
 
 	}
 
@@ -121,7 +122,7 @@ public enum FightingPoints {
 				break;
 
 			case HIGHEST_CARD_EQUALS_ZERO:
-				this.containsHighestCardEqualsZero = true;
+				this.highestCardEqualsZeroCount++;
 				break;
 
 			case PHASE_MINUS_ONE:
@@ -241,7 +242,7 @@ public enum FightingPoints {
 
 	private void calculateHighestCardZeroAbility() {
 
-		if (!this.containsHighestCardEqualsZero)
+		if (this.highestCardEqualsZeroCount == 0)
 			return;
 
 		for (int counter = 4; counter >= 1; counter--) {
@@ -251,7 +252,11 @@ public enum FightingPoints {
 
 			CardFighting cardFighting = this.mapFightingValues.get(counter).removeFirst();
 			this.mapFightingValues.get(0).addLast(cardFighting);
-			break;
+
+			this.highestCardEqualsZeroCount--;
+
+			if (this.highestCardEqualsZeroCount == 0)
+				break;
 
 		}
 
