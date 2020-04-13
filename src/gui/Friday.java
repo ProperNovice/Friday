@@ -75,8 +75,11 @@ public class Friday extends Application {
 
 				Executor.INSTANCE.runLater(() -> {
 
-					if (keyCode == KeyCode.ESCAPE)
+					if (keyCode.equals(KeyCode.ESCAPE))
 						ShutDown.INSTANCE.execute();
+
+					else if (keyCode.equals(KeyCode.BACK_QUOTE))
+						Flow.INSTANCE.executeGameState(EGameState.RESTART_GAME);
 
 					else if (Animation.INSTANCE.isAnimatingSynchronous())
 						return;
