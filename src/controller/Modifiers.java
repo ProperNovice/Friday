@@ -110,6 +110,9 @@ public enum Modifiers implements ISaveLoadStateAble {
 	@Override
 	public void loadGameStart() {
 
+		loadState();
+		this.eStep = EStep.GREEN;
+
 	}
 
 	@Override
