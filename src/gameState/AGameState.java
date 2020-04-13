@@ -4,9 +4,11 @@ import card.Card;
 import card.CardFighting;
 import card.CardFightingHazardKnowledge;
 import card.CardSlot;
+import controller.Flow;
 import controller.Lists;
 import enums.EText;
 import javafx.scene.input.KeyCode;
+import model.SortCardsPanel;
 import utils.KeyCodeHandler;
 import utils.Logger;
 import utils.Text;
@@ -87,8 +89,8 @@ public abstract class AGameState {
 			if (cardSlot.containsCardFighting())
 				cardSlot.getCardFighting().getImageView().toFront();
 
-		for (CardFighting cardf : Lists.INSTANCE.cardsHazardsDrawn)
-			cardf.getImageView().toFront();
+		if (Flow.INSTANCE.getCurrentGameState() instanceof SortThreeCards)
+			SortCardsPanel.INSTANCE.showBackgroundPanelAndRelocate(true);
 
 	}
 
