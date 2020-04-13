@@ -4,6 +4,7 @@ import card.CardFighting;
 import model.AbilityImageView;
 import utils.ArrayList;
 import utils.ObjectPool;
+import utils.ShutDown;
 
 public enum AbilityImageViewList {
 
@@ -57,6 +58,17 @@ public enum AbilityImageViewList {
 
 		for (CardAbilityObject cardAbilityObject : this.list.clone())
 			releaseAbilityImageView(cardAbilityObject.getCardFighting());
+
+	}
+
+	public CardFighting getCardFightingWIthAbilityImageView(AbilityImageView abilityImageView) {
+
+		for (CardAbilityObject cardAbilityObject : this.list)
+			if (cardAbilityObject.getAbilityImageView().equals(abilityImageView))
+				return cardAbilityObject.getCardFighting();
+
+		ShutDown.INSTANCE.execute("AbilityImageViewList, didn't find CardFighting");
+		return null;
 
 	}
 

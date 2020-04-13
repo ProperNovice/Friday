@@ -1,12 +1,15 @@
 package model;
 
 import card.CardFighting;
+import controller.AbilityImageViewList;
 import controller.Credentials;
+import controller.Flow;
 import enums.ELayerZ;
+import utils.EventHandler.EventHandlerAble;
 import utils.ImageView;
 import utils.ImageViewAble;
 
-public class AbilityImageView implements ImageViewAble {
+public class AbilityImageView implements ImageViewAble, EventHandlerAble {
 
 	public AbilityImageView() {
 		createImageView();
@@ -46,6 +49,13 @@ public class AbilityImageView implements ImageViewAble {
 
 		this.getImageView().relocateCenter(x, y);
 
+	}
+
+	@Override
+	public void handleMouseButtonPressedPrimary() {
+
+		CardFighting cardFighting = AbilityImageViewList.INSTANCE.getCardFightingWIthAbilityImageView(this);
+		Flow.INSTANCE.getCurrentGameState().executeCardPressed(cardFighting);
 	}
 
 }

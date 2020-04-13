@@ -22,7 +22,7 @@ public class HandleFightLost extends AGameState {
 	public void handleGameStateChange() {
 
 		this.cardsToBeDestroyed.clear();
-		handleLifeLost();
+		handleLifeRemaining();
 
 		if (Life.INSTANCE.getLifeCurrent() < 0) {
 
@@ -97,13 +97,11 @@ public class HandleFightLost extends AGameState {
 
 	}
 
-	private void handleLifeLost() {
+	private void handleLifeRemaining() {
 
 		int fightingValue = FightingPoints.INSTANCE.getPlayerFightingPointsWithDouble();
 		int hazardValue = FightingPoints.INSTANCE.getEncounterFightingPoints();
 		this.lifeRemaining = hazardValue - fightingValue;
-
-		Life.INSTANCE.loseLife(this.lifeRemaining);
 
 	}
 

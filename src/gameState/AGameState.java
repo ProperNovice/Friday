@@ -87,6 +87,9 @@ public abstract class AGameState {
 			if (cardSlot.containsCardFighting())
 				cardSlot.getCardFighting().getImageView().toFront();
 
+		for (CardFighting cardf : Lists.INSTANCE.cardsHazardsDrawn)
+			cardf.getImageView().toFront();
+
 	}
 
 	protected void executeCardPressedHazardsDrawn(CardFightingHazardKnowledge cardFightingHazardKnowledge) {

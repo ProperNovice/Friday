@@ -1,7 +1,9 @@
 package gameState;
 
 import card.CardFightingHazardKnowledge;
+import controller.FightingPoints;
 import controller.Flow;
+import controller.Life;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EGameState;
@@ -11,6 +13,16 @@ public class FightLost extends AFightEnded {
 
 	@Override
 	public void handleGameStateChange() {
+
+		handleLifeLost();
+
+		if (Life.INSTANCE.getLifeCurrent() < 0) {
+
+			Flow.INSTANCE.clear();
+			Flow.INSTANCE.executeGameState(EGameState.END_GAME_LOSE);
+			return;
+
+		}
 
 		EText.FIGHT_LOST.showText();
 		EText.CONTINUE.showText();
@@ -52,6 +64,16 @@ public class FightLost extends AFightEnded {
 
 	private void handleLoseAgainstPirate() {
 		Modifiers.INSTANCE.getCardPirateAgainst().getImageView().setVisible(false);
+	}
+
+	private void handleLifeLost() {
+
+		int fightingValue = FightingPoints.INSTANCE.getPlayerFightingPointsWithDouble();
+		int hazardValue = FightingPoints.INSTANCE.getEncounterFightingPoints();
+		int lifelost = hazardValue - fightingValue;
+
+		Life.INSTANCE.loseLife(lifelost);
+
 	}
 
 }
