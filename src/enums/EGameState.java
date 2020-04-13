@@ -30,6 +30,7 @@ public enum EGameState {
 	END_GAME_WIN(new EndGameWin()),
 	END_GAME_LOSE(new EndGameLose()),
 	CHOOSE_DIFFICULTY_LEVEL(new ChooseDifficultyLevel()),
+	RESTART_GAME(new RestartGame()),
 	
 	;
 
