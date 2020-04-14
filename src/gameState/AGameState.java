@@ -19,7 +19,7 @@ public abstract class AGameState {
 
 	public final void handleTextOptionPressed(EText textEnum) {
 
-		Logger.INSTANCE.log("text executing");
+		Logger.INSTANCE.log("text option executing");
 		Logger.INSTANCE.logNewLine(textEnum);
 
 		Text.INSTANCE.concealText();
@@ -47,17 +47,25 @@ public abstract class AGameState {
 
 	public final void executeCardPressed(Card card) {
 
-		card.print();
-
 		if (!(card instanceof CardFighting))
 			return;
 
-		if (Lists.INSTANCE.cardsHazardsDrawn.getArrayList().contains(card))
+		if (Lists.INSTANCE.cardsHazardsDrawn.getArrayList().contains(card)) {
+
 			executeCardPressedHazardsDrawn((CardFightingHazardKnowledge) card);
-		else if (Lists.INSTANCE.handPlayer.contains((CardFighting) card))
+			card.print();
+
+		} else if (Lists.INSTANCE.handPlayer.contains((CardFighting) card)) {
+
+			card.print();
 			executeCardFightingPressedHand((CardFighting) card);
-		else if (Lists.INSTANCE.sortCardsPanel.getPanel().getArrayList().contains(card))
+
+		} else if (Lists.INSTANCE.sortCardsPanel.getPanel().getArrayList().contains(card)) {
+
+			card.print();
 			executeCardFightingPressedSortCardPanel((CardFighting) card);
+
+		}
 
 	}
 

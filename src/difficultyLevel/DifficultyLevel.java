@@ -29,14 +29,20 @@ public abstract class DifficultyLevel {
 
 		createDeckHazardKnowledge();
 		createDeckAging();
+		sortDeckAging();
 		createDeckPlayer();
 		createDeckStep();
 
 	}
 
 	protected void createDeckAging() {
+		this.deckAging.addAll(CardsContainer.INSTANCE.getDeckAgingLevelOne());
+	}
 
-		ArrayList<CardFightingAging> deckAgingTemp = CardsContainer.INSTANCE.getDeckAgingLevelOne();
+	private void sortDeckAging() {
+
+		ArrayList<CardFightingAging> deckAgingTemp = this.deckAging.clone();
+		this.deckAging.clear();
 
 		for (CardFightingAging cardFightingAging : deckAgingTemp.clone())
 			if (cardFightingAging.getECardAgingType().equals(ECardAgingType.NORMAL)) {

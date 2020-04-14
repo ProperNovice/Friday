@@ -18,6 +18,11 @@ public class HandleHazardCardsDrawnOne extends AHandleEncounterCardsDrawn {
 	}
 
 	@Override
+	protected void executeCardPressedHazardsDrawn(CardFightingHazardKnowledge cardFightingHazardKnowledge) {
+		executeTextOption(EText.FIGHT_THE_HAZARD);
+	}
+
+	@Override
 	protected void executeTextOption(EText eText) {
 
 		Text.INSTANCE.concealText();

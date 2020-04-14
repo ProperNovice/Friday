@@ -180,12 +180,13 @@ public enum Lists implements ISaveLoadStateAble {
 
 		this.deckAging.getArrayList().addAll(difficultyLevel.getDeckAging());
 
-		this.deckAging.getArrayList().shuffle();
 		this.deckAging.toFront();
 
-		for (CardFighting cardFighting : this.deckAging) {
-			cardFighting.getImageView().setVisible(true);
-			cardFighting.getImageView().flipBack();
+		for (CardFightingAging cardFightingAging : this.deckAging) {
+
+			cardFightingAging.getImageView().setVisible(true);
+			cardFightingAging.getImageView().flipBack();
+
 		}
 
 	}

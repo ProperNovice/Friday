@@ -7,6 +7,7 @@ import controller.Lists;
 import javafx.animation.AnimationTimer;
 import utils.ArrayList;
 import utils.ContainerImageViewAbles;
+import utils.Logger;
 import utils.ShutDown;
 
 public enum RealTimeDuplicateImageView {
@@ -67,8 +68,11 @@ public enum RealTimeDuplicateImageView {
 				this.cards.addLast(card);
 
 			else {
+				Logger.INSTANCE.newLine();
+				Logger.INSTANCE.log("found duplicate card");
+				Logger.INSTANCE.log(card.getClass());
 				card.print();
-				ShutDown.INSTANCE.execute("found duplicate card");
+				ShutDown.INSTANCE.execute();
 			}
 
 		}
