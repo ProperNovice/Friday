@@ -79,6 +79,9 @@ public abstract class AGameState {
 		if (!Lists.INSTANCE.handPlayer.contains(cardFighting))
 			return;
 
+		if (cardFighting.getImageView().isFlippedBack())
+			return;
+
 		card.getImageView().toFront();
 
 	}

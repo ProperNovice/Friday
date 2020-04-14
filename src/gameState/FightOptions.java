@@ -102,6 +102,9 @@ public class FightOptions extends AGameState {
 				if (!eAbility.equals(EAbility.STOP))
 					continue;
 
+				if (Life.INSTANCE.getLifeCurrent() - Modifiers.INSTANCE.getAdditionalFightingCostLifeDraw() < 0)
+					continue;
+
 				Text.INSTANCE.showText(EText.DRAW_CARD_LOSE_LIFE);
 				break;
 
