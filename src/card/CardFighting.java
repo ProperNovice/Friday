@@ -13,7 +13,7 @@ public abstract class CardFighting extends Card implements ISideKnowledgeAble {
 		super(fileName);
 		this.sideKnowledge = sideKnowledge;
 
-		this.cardFightingImageViewClone = new CardFightingImageViewClone(getFilePath(fileName));
+		this.cardFightingImageViewClone = new CardFightingImageViewClone(getFilePath(fileName), this);
 
 	}
 

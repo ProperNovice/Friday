@@ -9,12 +9,24 @@ import utils.ImageViewAble;
 
 public class CardFightingImageViewClone implements ImageViewAble, EventHandlerAble {
 
-	public CardFightingImageViewClone(String filePath) {
+	private CardFighting cardFighting = null;
+
+	public CardFightingImageViewClone(String filePath, CardFighting cardFighting) {
+
+		this.cardFighting = cardFighting;
 
 		new ImageView(filePath, this, ELayerZ.C);
 		getImageView().setWidth(Credentials.INSTANCE.DimensionsCardFighting);
+
+		if (filePath.contains("hazardKnowledge"))
+			getImageView().setRotate(180);
+
 		getImageView().setVisible(false);
 
+	}
+
+	public boolean isInstanceOfCardAging() {
+		return this.cardFighting instanceof CardFightingAging;
 	}
 
 	@Override

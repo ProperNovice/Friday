@@ -65,6 +65,15 @@ public enum DeckPanel {
 			}
 
 			deckTemp.shuffle();
+
+			for (CardFightingImageViewClone cardFightingImageViewClone : deckTemp.clone())
+				if (cardFightingImageViewClone.isInstanceOfCardAging()) {
+
+					deckTemp.remove(cardFightingImageViewClone);
+					this.panel.getArrayList().addLast(cardFightingImageViewClone);
+
+				}
+
 			this.panel.getArrayList().addAll(deckTemp);
 			deckTemp.clear();
 
@@ -73,10 +82,6 @@ public enum DeckPanel {
 		this.panel.relocateImageViews();
 		this.panel.toBack();
 
-	}
-
-	public ContainerImageViewAbles<CardFightingImageViewClone> getPanel() {
-		return this.panel;
 	}
 
 	public boolean isShowing() {
