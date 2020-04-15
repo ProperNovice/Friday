@@ -7,6 +7,7 @@ import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
 import enums.EAbility;
+import enums.EGameState;
 import enums.EText;
 import interfaces.IAbilityAble;
 
@@ -28,7 +29,7 @@ public class DrawPirate extends AHandleEncounterCardsDrawn {
 		setFreeCardsAndCardProxy();
 		checkPirateAbility();
 
-		Flow.INSTANCE.proceed();
+		Flow.INSTANCE.executeGameState(EGameState.DRAW_CARD_FROM_DECK_TO_HAND_FIRST_EMPTY_SLOT);
 
 	}
 
