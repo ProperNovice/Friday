@@ -2,17 +2,16 @@ package model;
 
 import card.CardFighting;
 import controller.Credentials;
+import enums.ELayerZ;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
-import utils.ImageView;
-import utils.ImageViewAble;
 import utils.RearrangeTypeEnum;
 
 public enum SortCardsPanel {
 
 	INSTANCE;
 
-	private Background background = new Background();
+	private Background background = new Background("Sort Panel.png", ELayerZ.A);
 	private ContainerImageViewAbles<CardFighting> panel = null;
 
 	private SortCardsPanel() {
@@ -35,19 +34,6 @@ public enum SortCardsPanel {
 
 		for (CardFighting cardFighting : this.panel)
 			cardFighting.getImageView().setVisible(value);
-
-	}
-
-	private class Background implements ImageViewAble {
-
-		public Background() {
-
-			new ImageView("Sort Panel.png", this);
-
-			this.getImageView().relocateCenter(Credentials.INSTANCE.CoordinatesSortCardPanelBackground);
-			this.getImageView().setVisible(false);
-
-		}
 
 	}
 

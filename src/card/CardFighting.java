@@ -6,10 +6,15 @@ import utils.Logger;
 public abstract class CardFighting extends Card implements ISideKnowledgeAble {
 
 	private SideKnowledge sideKnowledge = null;
+	private CardFightingImageViewClone cardFightingImageViewClone = null;
 
 	public CardFighting(String fileName, SideKnowledge sideKnowledge) {
+
 		super(fileName);
 		this.sideKnowledge = sideKnowledge;
+
+		this.cardFightingImageViewClone = new CardFightingImageViewClone(getFilePath(fileName));
+
 	}
 
 	@Override
@@ -32,6 +37,10 @@ public abstract class CardFighting extends Card implements ISideKnowledgeAble {
 
 	protected void printCredentials() {
 		this.sideKnowledge.print();
+	}
+
+	public CardFightingImageViewClone getCardFightingImageViewClone() {
+		return this.cardFightingImageViewClone;
 	}
 
 	@Override

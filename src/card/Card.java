@@ -14,8 +14,8 @@ public abstract class Card implements ImageViewAble, EventHandlerAble {
 
 	protected void createImage(String fileName) {
 
-		String fileAdress = getFolder() + fileName + ".png";
-		new ImageView(fileAdress, this);
+		String filePath = getFilePath(fileName);
+		new ImageView(filePath, this);
 		this.getImageView().setWidth(getWidth());
 
 	}
@@ -42,7 +42,9 @@ public abstract class Card implements ImageViewAble, EventHandlerAble {
 	public void handleMouseExited() {
 		Flow.INSTANCE.getCurrentGameState().executeCardWhenExited(this);
 	}
-	
-	
+
+	protected String getFilePath(String fileName) {
+		return getFolder() + fileName + ".png";
+	}
 
 }

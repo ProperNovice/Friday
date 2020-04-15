@@ -29,6 +29,11 @@ public abstract class AGameState {
 
 	public final void executeKeyPressed(KeyCode keyCode) {
 
+		if (keyCode.equals(KeyCode.D)) {
+			handleKeyPressedD();
+			return;
+		}
+
 		int textOptionToHandle = KeyCodeHandler.INSTANCE.getKeyCodeInt(keyCode);
 
 		EText textEnumPressed = Text.INSTANCE.getTextEnumOptionShowing(textOptionToHandle);
@@ -39,6 +44,10 @@ public abstract class AGameState {
 		Logger.INSTANCE.log("executing key pressed -> " + keyCode);
 		handleTextOptionPressed(textEnumPressed);
 
+	}
+
+	private void handleKeyPressedD() {
+		Lists.INSTANCE.deckPanel.showPanelAndRelocate(!Lists.INSTANCE.deckPanel.isShowing());
 	}
 
 	protected void executeTextOption(EText eText) {
@@ -65,8 +74,13 @@ public abstract class AGameState {
 			card.print();
 			executeCardFightingPressedSortCardPanel((CardFighting) card);
 
-		}
+		} else if (Lists.INSTANCE.deckPlayer.getArrayList().contains(card))
+			handlePanelVisibility(true);
 
+	}
+
+	public final void executeCardFightingPanelPressed() {
+		handlePanelVisibility(false);
 	}
 
 	public final void executeCardWhenEntered(Card card) {
@@ -115,6 +129,10 @@ public abstract class AGameState {
 
 	protected void executeCardFightingPressedSortCardPanel(CardFighting cardFighting) {
 
+	}
+
+	private void handlePanelVisibility(boolean value) {
+		Lists.INSTANCE.deckPanel.showPanelAndRelocate(value);
 	}
 
 }

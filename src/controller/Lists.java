@@ -8,6 +8,7 @@ import card.CardSlot;
 import card.CardStep;
 import difficultyLevel.DifficultyLevel;
 import interfaces.ISaveLoadStateAble;
+import model.DeckPanel;
 import model.HandPlayer;
 import model.SortCardsPanel;
 import utils.ArrayList;
@@ -30,6 +31,7 @@ public enum Lists implements ISaveLoadStateAble {
 	public ContainerImageViewAbles<CardPirate> deckPirates;
 	public HandPlayer handPlayer = HandPlayer.INSTANCE;
 	public SortCardsPanel sortCardsPanel;
+	public DeckPanel deckPanel;
 
 	public void instantiate() {
 
@@ -71,6 +73,7 @@ public enum Lists implements ISaveLoadStateAble {
 		populateDeckPirates(difficultyLevel);
 
 		this.sortCardsPanel = SortCardsPanel.INSTANCE;
+		this.deckPanel = DeckPanel.INSTANCE;
 
 		this.deckPlayer.relocateImageViews();
 		this.deckHazardKnowledge.relocateImageViews();
