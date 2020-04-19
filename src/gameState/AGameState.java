@@ -47,7 +47,12 @@ public abstract class AGameState {
 	}
 
 	private void handleKeyPressedD() {
+
+		if (Lists.INSTANCE.deckPlayer.getArrayList().isEmpty())
+			return;
+
 		Lists.INSTANCE.deckPanel.showPanelAndRelocate(!Lists.INSTANCE.deckPanel.isShowing());
+
 	}
 
 	protected void executeTextOption(EText eText) {
