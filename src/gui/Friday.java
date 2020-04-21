@@ -23,6 +23,7 @@ public class Friday extends Application {
 
 	private NumbersPair dimensionsInsets = new NumbersPair(6, 29);
 	private double pixesOnTheLeft = 180;
+	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
