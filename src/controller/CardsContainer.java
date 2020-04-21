@@ -299,7 +299,6 @@ public enum CardsContainer {
 	}
 
 	public ArrayList<CardFightingAging> getDeckAgingLevelOne() {
-		this.deckAging.clear();
 		return this.deckAging.clone();
 	}
 
