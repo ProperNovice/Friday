@@ -14,7 +14,9 @@ public abstract class ADrawCardFromDeckToHand extends AGameState {
 		if (Lists.INSTANCE.deckPlayer.getArrayList().isEmpty()) {
 
 			addDiscardPileToDeck();
-			addAgingCardToDeck();
+
+			if (!Lists.INSTANCE.deckAging.getArrayList().isEmpty())
+				addAgingCardToDeck();
 
 			Lists.INSTANCE.deckPlayer.animateSynchronousLock();
 
@@ -45,9 +47,6 @@ public abstract class ADrawCardFromDeckToHand extends AGameState {
 	}
 
 	private void addAgingCardToDeck() {
-
-		if (Lists.INSTANCE.deckAging.getArrayList().isEmpty())
-			return;
 
 		CardFightingAging cardFightingAgingToAdd = Lists.INSTANCE.deckAging.getArrayList().removeFirst();
 		cardFightingAgingToAdd.getImageView().flip();

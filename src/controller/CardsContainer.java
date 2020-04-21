@@ -299,6 +299,7 @@ public enum CardsContainer {
 	}
 
 	public ArrayList<CardFightingAging> getDeckAgingLevelOne() {
+		this.deckAging.clear();
 		return this.deckAging.clone();
 	}
 
@@ -322,7 +323,7 @@ public enum CardsContainer {
 		setListVisibleFalse(this.deckPlayer);
 		setListVisibleFalse(this.deckStep);
 		this.cardFightingAgingVeryStupid.getImageView().setVisible(false);
-		
+
 		for (CardFightingHazardKnowledge cardFightingHazardKnowledge : this.deckHazardKnowledge)
 			cardFightingHazardKnowledge.getImageView().setRotate(0);
 
