@@ -1,6 +1,7 @@
 package gameState;
 
 import controller.AbilityImageViewList;
+import controller.DestroyCardLifeIndicator;
 import controller.Flow;
 import controller.Lists;
 import controller.Modifiers;
@@ -15,6 +16,7 @@ public class RestartGame extends AGameState {
 		AbilityImageViewList.INSTANCE.releaseAllAbilitiesImageView();
 		Modifiers.INSTANCE.loadGameStart();
 		Text.INSTANCE.concealText();
+		DestroyCardLifeIndicator.INSTANCE.setVisibleIndicatorFalse();
 
 		Lists.INSTANCE.clearLists();
 		Flow.INSTANCE.clear();
