@@ -1,3 +1,7 @@
+/card/
+/controller/
+/difficultyLevel/
+/enums/
 /gameState/
 /gui/
 /interfaces/
@@ -5,7 +9,3 @@
 /numberImageView/
 /realTime/
 /utils/
-/card/
-/controller/
-/difficultyLevel/
-/enums/
