@@ -79,45 +79,43 @@ public class FightOptions extends AGameState {
 				if (Lists.INSTANCE.deckAging.getArrayList().isEmpty())
 					return;
 
+		boolean firstCardSlotEmptyContainsFreeCard = true;
+
 		for (CardSlot cardSlot : Lists.INSTANCE.handPlayer.getCardSlots()) {
 
-			if (cardSlot.containsCardFighting()) {
-
-				CardFighting cardFighting = cardSlot.getCardFighting();
-
-				if (cardFighting.getImageView().isFlippedBack())
-					continue;
-
-				if (!(cardFighting instanceof CardFightingAging))
-					continue;
-
-				SideKnowledge sideKnowledge = cardFighting.getSideKnowledge();
-
-				if (!(sideKnowledge instanceof IAbilityAble))
-					continue;
-
-				IAbilityAble iAbilityAble = (IAbilityAble) sideKnowledge;
-				EAbility eAbility = iAbilityAble.getEAbility();
-
-				if (!eAbility.equals(EAbility.STOP))
-					continue;
-
-				if (Life.INSTANCE.getLifeCurrent() - Modifiers.INSTANCE.getAdditionalFightingCostLifeDraw() < 0)
-					continue;
-
-				Text.INSTANCE.showText(EText.DRAW_CARD_LOSE_LIFE);
+			if (!cardSlot.containsCardFighting()) {
+				firstCardSlotEmptyContainsFreeCard = cardSlot.containsFreeCard();
 				break;
-
 			}
 
-			if (cardSlot.containsFreeCard())
-				Text.INSTANCE.showText(EText.DRAW_CARD_FREE);
-			else if (Life.INSTANCE.getLifeCurrent() >= Modifiers.INSTANCE.getAdditionalFightingCostLifeDraw())
-				Text.INSTANCE.showText(EText.DRAW_CARD_LOSE_LIFE);
+			CardFighting cardFighting = cardSlot.getCardFighting();
 
+			if (cardFighting.getImageView().isFlippedBack())
+				continue;
+
+			if (!(cardFighting instanceof CardFightingAging))
+				continue;
+
+			SideKnowledge sideKnowledge = cardFighting.getSideKnowledge();
+
+			if (!(sideKnowledge instanceof IAbilityAble))
+				continue;
+
+			IAbilityAble iAbilityAble = (IAbilityAble) sideKnowledge;
+			EAbility eAbility = iAbilityAble.getEAbility();
+
+			if (!eAbility.equals(EAbility.STOP))
+				continue;
+
+			firstCardSlotEmptyContainsFreeCard = false;
 			break;
 
 		}
+
+		if (firstCardSlotEmptyContainsFreeCard)
+			Text.INSTANCE.showText(EText.DRAW_CARD_FREE);
+		else if (Life.INSTANCE.getLifeCurrent() >= Modifiers.INSTANCE.getAdditionalFightingCostLifeDraw())
+			Text.INSTANCE.showText(EText.DRAW_CARD_LOSE_LIFE);
 
 	}
 
