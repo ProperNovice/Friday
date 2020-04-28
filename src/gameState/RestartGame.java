@@ -17,6 +17,7 @@ public class RestartGame extends AGameState {
 		Modifiers.INSTANCE.loadGameStart();
 		Text.INSTANCE.concealText();
 		DestroyCardLifeIndicator.INSTANCE.setVisibleIndicatorFalse();
+		Lists.INSTANCE.sortCardsPanel.showBackgroundPanelAndRelocate(false);
 
 		Lists.INSTANCE.clearLists();
 		Flow.INSTANCE.clear();
