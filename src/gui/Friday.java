@@ -79,7 +79,7 @@ public class Friday extends Application {
 					if (keyCode.equals(KeyCode.ESCAPE))
 						ShutDown.INSTANCE.execute();
 
-					else if (keyCode.equals(KeyCode.DEAD_GRAVE))
+					else if (keyCode.equals(KeyCode.BACK_QUOTE))
 						Flow.INSTANCE.executeGameState(EGameState.RESTART_GAME);
 
 					else if (Animation.INSTANCE.isAnimatingSynchronous())
