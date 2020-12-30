@@ -1,7 +1,5 @@
 package utils;
 
-import com.sun.javafx.tk.Toolkit;
-
 import javafx.application.Platform;
 
 public enum Lock {
@@ -55,7 +53,7 @@ public enum Lock {
 		if (Platform.isFxApplicationThread()) {
 
 			this.lockType = LockType.FX;
-			Toolkit.getToolkit().enterNestedEventLoop(this.lockObject);
+			Platform.enterNestedEventLoop(this.lockObject);
 
 		} else if (!Platform.isFxApplicationThread()) {
 
@@ -78,7 +76,7 @@ public enum Lock {
 		switch (this.lockType) {
 
 		case FX:
-			Toolkit.getToolkit().exitNestedEventLoop(this.lockObject, null);
+			Platform.exitNestedEventLoop(this.lockObject, null);
 			break;
 
 		case EXECUTOR_SERVICE:
