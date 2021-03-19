@@ -23,7 +23,6 @@ public class Friday extends Application {
 
 	private NumbersPair dimensionsInsets = new NumbersPair(6, 29);
 	private double pixesOnTheLeft = 180;
-	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -43,7 +42,8 @@ public class Friday extends Application {
 
 		primaryStage.setTitle(Credentials.INSTANCE.primaryStageTitle);
 
-		primaryStage.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2 - this.pixesOnTheLeft);
+		primaryStage.setX(
+				(Screen.getPrimary().getBounds().getWidth() - width) / 2 - this.pixesOnTheLeft);
 		primaryStage.setY((Screen.getPrimary().getBounds().getHeight() - height) / 2);
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
